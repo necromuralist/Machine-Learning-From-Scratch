@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ASU CSE-575 (Posts about data)</title><link>https://necromuralist.github.io/asu-cse-575/</link><description></description><atom:link href="https://necromuralist.github.io/asu-cse-575/categories/data.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:necromuralist@protonmail.com"&gt;Cloistered Monkey&lt;/a&gt; </copyright><lastBuildDate>Sun, 22 Mar 2020 19:38:24 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Loading the Zeros and Ones</title><link>https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/</link><dc:creator>Cloistered Monkey</dc:creator><description>&lt;div id="table-of-contents"&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id="text-table-of-contents"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/#org7d5a1f9"&gt;Beginning&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/#org878040f"&gt;Middle&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/#org7496137"&gt;End&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org7d5a1f9" class="outline-2"&gt;
+&lt;h2 id="org7d5a1f9"&gt;Beginning&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org7d5a1f9"&gt;
+&lt;p&gt;
+This is the beginning of the CSE 575 Statistical Machine Learning Class project. The first part is &lt;i&gt;Density Estimation and Classification&lt;/i&gt; and will characterize a subset of the &lt;a href="http://yann.lecun.com/exdb/mnist/"&gt;MNIST&lt;/a&gt; dataset of handwritten digits which only contains the zeros and ones (&lt;code&gt;0&lt;/code&gt; and &lt;code&gt;1&lt;/code&gt;).
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org878040f" class="outline-2"&gt;
+&lt;h2 id="org878040f"&gt;Middle&lt;/h2&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org7496137" class="outline-2"&gt;
+&lt;h2 id="org7496137"&gt;End&lt;/h2&gt;
+&lt;/div&gt;</description><category>data</category><category>project</category><guid>https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/</guid><pubDate>Sun, 22 Mar 2020 19:30:08 GMT</pubDate></item></channel></rss>
