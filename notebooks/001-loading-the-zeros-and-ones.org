@@ -21,6 +21,213 @@
 * Beginning
   This is the beginning of the CSE 575 Statistical Machine Learning Class project. The first part is /Density Estimation and Classification/ and will characterize a subset of the [[http://yann.lecun.com/exdb/mnist/][MNIST]] dataset of handwritten digits which only contains the zeros and ones (=0= and =1=). This first post will just make sure that we can load the data.
 ** Imports
+*** From python's Standard Library
+#+begin_src python :results none
+from argparse import Namespace
+from pathlib import Path
 
+import os
+import random
+#+end_src
+*** From PyPi
+#+begin_src python :results none
+from dotenv import load_dotenv
+from expects import (
+    be_true,
+    equal,
+    expect
+)
+from PIL import Image
+from pytest import approx as around
+
+import hvplot.pandas
+import matplotlib.pyplot as pyplot
+import pandas
+import seaborn
+import scipy.io
+#+end_src
+*** Others
+#+begin_src python :results none
+from graeae import EmbedHoloviews
+#+end_src
+** Set Up
+*** The Environment
+#+begin_src python :results none
+Environment = Namespace(
+    raw="RAW_DATA",
+    train_images="TRAIN_IMAGES",
+    train_labels="TRAIN_LABELS",
+    test_images="TEST_IMAGES",
+    test_labels="TEST_LABELS",
+)
+#+end_src
+** Load the Environment
+#+begin_src python :results none
+load_dotenv(override=True)
+ENVIRONMENT = os.environ
+RAW_PATH = Path(ENVIRONMENT[Environment.raw]).expanduser()
+assert RAW_PATH.is_dir()
+#+end_src
+** Plotting
+#+begin_src python :results none
+SLUG = "loading-the-zeros-and-ones"
+PLOT_PATH = Path(f"../files/notebooks/{SLUG}")
+#+end_src
+
+#+BEGIN_SRC python :results none
+get_ipython().run_line_magic('matplotlib', 'inline')
+get_ipython().run_line_magic('config', "InlineBackend.figure_format = 'retina'")
+seaborn.set(style="whitegrid",
+            rc={"axes.grid": False,
+                "xtick.labelsize": 10,
+                "ytick.labelsize": 10,
+                "font.size": 14,
+                "font.family": ["sans-serif"],
+                "font.sans-serif": ["Open Sans", "Latin Modern Sans", "Lato"],
+                "figure.figsize": (10, 8)},
+            font_scale=3)
+#+END_SRC
 * Middle
-* End
+  We are going to need to find the distributions for each digits' image using the training data. The images are separated by digit, training or testing, and image or label. It seems unnecessary to have labels given that the image files are already labeled, but perhaps this is a convenience for some.
+** Load the Zeros
+#+begin_src python :results none
+ZERO_TRAIN_IMAGES_PATH = Path(ENVIRONMENT[Environment.train_images].format(0)).expanduser()
+ZERO_TRAIN_LABELS_PATH = Path(ENVIRONMENT[Environment.train_labels].format(0)).expanduser()
+
+ZERO_TEST_IMAGES_PATH = Path(ENVIRONMENT[Environment.test_images].format(0)).expanduser()
+ZERO_TEST_LABELS_PATH = Path(ENVIRONMENT[Environment.test_labels].format(0)).expanduser()
+
+assert ZERO_TRAIN_IMAGES_PATH.is_file()
+assert ZERO_TRAIN_LABELS_PATH.is_file()
+assert ZERO_TEST_IMAGES_PATH.is_file()
+assert ZERO_TEST_LABELS_PATH.is_file()
+#+end_src
+
+#+begin_src python :results output :exports both
+ZERO_TRAIN_IMAGES = scipy.io.loadmat(ZERO_TRAIN_IMAGES_PATH)
+ZERO_TRAIN_LABELS = scipy.io.loadmat(ZERO_TRAIN_LABELS_PATH)
+ZERO_TEST_IMAGES = scipy.io.loadmat(ZERO_TEST_IMAGES_PATH)
+ZERO_TEST_LABELS = scipy.io.loadmat(ZERO_TEST_LABELS_PATH)
+
+print(type(ZERO_TRAIN_IMAGES))
+print(type(ZERO_TRAIN_LABELS))
+print(type(ZERO_TEST_IMAGES))
+print(type(ZERO_TEST_LABELS))
+#+end_src
+
+#+RESULTS:
+: <class 'dict'>
+: <class 'dict'>
+: <class 'dict'>
+: <class 'dict'>
+
+#+begin_src python :results output :exports both
+print(ZERO_TRAIN_IMAGES.keys())
+print(ZERO_TRAIN_LABELS.keys())
+#+end_src
+
+#+RESULTS:
+: dict_keys(['__header__', '__version__', '__globals__', 'target_img'])
+: dict_keys(['__header__', '__version__', '__globals__', 'target_label'])
+
+#+begin_src python :results none
+DataKeys = Namespace(
+    images = "target_img",
+    labels = "target_label",
+)
+#+end_src
+
+#+begin_src python :results output :exports both
+for key in ZERO_TRAIN_IMAGES:
+    if key.startswith("_"):
+        print(ZERO_TRAIN_IMAGES[key])
+#+end_src
+
+#+RESULTS:
+: b'MATLAB 5.0 MAT-file, Platform: PCWIN64, Created on: Fri Jul 05 12:26:06 2019'
+: 1.0
+: []
+
+#+begin_src python :results output :exports both
+print(ZERO_TRAIN_IMAGES[DataKeys.images].shape)
+#+end_src
+
+#+RESULTS:
+: (28, 28, 5923)
+
+According to the document provided by ASU, there are 5,923 images of zeros in the training set, so it looks like the first two dimensions are the images and the third is the samples.
+
+#+begin_src python :results none
+path = PLOT_PATH/"zero_sample.png"
+image = Image.fromarray(ZERO_TRAIN_IMAGES[DataKeys.images][:, :, 0])
+image.save(path)
+#+end_src
+
+Here's a sample zero image.
+
+[[file:zero_sample.png]]
+
+#+begin_src python :results output :exports both
+print(set(ZERO_TRAIN_LABELS[DataKeys.labels].flatten()))
+print(set(ZERO_TEST_LABELS[DataKeys.labels].flatten()))
+#+end_src
+
+#+RESULTS:
+: {0}
+: {0}
+
+It looks like the labels aren't really useful here.
+
+*** Flattening
+#+begin_src python :results none
+PIXELS = 28 * 28
+ZERO_IMAGES = ZERO_TRAIN_IMAGES[DataKeys.images]
+SAMPLES  = ZERO_IMAGES.shape[-1]
+SAMPLE_INDEX = random.randrange(SAMPLES)
+SAMPLE = ZERO_IMAGES[:, :, SAMPLE_INDEX]
+ZERO_TRAIN = ZERO_IMAGES.flatten().reshape(PIXELS, SAMPLES).T
+#+end_src
+
+#+begin_src python :results none
+expect(all(SAMPLE.flatten() == ZERO_TRAIN[SAMPLE_INDEX])).to(be_true)
+#+end_src
+
+#+begin_src python :results output :exports both
+print(ZERO_TRAIN.shape)
+ZERO_FRAME = pandas.DataFrame(ZERO_TRAIN)
+#+end_src
+
+#+RESULTS:
+: (5923, 784)
+
+#+begin_src python :results none :file ../files/notebooks/loading-the-zeros-and-ones/mean_zeros_distribution.png
+means = ZERO_FRAME.mean(axis="columns")
+figure, axe = pyplot.subplots()
+plot = means.hvplot.kde()
+figure.suptitle("Mean Brightness of Zeros", weight="bold")
+seaborn.distplot(means, rug=True, ax=axe)
+# figure.savefig(PLOT_PATH/"mean_zeros_distribution.png")
+#+end_src
+
+[[file:mean_zeros_distribution.png]]
+
+#+begin_src python :results none
+expect(SAMPLE.mean()).to(equal(means.iloc[SAMPLE_INDEX]))
+#+end_src
+
+*** The Variances
+    Besides getting the mean brightness for each image we need the mean row-variance for each image. 
+
+#+begin_src python :results none
+accumulator = 0
+for row in range(len(SAMPLE)):
+    accumulator += SAMPLE[row].var()
+
+SAMPLE_VARIANCE = accumulator/len(SAMPLE)
+
+ZERO_VARIANCES = ZERO_IMAGES.var(axis=1).mean(axis=0)
+expect(SAMPLE_VARIANCE).to(equal(around(ZERO_VARIANCES[SAMPLE_INDEX])))
+#+end_src
+
+
+

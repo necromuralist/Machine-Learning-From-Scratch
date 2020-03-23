@@ -91,3 +91,5 @@ target/
 # my additions
 .venv
 cache/
+.ob-jupyter/
+output/
