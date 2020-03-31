@@ -13,7 +13,7 @@
 #+END_COMMENT
 #+OPTIONS: ^:{}
 #+TOC: headlines 5
-#+PROPERTY: header-args :session /home/athena/.local/share/jupyter/runtime/kernel-3ccb475f-9ee7-46c5-9fb7-2b9609290294.json
+#+PROPERTY: header-args :session /home/athena/.local/share/jupyter/runtime/kernel-6e187c5b-b4ac-4bff-83e6-ef08d753e46f.json
 #+BEGIN_SRC python :results none :exports none
 %load_ext autoreload
 %autoreload 2
@@ -45,10 +45,6 @@ import matplotlib.pyplot as pyplot
 import pandas
 import seaborn
 import scipy.io
-#+end_src
-*** Others
-#+begin_src python :results none
-from graeae import EmbedHoloviews
 #+end_src
 ** Set Up
 *** The Environment
@@ -203,7 +199,7 @@ ZERO_FRAME = pandas.DataFrame(ZERO_TRAIN)
 #+begin_src python :results none :file ../files/notebooks/loading-the-zeros-and-ones/mean_zeros_distribution.png
 means = ZERO_FRAME.mean(axis="columns")
 figure, axe = pyplot.subplots()
-plot = means.hvplot.kde()
+plot = means.plot.kde()
 figure.suptitle("Mean Brightness of Zeros", weight="bold")
 seaborn.distplot(means, rug=True, ax=axe)
 # figure.savefig(PLOT_PATH/"mean_zeros_distribution.png")
@@ -229,5 +225,11 @@ ZERO_VARIANCES = ZERO_IMAGES.var(axis=1).mean(axis=0)
 expect(SAMPLE_VARIANCE).to(equal(around(ZERO_VARIANCES[SAMPLE_INDEX])))
 #+end_src
 
+#+begin_src python :results none :file ../files/notebooks/loading-the-zeros-and-ones/mean_zeros_variance_distribution.png
+figure, axe = pyplot.subplots()
+#plot = ZERO_VARIANCES.plot.kde()
+figure.suptitle("Mean Variances of Zeros", weight="bold")
+seaborn.distplot(ZERO_VARIANCES, rug=True, ax=axe)
+#+end_src
 
-
+[[file:mean_zeros_variance_distribution.png]]
