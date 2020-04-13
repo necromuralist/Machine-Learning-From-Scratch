@@ -1,0 +1,41 @@
+#+BEGIN_COMMENT
+.. title: K-Means Clustering 2
+.. slug: k-means-clustering-2
+.. date: 2020-04-12 23:25:10 UTC-07:00
+.. tags: project,k-means,clustering,unsupervised
+.. category: Project
+.. link: 
+.. description: Part 2 of Part 2 of the CSE 575 projec.
+.. type: text
+.. status: 
+.. updated: 
+
+#+END_COMMENT
+#+OPTIONS: ^:{}
+#+TOC: headlines 5
+#+PROPERTY: header-args :session 
+#+BEGIN_SRC python :results none :exports none
+%load_ext autoreload
+%autoreload 2
+#+END_SRC
+* Raw
+#+begin_src python
+from Precode2 import *
+import numpy
+data = np.load('AllSamples.npy')
+
+
+# In[2]:
+
+
+k1,i_point1,k2,i_point2 = initial_S2('0111') # please replace 0111 with your last four digit of your ID
+
+
+# In[3]:
+
+
+print(k1)
+print(i_point1)
+print(k2)
+print(i_point2)
+#+end_src
