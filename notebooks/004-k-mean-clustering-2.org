@@ -13,29 +13,611 @@
 #+END_COMMENT
 #+OPTIONS: ^:{}
 #+TOC: headlines 5
-#+PROPERTY: header-args :session 
+#+PROPERTY: header-args :session /home/athena/.local/share/jupyter/runtime/kernel-244e0a70-d810-42d0-9971-550964b634c6.json
 #+BEGIN_SRC python :results none :exports none
 %load_ext autoreload
 %autoreload 2
 #+END_SRC
-* Raw
-#+begin_src python
-from Precode2 import *
-import numpy
-data = np.load('AllSamples.npy')
-
-
-# In[2]:
-
-
-k1,i_point1,k2,i_point2 = initial_S2('0111') # please replace 0111 with your last four digit of your ID
-
-
-# In[3]:
-
-
-print(k1)
-print(i_point1)
-print(k2)
-print(i_point2)
+* Beginning
+** Imports
+*** Python
+#+begin_src python :results none
+from collections import defaultdict, namedtuple
+from functools import partial
+from pathlib import Path
+import os
+import random
 #+end_src
+*** PyPi
+#+begin_src python :results none
+from expects import (
+    be_true,
+    expect
+)
+import dotenv
+import hvplot.pandas
+import matplotlib.pyplot as pyplot
+import numpy
+import pandas
+import seaborn
+from tabulate import tabulate
+#+end_src
+*** Coursera
+#+begin_src python :results none
+from cse_575.coursera.Precode2 import initial_S2
+#+end_src
+*** Others
+#+begin_src python :results none
+from graeae import EmbedHoloviews
+#+end_src
+** Set Up
+*** Tables
+#+begin_src python :results none
+TABLE = partial(tabulate, tablefmt="orgtbl", showindex=False, headers="keys")
+#+end_src
+*** Plotting
+ #+begin_src python :results none
+SLUG = "k-means-clustering-2"
+OUTPUT_PATH = Path(f"../files/notebooks/{SLUG}")
+ #+end_src
+
+ #+begin_src python :results none
+Embed = partial(EmbedHoloviews, folder_path=OUTPUT_PATH)
+ #+end_src
+
+ #+BEGIN_SRC python :results none
+get_ipython().run_line_magic('matplotlib', 'inline')
+get_ipython().run_line_magic('config', "InlineBackend.figure_format = 'retina'")
+seaborn.set(style="whitegrid",
+            rc={"axes.grid": False,
+                "xtick.labelsize": 10,
+                "ytick.labelsize": 10,
+                "font.size": 12,
+                "font.family": ["sans-serif"],
+                "font.sans-serif": ["Open Sans", "Latin Modern Sans", "Lato"],
+                "figure.figsize": (10, 8)},
+            font_scale=3)
+ #+END_SRC
+** The Data
+#+begin_src python :results output :exports both
+dotenv.load_dotenv(override=True)
+DATA_PATH = Path(os.environ["KNN_DATA"]).expanduser()
+data = numpy.load(DATA_PATH)
+frame = pandas.DataFrame(data, columns=["x", "y"])
+print(data.shape)
+#+end_src
+
+#+RESULTS:
+: (300, 2)
+* Middle
+** The Data
+#+begin_src python :results none :file ../files/notebooks/k-means-clustering-2/scatter.png
+figure, axe = pyplot.subplots()
+
+figure.suptitle("X vs Y", weight="bold")
+seaborn.relplot(x="x", y="y", data=frame, ax=axe)
+#+end_src
+
+[[file:scatter.png]]
+** Coursera's Splitting
+   The =initial_S2= gives you the k and initial centroid to use for submissions. Calling it also sets the random seed.
+
+#+begin_src python :results output :exports both
+STUDENT_ID = os.environ["STUDENT_ID"]
+
+k1,i_point1,k2,i_point2 = initial_S2(STUDENT_ID, data)
+print(f"{k1}: {i_point1}")
+print(f"{k2}: {i_point2}")
+#+end_src
+
+#+RESULTS:
+: Strategy 2: k and initial points
+: 4: [3.81135136 5.98125361]
+: 6: [2.16641743 2.99414637]
+
+** Initial Points
+   The main difference between this section and the prior one is that instead of choosing all the initial points at random you pick one point at random and the for each of the remaining centroids you calculate the average distance between each point and all the previous centroids then you pick the point that is the furthest from the previous centroids (on average).
+*** First Points
+#+begin_src python :results none
+def random_point(points: numpy.array) -> numpy.array:
+    """get a random point from the data
+
+    Args:
+     points: the source of the points
+
+    Return:
+     random entry in the data
+    """
+    return points[random.randrange(len(points)), :]
+#+end_src
+
+#+begin_src python :results output :exports both
+print(random_point(data))
+print(random_point(data))
+#+end_src
+
+#+RESULTS:
+: [2.58046907 6.53023549]
+: [6.46270852 5.83507122]
+
+*** The Initial Points
+#+begin_src python :results none
+def initial_centers(points: numpy.array, k: int,
+                    debug: bool=False,
+                    first: numpy.array=None) -> numpy.array:
+    """Get the initial centers of gravity
+
+    Starts with a random point and from then on picks the point the furthest
+    from the center of the previously chosen centroids
+
+    Args:
+     points: source of the points (the data)
+     k: number of clusters we want
+     debug: whether to emit messages
+     first: the starting centroid (otherwise a random one will be picked)
+
+    Returns:
+     numpy.array: the initial k centroids taken from the points
+    """
+    ACROSS_ROWS, ACROSS_COLUMNS = 0, 1
+    candidates = points.copy()
+    centroids = numpy.empty((k, len(points[0])))
+    centroids[0] = first if first is not None else random_point(points)
+    if debug:
+        print(f"First Centroid: {centroids[0]}")
+
+    # to avoid duplicate starting centroids
+    candidates = numpy.delete(candidates, numpy.where(
+        (candidates == centroids[0]).all(axis=ACROSS_COLUMNS)),
+        axis=ACROSS_ROWS
+        )
+    for center in range(1, k):
+        centroids[center] = candidates[
+            numpy.argmax(
+                [numpy.mean(
+                    numpy.sum(
+                        numpy.square(
+                            point - centroids
+                        ),
+                        axis=ACROSS_COLUMNS
+                    )
+                ) for point in points]
+            )]
+        candidates = numpy.delete(candidates, numpy.where(
+            (candidates == centroids[center]).all(axis=ACROSS_COLUMNS)),
+            axis=ACROSS_ROWS
+        )
+    return centroids
+#+end_src
+** From the Previous Section
+   The rest of the exercise is the same as the previous exercise.
+*** Clusters
+    This is just a namedtuple to hold the clusters and centroids.
+#+begin_src python :results none
+Clusters = namedtuple("Clusters", ["clusters", "centroids"])
+#+end_src
+*** Get Centroids
+#+begin_src python :results none
+def update_centroids(centroids: numpy.array, points: numpy.array) -> Clusters:
+    """Get updated centroids
+    
+    Args:
+     centroids: previous set of centroids
+     points: points to cluster (shape = n rows, 2 columns)
+
+    Returns:
+     Clusters namedtuple
+    """
+    clusters = defaultdict(list)
+    for point in points:
+        distances = numpy.sum(numpy.square(point - centroids), axis=1)
+        closest = numpy.argmin(distances)
+        clusters[closest].append(point)
+    clusters = numpy.array(list(clusters.values()))
+    assert len(clusters) == len(centroids), f"clusters: {clusters}"
+    centroids= numpy.array([
+        numpy.mean(cluster, axis=0)
+        for cluster in clusters
+    ])
+    return Clusters(centroids=centroids, clusters=clusters)
+#+end_src
+** The Objective Function
+   The objective of training is to minimize the variation within a cluster. In this case we're measuring that as the sum of the squared distances from the points within a cluster to the mean of the cluster.
+
+\[
+\sum_{i=1}^K \sum_{x \in D_i} \lVert x - \mu_i \rVert^2
+\]
+
+#+begin_src python :results none
+def objective(clusters: numpy.array) -> float:
+    """calculates the variation within clusters
+
+    Args:
+     clusters: array (or other iterable of points in the clusters)
+
+    Returns:
+     the score for the cluster variation
+    """
+    variation = 0
+    for cluster in clusters:
+        center = numpy.mean(cluster)
+        variation += (
+            numpy.sum(
+                numpy.square(
+                    cluster - center
+                )
+            )
+        )
+    return variation
+#+end_src
+** Putting Them All Together
+
+#+begin_src python :results none
+def k_means(k: int, data: numpy.array,
+            debug: bool=False,
+            centroids: numpy.array=None) -> Clusters:
+    """Calculates the k-means clusters and the variance
+
+
+    Args:
+     k: number of clusters to create
+     data: the source of the points to cluster
+     debug: whether to emit messages
+     initial_centroids: pre-chosen initial centroids (otherwise random)
+    """
+    centroids = (centroids if centroids is not None
+                 else initial_centers(points=data, k=k, debug=debug))
+    if debug:
+        print(f"k_means starting centroids: {centroids}")
+    assert len(centroids) == k
+    while True:
+        updated = update_centroids(centroids, data)
+        if (numpy.sort(centroids) == numpy.sort(updated.centroids)).all():
+            break
+        centroids = updated.centroids
+    return updated
+#+end_src
+
+** K From Two To Ten
+#+begin_src python :results none
+Outcomes = namedtuple("Outcomes", ["losses", "points"])
+#+end_src
+
+#+begin_src python :results none
+def grid_search(minimum_k: int=2,
+                maximum_k: int=10,
+                data: numpy.array=data) -> Outcomes:
+    """Runs K-means over a range of K"""
+    losses = {}
+    outcomes = {}
+    for k in range(minimum_k, maximum_k + 1):
+        outcome = k_means(k, data)
+        loss = objective(outcome.clusters)
+        losses[k] = loss
+        outcomes[k] = outcome
+    losses = pandas.DataFrame(dict(K=list(losses.keys()),
+                                   Loss=list(losses.values())))
+    return Outcomes(losses=losses, points=outcomes)
+#+end_src
+
+#+begin_src python :results none
+outcomes = grid_search()
+#+end_src
+
+#+begin_src python :results output :exports both
+print(TABLE(outcomes.losses))
+#+end_src
+
+|   K |    Loss |
+|-----+---------|
+|   2 | 2833.41 |
+|   3 | 2583.62 |
+|   4 | 2191.29 |
+|   5 | 2026.99 |
+|   6 | 1962.44 |
+|   7 | 2048.34 |
+|   8 | 1899.93 |
+|   9 | 1889.84 |
+|  10 | 1936.32 |
+
+
+#+begin_src python :results none
+plot = outcomes.losses.hvplot.bar(x="K", y="Loss").opts(
+    height=800, width=1000, title="Loss by K")
+embedded = Embed(plot=plot, file_name="loss_vs_k")()
+#+end_src
+
+#+begin_src python :results output html :exports both
+print(embedded)
+#+end_src
+
+#+RESULTS:
+#+begin_export html
+ <object type="text/html" data="loss_vs_k.html" style="width:100%" height=800>
+   <p>Figure Missing</p>
+ </object>
+#+end_export
+
+It looks like 6 clusters is about as much as you want to go.
+
+#+begin_src python :results none
+data_frame = pandas.DataFrame(data, columns=["x", "y"])
+ten_frame = pandas.DataFrame(outcomes.points[10].centroids, columns=["x", "y"])
+#+end_src
+
+#+begin_src python :results none
+def plot_clusters(outcomes: Outcomes, k: int, data: numpy.array=data):
+    data_frame = pandas.DataFrame(data, columns=["x", "y"])
+    center_frame = pandas.DataFrame(outcomes.points[k].centroids,
+                                    columns=["x", "y"])
+
+    plots = center_frame.hvplot.scatter(
+        x="x", y="y",
+        s=100, c="k", marker="+")
+
+    for cluster in outcomes.points[k].clusters:
+        c_frame = pandas.DataFrame(cluster, columns=["x", "y"])
+        plots *= c_frame.hvplot.scatter(x="x", y="y")
+        
+    plot = (plots).opts(width=1000, height=800, title=f"Clusters K={k}")
+    return Embed(plot=plot, file_name=f"clusters_{k}")()
+#+end_src
+
+#+begin_src python :results none
+embedded = plot_clusters(outcomes, 10)
+#+end_src
+
+#+begin_src python :results output html :exports both
+print(embedded)
+#+end_src
+
+#+RESULTS:
+#+begin_export html
+ <object type="text/html" data="clusters_10.html" style="width:100%" height=800>
+   <p>Figure Missing</p>
+ </object>
+#+end_export
+
+This does sort of look like the clusters did a little better than the random centroids did, but there's a cluster with only one point at the top right of the plot. It's probably overfitting.
+
+* End
+** Submissions
+*** Plotting the two runs
+#+begin_src python :results none :file ../files/notebooks/k-means-clustering-2/strategy_2_run_one.png
+outcomes_2 = grid_search()
+figure, axe = pyplot.subplots()
+figure.suptitle("Strategy Two", weight="bold")
+outcomes.losses["Run"] = "First"
+outcomes_2.losses["Run"] = "Second"
+
+outcomes.losses.plot(x="K", y="Loss", label="First Run", ax=axe)
+outcomes_2.losses.plot(x="K", y="Loss", label="Second Run", ax=axe)
+axe.set_ylabel("Objective Function")
+#+end_src
+    
+[[file:strategy_2_run_one.png]]
+
+It kind of looks like either k=4 or k=6 is the actual optimum (based on the assumption that the biggest drop indicates the right level).
+
+#+begin_src python :results none
+embedded = plot_clusters(outcomes_2, 2)
+#+end_src
+
+#+begin_src python :results output html :exports both
+print(embedded)
+#+end_src
+
+#+RESULTS:
+#+begin_export html
+<object type="text/html" data="clusters_2.html" style="width:100%" height=800>
+  <p>Figure Missing</p>
+</object>
+#+end_export
+
+
+#+begin_src python :results none
+embedded = plot_clusters(outcomes_2, 3)
+#+end_src
+
+#+begin_src python :results output html :exports both
+print(embedded)
+#+end_src
+
+#+RESULTS:
+#+begin_export html
+<object type="text/html" data="clusters_3.html" style="width:100%" height=800>
+  <p>Figure Missing</p>
+</object>
+#+end_export
+
+#+begin_src python :results none
+embedded = plot_clusters(outcomes_2, 4)
+#+end_src
+
+#+begin_src python :results output html :exports both
+print(embedded)
+#+end_src
+
+#+RESULTS:
+#+begin_export html
+ <object type="text/html" data="clusters_4.html" style="width:100%" height=800>
+   <p>Figure Missing</p>
+ </object>
+#+end_export
+
+#+begin_src python :results none
+embedded = plot_clusters(outcomes_2, 5)
+#+end_src
+
+#+begin_src python :results output html :exports both
+print(embedded)
+#+end_src
+
+#+RESULTS:
+#+begin_export html
+ <object type="text/html" data="clusters_5.html" style="width:100%" height=800>
+   <p>Figure Missing</p>
+ </object>
+#+end_export
+
+#+begin_src python :results none
+embedded = plot_clusters(outcomes_2, 6)
+#+end_src
+
+#+begin_src python :results output html :exports both
+print(embedded)
+#+end_src
+
+#+RESULTS:
+#+begin_export html
+ <object type="text/html" data="clusters_6.html" style="width:100%" height=800>
+   <p>Figure Missing</p>
+ </object>
+#+end_export
+
+#+begin_src python :results none
+embedded = plot_clusters(outcomes_2, 7)
+#+end_src
+
+#+begin_src python :results output html :exports both
+print(embedded)
+#+end_src
+
+#+RESULTS:
+#+begin_export html
+ <object type="text/html" data="clusters_7.html" style="width:100%" height=800>
+   <p>Figure Missing</p>
+ </object>
+#+end_export
+
+
+#+begin_src python :results none
+embedded = plot_clusters(outcomes_2, 8)
+#+end_src
+
+#+begin_src python :results output html :exports both
+print(embedded)
+#+end_src
+
+#+RESULTS:
+#+begin_export html
+ <object type="text/html" data="clusters_8.html" style="width:100%" height=800>
+   <p>Figure Missing</p>
+ </object>
+#+end_export
+
+#+begin_src python :results none
+embedded = plot_clusters(outcomes_2, 9)
+#+end_src
+
+#+begin_src python :results output html :exports both
+print(embedded)
+#+end_src
+
+#+RESULTS:
+#+begin_export html
+<object type="text/html" data="clusters_9.html" style="width:100%" height=800>
+  <p>Figure Missing</p>
+</object>
+#+end_export
+
+#+begin_src python :results none
+embedded = plot_clusters(outcomes_2, 10)
+#+end_src
+
+#+begin_src python :results output html :exports both
+print(embedded)
+#+end_src
+
+#+RESULTS:
+#+begin_export html
+<object type="text/html" data="clusters_10.html" style="width:100%" height=800>
+  <p>Figure Missing</p>
+</object>
+#+end_export
+
+Since the points don't have any meaning (at least not to me) it's hard to say what the best clustering effects are. One of the problems with this dataset (with regards to k-means) is that the data that looks contiguous isn't necessary clustered in circles, which is what the k-means requires to work best. I think that 9 clusters has the "cleanest" clustering, at least visually.
+
+** The ID-Specific Data
+   For the numeric submission we need to run k-means over the two points that their pre-defined functions produced.
+
+#+begin_src python :results none
+Submission = namedtuple("Submission", ["clusters", "centroids", "loss"])
+#+end_src
+
+#+begin_src python :results none
+def check_centroids(centroids: numpy.array,
+                    debug: bool=False,
+                    data: numpy.array=data) -> Submission:
+    """Check the outcome with pre-initialized centroids
+
+    Args:
+     centroids: initial centroids for the k-means algorithm
+     debug: whether to emit messages
+     data: points to cluster
+    """
+    outcome = k_means(k=len(centroids), centroids=centroids, data=data,
+                      debug=debug)
+    score = objective(outcome.clusters)
+    return Submission(clusters=outcome.clusters, centroids=outcome.centroids,
+                      loss=score)
+#+end_src
+*** First Check
+
+#+begin_src python :results output :exports both
+centroids_1 = initial_centers(k=k1, points=data, first=i_point1, debug=True)
+outcome_3 = check_centroids(centroids=centroids_1, debug=True)
+print(f"\nK: {k1}")
+print(f"Final Centroids:\n{outcome_3.centroids}")
+print(f"\nObjective Function: {outcome_3.loss}")
+#+end_src
+
+#+RESULTS:
+#+begin_example
+First Centroid: [3.81135136 5.98125361]
+k_means starting centroids: [[3.81135136 5.98125361]
+ [4.59083727 7.53490523]
+ [4.9511002  8.08344216]
+ [1.9311184  6.93692984]]
+
+K: 4
+Final Centroids:
+[[2.45162074 6.08990448]
+ [7.79475201 8.45021454]
+ [5.46810558 2.23600141]
+ [5.44895368 6.72531296]]
+
+Objective Function: 2356.702968522488
+#+end_example
+
+*** Second Check
+#+begin_src python :results output :exports both
+centroids_2 = initial_centers(k=k2, points=data, first=i_point2, debug=True)
+outcome_4 = check_centroids(centroids=centroids_2, debug=True)
+print(f"\nK: {k2}")
+print(f"Final Centroids:\n{outcome_4.centroids}")
+print(f"\nObjective Function: {outcome_4.loss}")
+#+end_src
+
+#+RESULTS:
+#+begin_example
+First Centroid: [2.16641743 2.99414637]
+k_means starting centroids: [[2.16641743 2.99414637]
+ [9.26998864 9.62492869]
+ [2.37650624 8.15241778]
+ [3.2881521  0.71796855]
+ [3.2115245  1.1089788 ]
+ [4.66005931 7.06059555]]
+
+K: 6
+Final Centroids:
+[[2.56333815 6.9782248 ]
+ [7.75648325 8.55668928]
+ [7.41419243 2.32169114]
+ [3.49556658 3.56611232]
+ [5.46427736 6.83771354]
+ [3.14506148 0.90770655]]
+
+Objective Function: 1963.908359892354
+#+end_example
+

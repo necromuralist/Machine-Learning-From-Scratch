@@ -1,0 +1,553 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    
+      <meta charset="utf-8">
+      <title>Panel</title>
+      
+      
+        
+          
+        <style>
+            .json-formatter-row {
+                  font-family: monospace;
+                }
+                .json-formatter-row,
+                .json-formatter-row a,
+                .json-formatter-row a:hover {
+                  color: black;
+                  text-decoration: none;
+                }
+                .json-formatter-row .json-formatter-row {
+                  margin-left: 1rem;
+                }
+                .json-formatter-row .json-formatter-children.json-formatter-empty {
+                  opacity: 0.5;
+                  margin-left: 1rem;
+                }
+                .json-formatter-row .json-formatter-children.json-formatter-empty:after {
+                  display: none;
+                }
+                .json-formatter-row .json-formatter-children.json-formatter-empty.json-formatter-object:after {
+                  content: "No properties";
+                }
+                .json-formatter-row .json-formatter-children.json-formatter-empty.json-formatter-array:after {
+                  content: "[]";
+                }
+                .json-formatter-row .json-formatter-string,
+                .json-formatter-row .json-formatter-stringifiable {
+                  color: green;
+                  white-space: pre;
+                  word-wrap: break-word;
+                }
+                .json-formatter-row .json-formatter-number {
+                  color: blue;
+                }
+                .json-formatter-row .json-formatter-boolean {
+                  color: red;
+                }
+                .json-formatter-row .json-formatter-null {
+                  color: #855A00;
+                }
+                .json-formatter-row .json-formatter-undefined {
+                  color: #ca0b69;
+                }
+                .json-formatter-row .json-formatter-function {
+                  color: #FF20ED;
+                }
+                .json-formatter-row .json-formatter-date {
+                  background-color: rgba(0, 0, 0, 0.05);
+                }
+                .json-formatter-row .json-formatter-url {
+                  text-decoration: underline;
+                  color: blue;
+                  cursor: pointer;
+                }
+                .json-formatter-row .json-formatter-bracket {
+                  color: blue;
+                }
+                .json-formatter-row .json-formatter-key {
+                  color: #00008B;
+                  padding-right: 0.2rem;
+                }
+                .json-formatter-row .json-formatter-toggler-link {
+                  cursor: pointer;
+                }
+                .json-formatter-row .json-formatter-toggler {
+                  line-height: 1.2rem;
+                  font-size: 0.7rem;
+                  vertical-align: middle;
+                  opacity: 0.6;
+                  cursor: pointer;
+                  padding-right: 0.2rem;
+                }
+                .json-formatter-row .json-formatter-toggler:after {
+                  display: inline-block;
+                  transition: transform 100ms ease-in;
+                  content: "\25BA";
+                }
+                .json-formatter-row > a > .json-formatter-preview-text {
+                  opacity: 0;
+                  transition: opacity 0.15s ease-in;
+                  font-style: italic;
+                }
+                .json-formatter-row:hover > a > .json-formatter-preview-text {
+                  opacity: 0.6;
+                }
+                .json-formatter-row.json-formatter-open > .json-formatter-toggler-link .json-formatter-toggler:after {
+                  transform: rotate(90deg);
+                }
+                .json-formatter-row.json-formatter-open > .json-formatter-children:after {
+                  display: inline-block;
+                }
+                .json-formatter-row.json-formatter-open > a > .json-formatter-preview-text {
+                  display: none;
+                }
+                .json-formatter-row.json-formatter-open.json-formatter-empty:after {
+                  display: block;
+                }
+                .json-formatter-dark.json-formatter-row {
+                  font-family: monospace;
+                }
+                .json-formatter-dark.json-formatter-row,
+                .json-formatter-dark.json-formatter-row a,
+                .json-formatter-dark.json-formatter-row a:hover {
+                  color: white;
+                  text-decoration: none;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-row {
+                  margin-left: 1rem;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-children.json-formatter-empty {
+                  opacity: 0.5;
+                  margin-left: 1rem;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-children.json-formatter-empty:after {
+                  display: none;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-children.json-formatter-empty.json-formatter-object:after {
+                  content: "No properties";
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-children.json-formatter-empty.json-formatter-array:after {
+                  content: "[]";
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-string,
+                .json-formatter-dark.json-formatter-row .json-formatter-stringifiable {
+                  color: #31F031;
+                  white-space: pre;
+                  word-wrap: break-word;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-number {
+                  color: #66C2FF;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-boolean {
+                  color: #EC4242;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-null {
+                  color: #EEC97D;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-undefined {
+                  color: #ef8fbe;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-function {
+                  color: #FD48CB;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-date {
+                  background-color: rgba(255, 255, 255, 0.05);
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-url {
+                  text-decoration: underline;
+                  color: #027BFF;
+                  cursor: pointer;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-bracket {
+                  color: #9494FF;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-key {
+                  color: #23A0DB;
+                  padding-right: 0.2rem;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-toggler-link {
+                  cursor: pointer;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-toggler {
+                  line-height: 1.2rem;
+                  font-size: 0.7rem;
+                  vertical-align: middle;
+                  opacity: 0.6;
+                  cursor: pointer;
+                  padding-right: 0.2rem;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-toggler:after {
+                  display: inline-block;
+                  transition: transform 100ms ease-in;
+                  content: "\25BA";
+                }
+                .json-formatter-dark.json-formatter-row > a > .json-formatter-preview-text {
+                  opacity: 0;
+                  transition: opacity 0.15s ease-in;
+                  font-style: italic;
+                }
+                .json-formatter-dark.json-formatter-row:hover > a > .json-formatter-preview-text {
+                  opacity: 0.6;
+                }
+                .json-formatter-dark.json-formatter-row.json-formatter-open > .json-formatter-toggler-link .json-formatter-toggler:after {
+                  transform: rotate(90deg);
+                }
+                .json-formatter-dark.json-formatter-row.json-formatter-open > .json-formatter-children:after {
+                  display: inline-block;
+                }
+                .json-formatter-dark.json-formatter-row.json-formatter-open > a > .json-formatter-preview-text {
+                  display: none;
+                }
+                .json-formatter-dark.json-formatter-row.json-formatter-open.json-formatter-empty:after {
+                  display: block;
+                }
+
+        </style>
+        <style>
+            table.panel-df {
+                    margin-left: auto;
+                    margin-right: auto;
+                    border: none;
+                    border-collapse: collapse;
+                    border-spacing: 0;
+                    color: black;
+                    font-size: 12px;
+                    table-layout: fixed;
+                    width: 100%;
+                }
+
+                .panel-df tr, th, td {
+                    text-align: right;
+                    vertical-align: middle;
+                    padding: 0.5em 0.5em !important;
+                    line-height: normal;
+                    white-space: normal;
+                    max-width: none;
+                    border: none;
+                }
+
+                .panel-df tbody {
+                    display: table-row-group;
+                    vertical-align: middle;
+                    border-color: inherit;
+                }
+
+                .panel-df tbody tr:nth-child(odd) {
+                    background: #f5f5f5;
+                }
+
+                .panel-df thead {
+                    border-bottom: 1px solid black;
+                    vertical-align: bottom;
+                }
+
+                .panel-df tr:hover {
+                    background: lightblue !important;
+                    cursor: pointer;
+                }
+
+        </style>
+        <style>
+            .codehilite .hll { background-color: #ffffcc }
+                .codehilite  { background: #f8f8f8; }
+                .codehilite .c { color: #408080; font-style: italic } /* Comment */
+                .codehilite .err { border: 1px solid #FF0000 } /* Error */
+                .codehilite .k { color: #008000; font-weight: bold } /* Keyword */
+                .codehilite .o { color: #666666 } /* Operator */
+                .codehilite .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+                .codehilite .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+                .codehilite .cp { color: #BC7A00 } /* Comment.Preproc */
+                .codehilite .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+                .codehilite .c1 { color: #408080; font-style: italic } /* Comment.Single */
+                .codehilite .cs { color: #408080; font-style: italic } /* Comment.Special */
+                .codehilite .gd { color: #A00000 } /* Generic.Deleted */
+                .codehilite .ge { font-style: italic } /* Generic.Emph */
+                .codehilite .gr { color: #FF0000 } /* Generic.Error */
+                .codehilite .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+                .codehilite .gi { color: #00A000 } /* Generic.Inserted */
+                .codehilite .go { color: #888888 } /* Generic.Output */
+                .codehilite .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+                .codehilite .gs { font-weight: bold } /* Generic.Strong */
+                .codehilite .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+                .codehilite .gt { color: #0044DD } /* Generic.Traceback */
+                .codehilite .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+                .codehilite .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+                .codehilite .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+                .codehilite .kp { color: #008000 } /* Keyword.Pseudo */
+                .codehilite .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+                .codehilite .kt { color: #B00040 } /* Keyword.Type */
+                .codehilite .m { color: #666666 } /* Literal.Number */
+                .codehilite .s { color: #BA2121 } /* Literal.String */
+                .codehilite .na { color: #7D9029 } /* Name.Attribute */
+                .codehilite .nb { color: #008000 } /* Name.Builtin */
+                .codehilite .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+                .codehilite .no { color: #880000 } /* Name.Constant */
+                .codehilite .nd { color: #AA22FF } /* Name.Decorator */
+                .codehilite .ni { color: #999999; font-weight: bold } /* Name.Entity */
+                .codehilite .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+                .codehilite .nf { color: #0000FF } /* Name.Function */
+                .codehilite .nl { color: #A0A000 } /* Name.Label */
+                .codehilite .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+                .codehilite .nt { color: #008000; font-weight: bold } /* Name.Tag */
+                .codehilite .nv { color: #19177C } /* Name.Variable */
+                .codehilite .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+                .codehilite .w { color: #bbbbbb } /* Text.Whitespace */
+                .codehilite .mb { color: #666666 } /* Literal.Number.Bin */
+                .codehilite .mf { color: #666666 } /* Literal.Number.Float */
+                .codehilite .mh { color: #666666 } /* Literal.Number.Hex */
+                .codehilite .mi { color: #666666 } /* Literal.Number.Integer */
+                .codehilite .mo { color: #666666 } /* Literal.Number.Oct */
+                .codehilite .sa { color: #BA2121 } /* Literal.String.Affix */
+                .codehilite .sb { color: #BA2121 } /* Literal.String.Backtick */
+                .codehilite .sc { color: #BA2121 } /* Literal.String.Char */
+                .codehilite .dl { color: #BA2121 } /* Literal.String.Delimiter */
+                .codehilite .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+                .codehilite .s2 { color: #BA2121 } /* Literal.String.Double */
+                .codehilite .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+                .codehilite .sh { color: #BA2121 } /* Literal.String.Heredoc */
+                .codehilite .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+                .codehilite .sx { color: #008000 } /* Literal.String.Other */
+                .codehilite .sr { color: #BB6688 } /* Literal.String.Regex */
+                .codehilite .s1 { color: #BA2121 } /* Literal.String.Single */
+                .codehilite .ss { color: #19177C } /* Literal.String.Symbol */
+                .codehilite .bp { color: #008000 } /* Name.Builtin.Pseudo */
+                .codehilite .fm { color: #0000FF } /* Name.Function.Magic */
+                .codehilite .vc { color: #19177C } /* Name.Variable.Class */
+                .codehilite .vg { color: #19177C } /* Name.Variable.Global */
+                .codehilite .vi { color: #19177C } /* Name.Variable.Instance */
+                .codehilite .vm { color: #19177C } /* Name.Variable.Magic */
+                .codehilite .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+                .markdown h1 { margin-block-start: 0.34em }
+                .markdown h2 { margin-block-start: 0.42em }
+                .markdown h3 { margin-block-start: 0.5em }
+                .markdown h4 { margin-block-start: 0.67em }
+                .markdown h5 { margin-block-start: 0.84em }
+                .markdown h6 { margin-block-start: 1.17em }
+                .markdown ul { padding-inline-start: 2em }
+                .markdown ol { padding-inline-start: 2em }
+                .markdown strong { font-weight: 600 }
+                .markdown a { color: -webkit-link }
+                .markdown a { color: -moz-hyperlinkText }
+
+        </style>
+        <style>
+            .widget-box {
+                	min-height: 20px;
+                	background-color: #f5f5f5;
+                	border: 1px solid #e3e3e3 !important;
+                	border-radius: 4px;
+                	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+                	box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+                	overflow-x: hidden;
+                	overflow-y: hidden;
+                }
+
+                .scrollable {
+                  overflow: scroll;
+                }
+
+                progress {
+                	appearance: none;
+                	-moz-appearance: none;
+                	-webkit-appearance: none;
+
+                	border: none;
+                	height: 20px;
+                	background-color: whiteSmoke;
+                	border-radius: 3px;
+                	box-shadow: 0 2px 3px rgba(0,0,0,.5) inset;
+                	color: royalblue;
+                	position: relative;
+                	margin: 0 0 1.5em;
+                }
+
+                progress[value]::-webkit-progress-bar {
+                	background-color: whiteSmoke;
+                	border-radius: 3px;
+                	box-shadow: 0 2px 3px rgba(0,0,0,.5) inset;
+                }
+
+                progress[value]::-webkit-progress-value {
+                	position: relative;
+
+                	background-size: 35px 20px, 100% 100%, 100% 100%;
+                	border-radius:3px;
+                }
+
+                progress.active:not([value])::before {
+                	background-position: 10%;
+                	animation-name: stripes;
+                	animation-duration: 3s;
+                	animation-timing-function: linear;
+                	animation-iteration-count: infinite;
+                }
+
+                progress[value]::-moz-progress-bar {
+                	background-size: 35px 20px, 100% 100%, 100% 100%;
+                	border-radius:3px;
+                }
+
+                progress:not([value])::-moz-progress-bar {
+                	border-radius:3px;
+                	background:
+                	linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, 0.2) 33%, rgba(0, 0, 0, 0.2) 66%, transparent 66%) left/2.5em 1.5em;
+
+                }
+
+                progress.active:not([value])::-moz-progress-bar {
+                	background-position: 10%;
+                	animation-name: stripes;
+                	animation-duration: 3s;
+                	animation-timing-function: linear;
+                	animation-iteration-count: infinite;
+                }
+
+                progress.active:not([value])::-webkit-progress-bar {
+                	background-position: 10%;
+                	animation-name: stripes;
+                	animation-duration: 3s;
+                	animation-timing-function: linear;
+                	animation-iteration-count: infinite;
+                }
+
+                progress.primary[value]::-webkit-progress-value { background-color: #007bff; }
+                progress.primary:not([value])::before { background-color: #007bff; }
+                progress.primary:not([value])::-webkit-progress-bar { background-color: #007bff; }
+                progress.primary::-moz-progress-bar { background-color: #007bff; }
+
+                progress.secondary[value]::-webkit-progress-value { background-color: #6c757d; }
+                progress.secondary:not([value])::before { background-color: #6c757d; }
+                progress.secondary:not([value])::-webkit-progress-bar { background-color: #6c757d; }
+                progress.secondary::-moz-progress-bar { background-color: #6c757d; }
+
+                progress.success[value]::-webkit-progress-value { background-color: #28a745; }
+                progress.success:not([value])::before { background-color: #28a745; }
+                progress.success:not([value])::-webkit-progress-bar { background-color: #28a745; }
+                progress.success::-moz-progress-bar { background-color: #28a745; }
+
+                progress.danger[value]::-webkit-progress-value { background-color: #dc3545; }
+                progress.danger:not([value])::before { background-color: #dc3545; }
+                progress.danger:not([value])::-webkit-progress-bar { background-color: #dc3545; }
+                progress.danger::-moz-progress-bar { background-color: #dc3545; }
+
+                progress.warning[value]::-webkit-progress-value { background-color: #ffc107; }
+                progress.warning:not([value])::before { background-color: #ffc107; }
+                progress.warning:not([value])::-webkit-progress-bar { background-color: #ffc107; }
+                progress.warning::-moz-progress-bar { background-color: #ffc107; }
+
+                progress.info[value]::-webkit-progress-value { background-color: #17a2b8; }
+                progress.info:not([value])::before { background-color: #17a2b8; }
+                progress.info:not([value])::-webkit-progress-bar { background-color: #17a2b8; }
+                progress.info::-moz-progress-bar { background-color: #17a2b8; }
+
+                progress.light[value]::-webkit-progress-value { background-color: #f8f9fa; }
+                progress.light:not([value])::before { background-color: #f8f9fa; }
+                progress.light:not([value])::-webkit-progress-bar { background-color: #f8f9fa; }
+                progress.light::-moz-progress-bar { background-color: #f8f9fa; }
+
+                progress.dark[value]::-webkit-progress-value { background-color: #343a40; }
+                progress.dark:not([value])::-webkit-progress-bar { background-color: #343a40; }
+                progress.dark:not([value])::before { background-color: #343a40; }
+                progress.dark::-moz-progress-bar { background-color: #343a40; }
+
+                progress:not([value])::-webkit-progress-bar {
+                	border-radius: 3px;
+                	background:
+                	linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, 0.2) 33%, rgba(0, 0, 0, 0.2) 66%, transparent 66%) left/2.5em 1.5em;
+                }
+                progress:not([value])::before {
+                	content:" ";
+                	position:absolute;
+                	height: 20px;
+                	top:0;
+                	left:0;
+                	right:0;
+                	bottom:0;
+                	border-radius: 3px;
+                	background:
+                	linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, 0.2) 33%, rgba(0, 0, 0, 0.2) 66%, transparent 66%) left/2.5em 1.5em;
+                }
+
+                @keyframes stripes {
+                  from {background-position: 0%}
+                  to {background-position: 100%}
+                }
+        </style>
+        
+        
+          
+        <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-2.0.0.min.js" integrity="sha384-5Y+xuMRAbgBj/2WKUiL8yzV4fBFic1HJPo2hT3pq2IsEzbsJjj8kT2i0b1lZ7C2N" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+            Bokeh.set_log_level("info");
+        </script>
+        
+      
+      
+    
+  </head>
+  
+  
+  <body>
+    
+      
+        
+          
+          
+            
+              <div class="bk-root" id="3e697e29-865a-48d8-94a9-0d33011c1a68" data-root-id="16411"></div>
+            
+          
+        
+      
+      
+        <script type="application/json" id="16900">
+          {"48474e91-3824-4a27-9322-8e1b04ef2dbf":{"roots":{"references":[{"attributes":{},"id":"16450","type":"BasicTickFormatter"},{"attributes":{"data_source":{"id":"16486"},"glyph":{"id":"16489"},"hover_glyph":null,"muted_glyph":{"id":"16491"},"nonselection_glyph":{"id":"16490"},"selection_glyph":null,"view":{"id":"16493"}},"id":"16492","type":"GlyphRenderer"},{"attributes":{"source":{"id":"16454"}},"id":"16461","type":"CDSView"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#d62628"},"line_alpha":{"value":0.1},"line_color":{"value":"#d62628"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"16482","type":"Scatter"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"value":"#000000"},"line_alpha":{"value":0.2},"line_color":{"value":"#000000"},"marker":{"value":"cross"},"size":{"units":"screen","value":10.0},"x":{"field":"x"},"y":{"field":"y"}},"id":"16459","type":"Scatter"},{"attributes":{"margin":[5,5,5,5],"name":"HSpacer42300","sizing_mode":"stretch_width"},"id":"16646","type":"Spacer"},{"attributes":{"data_source":{"id":"16462"},"glyph":{"id":"16465"},"hover_glyph":null,"muted_glyph":{"id":"16467"},"nonselection_glyph":{"id":"16466"},"selection_glyph":null,"view":{"id":"16469"}},"id":"16468","type":"GlyphRenderer"},{"attributes":{},"id":"16431","type":"BasicTicker"},{"attributes":{"axis_label":"x","bounds":"auto","formatter":{"id":"16450"},"major_label_orientation":"horizontal","ticker":{"id":"16431"}},"id":"16430","type":"LinearAxis"},{"attributes":{"source":{"id":"16486"}},"id":"16493","type":"CDSView"},{"attributes":{},"id":"16514","type":"UnionRenderers"},{"attributes":{"children":[{"id":"16412"},{"id":"16421"},{"id":"16646"}],"margin":[0,0,0,0],"name":"Row42295","tags":["embedded"]},"id":"16411","type":"Row"},{"attributes":{"axis":{"id":"16430"},"grid_line_color":null,"ticker":null},"id":"16433","type":"Grid"},{"attributes":{},"id":"16440","type":"WheelZoomTool"},{"attributes":{"source":{"id":"16462"}},"id":"16469","type":"CDSView"},{"attributes":{"data_source":{"id":"16494"},"glyph":{"id":"16497"},"hover_glyph":null,"muted_glyph":{"id":"16499"},"nonselection_glyph":{"id":"16498"},"selection_glyph":null,"view":{"id":"16501"}},"id":"16500","type":"GlyphRenderer"},{"attributes":{},"id":"16426","type":"LinearScale"},{"attributes":{"fill_color":{"value":"#000000"},"line_color":{"value":"#000000"},"marker":{"value":"cross"},"size":{"units":"screen","value":10.0},"x":{"field":"x"},"y":{"field":"y"}},"id":"16457","type":"Scatter"},{"attributes":{},"id":"16455","type":"Selection"},{"attributes":{"overlay":{"id":"16507"}},"id":"16441","type":"BoxZoomTool"},{"attributes":{},"id":"16518","type":"UnionRenderers"},{"attributes":{"align":null,"below":[{"id":"16430"}],"center":[{"id":"16433"},{"id":"16437"}],"left":[{"id":"16434"}],"margin":null,"min_border_bottom":10,"min_border_left":10,"min_border_right":10,"min_border_top":10,"plot_height":800,"plot_width":1000,"renderers":[{"id":"16460"},{"id":"16468"},{"id":"16476"},{"id":"16484"},{"id":"16492"},{"id":"16500"}],"sizing_mode":"fixed","title":{"id":"16422"},"toolbar":{"id":"16443"},"x_range":{"id":"16413"},"x_scale":{"id":"16426"},"y_range":{"id":"16414"},"y_scale":{"id":"16428"}},"id":"16421","subtype":"Figure","type":"Plot"},{"attributes":{"margin":[5,5,5,5],"name":"HSpacer42299","sizing_mode":"stretch_width"},"id":"16412","type":"Spacer"},{"attributes":{"callback":null,"renderers":[{"id":"16460"},{"id":"16468"},{"id":"16476"},{"id":"16484"},{"id":"16492"},{"id":"16500"}],"tags":["hv_created"],"tooltips":[["x","@{x}"],["y","@{y}"]]},"id":"16415","type":"HoverTool"},{"attributes":{},"id":"16435","type":"BasicTicker"},{"attributes":{},"id":"16471","type":"Selection"},{"attributes":{"data":{"x":{"__ndarray__":"vF6t6bMRFEAOeKUC7DoTQE41JBnukvU/WUd/uwBUCEB3EfxDLjQQQIpZUyHb6hJAmdHYGV+cE0CfcfA/K2ERQKl4ON/VmQFAZOC0DiXRDkCS8bWwIk4KQHSq9sEzsQlAdmhf0bb+E0Aigc3mXjUGQOe1WLff5Q9AluYOD0dlAEA7rjelOqcTQOYubBAmYQhAiFGTA/FH/j+BzwFIKv/8PzZ//R9zxwNAyC/abO2nBUBxi9WmWcwTQEQtEZgZMRVAEY+G9L+5/D9U4kkg9P4GQFlfqQ5McgVAHWfjDeoeCUDuaqrH71EUQJsuFBqIPQtARXJA6WBoBkAAIGk0w4cGQMPvoaciRQVA+UuxqdJUAUD+OI9gVc/+PwgblzTnJwtAyOLfKvTlEUAonzWjd8IRQNtseaPGbRBAKfwbxaK5EkA4H1OK5Gv7P26LIPFE9whAJQ9N411bDECyAznS5NwFQEihwFVwKQ9Ag2zyb6p9AECw1V5GsSEFQOaV92RRbfg/IlI3phn2CUBZqkuNJk4UQCzCDLcaEwhAMnkL96fhAUCA/+hAUmEOQIRw8m2s2gNAbPiQsLTV8D+oDkraTt8QQHBo2QU+RPw/1qytZuqWA0C2XSXqGUoNQL31Q+tqX/8/JBpZhZhd/j8TQ5xmei4IQKyJ7cOZBApAQZObSkl8AUD0/SIoAE7+PxjXl9NrAhJAtlvxfLDrBEChoVViJUsEQDvfJLPJzAhAH6R/DSv8EkDj+ZVZfggJQCwT0ka0zhNARNk9luzNAEB8H2KKxaYIQFRIA8KOxAdAgmVnuOvw/T/FT+OPJ5QUQCgc+IQWBRJAvKNlm+QBE0Cr4Y+Dn0QMQKDdL20iShFADiRe4BfqAkA=","dtype":"float64","shape":[82]},"y":{"__ndarray__":"sZWYh94aDkBnK2tW9kYIQI1/FeDatQ9AiCRHBe4g17+lytv0YDUQQPPr6WiVdw5A0Og1sTTkC0A1HcHyZvoPQJrlRs48nvg/cBRZxPlk8b/57OIumfnmP2Iqs45gvvE/n89dyYQAB0BKsdkxpfcFQDB7faaRKxBAlHd2ITETBkBQ92q70Q8KQIbxCHjh7fg/Lp4Ot1FpCEAjBZCKNUMLQNxLVBoY1A1AznUzk4s9+j+zjXMYW88JQJtdRpp8OA1AltcSoOngDUCaNqlDw0IFQBW2oX3Gzvk/OmfWQSQj1j86je6EJAcKQDiE+CMCzPA//X6YbBqC8D+5a/Qti5kJQCn+0qPXEPw/EdcQAwP0B0BgWze0mugFQKUyM+J2a+Q/bfxnggodEEAS3C2VwaMNQBx4qWVCCdA//oD9XQPdD0D7OwHSBkERQDT3cXi7WN8/fBh18O4p7j/gEwSTWKQGQEu6DGk/oeY/Od81HeZSDEDzZtrm/vkEQH0foht5+xBAe1dxEXxM6j+LBttSd2wKQNQkwErkNfc/1Pg8B24tDkCkrFuaex/mP13xa+7OyPo/7VKvXJEdD0CYXDy7/xARQJr96m2eqxFAKlR8r8FrBEAYMe8Pd0fkv5YN9J2gew1AXGomOEoADECqdcMVDqbrP2Nq5hex1ANAwt0mS2rwCEBfirypkuYKQKXqiNlYbgdACDXO3m50DkD6CZGPFPABQHDou5hm1eo/0hxUV3VfDEBEUFNAKTsLQJhPkndjeBBAz/SFlSMQ9z9694Swv4ABQLtRNs9tLANAeosGzyF4C0DKHtBkjCAKQGaKF/TI4hJARzU62f3OEECoO4KITj/VP46O4W1ILdU/nuGay2PV8D8=","dtype":"float64","shape":[82]}},"selected":{"id":"16487"},"selection_policy":{"id":"16516"}},"id":"16486","type":"ColumnDataSource"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#8c564b"},"line_alpha":{"value":0.1},"line_color":{"value":"#8c564b"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"16498","type":"Scatter"},{"attributes":{},"id":"16428","type":"LinearScale"},{"attributes":{"data":{"x":{"__ndarray__":"s4wht2a2GkDklTMhpmMeQKRyjVa6iBpA5QaotUQOHkBap5EvMokVQArpZahRuR5Ah/kPFV6sF0B489nVNKIVQD6srwBUnRxArCVGTBRrHUCQ+3zEn9oZQPgZ2GHRPhtAkTnDaoSPHUDoLNrriSsbQNXpKUWSQhtAYy9FLTszH0DSKRVh+nYaQHqWId1+lBtAS/gSbWtmFkC29e1zB1cVQIVQphpMQxxABjBVrBFwFkDJshuUqFIaQID1jzbFOBVAv1+cNx3PHUCOB/r8kYIcQLFSg7B8lx1AeCOQ+ciVGUADNibj9RIbQCB7j/yWbBxAhUfxbVBpHkBMYWXIZscdQFELoOx0sxtAMPGDIhufGkBlzaOKo/4eQAp6UUEZqRZA","dtype":"float64","shape":[36]},"y":{"__ndarray__":"fcbxqm668T8gQEbFCKTyPxykgSzbXe8/zOKdi51y/T8EhAjupk4MQMuvSaDDu+o/+uAqpahWCEDI2eiKhr0HQPikGutX6ARA4vJ3GtAO7j9V+r1vfMroP6uby5gD8O8/q1GKZfMc8j+AE2BMJH8EQPHzmWReFQFA8kROZdmN/j+x8/E7NlzlP+2WKMMYg+4/K2kzJcYvCECMY1ONLpgIQM7nnmoctwBAepxXq2BOB0DgIdwadaGzv1TRzjQdLgtAuz8s/xsmAkCB339wsczzP+xe16oQiAFAYf2T6S/c8z+lUHJBTiL2PwBdflEAKfM/DINvyVLr6D+tl1j0ElkDQAomdyA+GwJA2FL1tkzf9D+JL23Lbn37P5GNpJm02QVA","dtype":"float64","shape":[36]}},"selected":{"id":"16495"},"selection_policy":{"id":"16518"}},"id":"16494","type":"ColumnDataSource"},{"attributes":{},"id":"16438","type":"SaveTool"},{"attributes":{},"id":"16439","type":"PanTool"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"value":"#9367bc"},"line_alpha":{"value":0.2},"line_color":{"value":"#9367bc"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"16491","type":"Scatter"},{"attributes":{"bottom_units":"screen","fill_alpha":0.5,"fill_color":"lightgrey","left_units":"screen","level":"overlay","line_alpha":1.0,"line_color":"black","line_dash":[4,4],"line_width":2,"render_mode":"css","right_units":"screen","top_units":"screen"},"id":"16507","type":"BoxAnnotation"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"value":"#2ba02b"},"line_alpha":{"value":0.2},"line_color":{"value":"#2ba02b"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"16475","type":"Scatter"},{"attributes":{"axis":{"id":"16434"},"dimension":1,"grid_line_color":null,"ticker":null},"id":"16437","type":"Grid"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"value":"#8c564b"},"line_alpha":{"value":0.2},"line_color":{"value":"#8c564b"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"16499","type":"Scatter"},{"attributes":{"data":{"x":{"__ndarray__":"tgsLjVd5AEC4Z5c54Eb/Py6yhKAIvg5A+fyIs2gh+z8JB/MUT+sDQEmT9MelfQ5AUKz8P8OhAECHzAgwTI8IQEE3Od0fKwhAjQiGKhx/FUAcWvFxBF0SQGKk+Wbc5f4/Kr4NrOMVFUBMD8yzFQMDQAPZqJbmoxJAJtCE9OSqE0Df+GSbLrf6P8C5zcIV5gRABppsrbRGBkBBDTp92DnzP5zb9lEODAlAKCYwSXPiAkCWNHFrMLgPQOT81Cgy8ABAuH0VQUme+z/D0NBql48FQE7vUJ6enAdAfH1RtniaDECKw5UckFEBQPa3gy7ZRwdAamp4ZvNPBkDOtTXGbNQCQGcR/dDGqgJAvatFKKZHA0DkcIPVNtkAQG/dIPtLXxNAg14+CEPUE0AMUsjnjrESQPdxAbezKwFAbON5XvP3C0C2BC9sKnwSQPYPjHizSwhAacWEjfk8EUAmokDuLPcJQK6b/HC4nBFAcbTbeZx3CUDwBVtOMhACQJGxTnnD/BJA4LjOXBgADkDG6rXc99T7P3jClkDgrwNAdDGTgXQVCEA3lEwMVLf+PxIJUkQvKAVAgb8NsBKRFEDRkFuUs58HQHS9BAxm5BNAVQk6rTaeEUCqX5x+VzD4PyhxN/fMpARA5h4Z+rYIE0ANmbO6OS0GQCRB3B+opv4/LjNva+B9AEAK4fw0ST38PzO2KYKKNRFAfstbf1GZE0AntVkPFTYIQKbT0AhfthFAcLxOVBzQB0CUx0TlkP4JQFMOnvERzw1AoNNq6H+TCkA2IqWHMdUKQPhGIGH9OAxANvR9xNSEDkAmWvzWvx0DQLUn6IZhWRJADEAExtkfBEBRvu0eIHb/P0mw2bescfw/9gMN/NN3AkDngNZ0cCITQA7+hXG1LAVA","dtype":"float64","shape":[84]},"y":{"__ndarray__":"z7RUg+7SHEB22SP/CSMfQMWbknJRJBZAJNs+FCq5HkD2xQ2JC80gQMd4477N7BdAxo7XGmmrHEBK0FCNfeEXQNosSfI2hiJA+ftREc7EFUCpiFgyviMeQNESfYlqvxtAPAw+2wIkFkBmvR+0CU4gQH/swMIMPhxAWp0XUqsNHkCXVWsPLEIgQG9KBf9GyCBAh6lFnVB5GkBTwpvk3r4eQBVGQvWWNBlASUh+TCgIGEBea3AQFc0UQOyW2aOEdhpAGBy2qtRFG0BP4srGOcIXQMgLGDaLEB9AaTcO4vLoFUCDVdf+W/kfQP67YQnoEx5AyVHPxSbGGUDuILoaQzEZQOYdfz3f9BxAO7veKo33H0COPCtus3YgQN+bqMbCBx5AhhZ7nMuiG0BNk/YMFJccQCVW9D4eqSFA5zaGR3ktF0Ayx+jW2j8fQGdtyQjYSRdAvvSa/QrYG0CbwdGqXZYhQMQk1UXjQRNAX+YE3PavFUAWB0XZhsodQPgtCzZnESBAInFAZlGaE0BfAaRG69cdQFHEWS/YeRtAhHN2r+QrGkDnRF6aSO8cQFClStCSHBZAMJpKuXXdFkBcBSOpLU0jQKSK90FXtx1AjEANwVIEG0AEi8MUh+4dQDDthg32HhpAj8olYYF8IED0y8L5PX8XQMi6qoS/UhtAdD+Wx6FzIECBqQfBj+sbQGDQS8rtVhxAv5pzjouBHUDVhZetnvYWQGt3MrO1px1A/Z3zynUKGEDvbtMWcV0WQPQwv2k60RRAiJA+mMSfGEBnJvBhJC8XQE5NLHtO9BZAsdR9vXusG0BYwY1WSOMcQLwlQM00KR1AvWHMMJOkGUBX3Ztq2jsdQP4NUVvK3xxAuVQ1262SHUBmzrpc/2wcQFfb7Y40SxlA","dtype":"float64","shape":[84]}},"selected":{"id":"16463"},"selection_policy":{"id":"16510"}},"id":"16462","type":"ColumnDataSource"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#ff7e0e"},"line_alpha":{"value":0.1},"line_color":{"value":"#ff7e0e"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"16466","type":"Scatter"},{"attributes":{"end":9.927413791924085,"reset_end":9.927413791924085,"reset_start":0.39474912265809114,"start":0.39474912265809114,"tags":[[["x","x",null]]]},"id":"16413","type":"Range1d"},{"attributes":{"data_source":{"id":"16478"},"glyph":{"id":"16481"},"hover_glyph":null,"muted_glyph":{"id":"16483"},"nonselection_glyph":{"id":"16482"},"selection_glyph":null,"view":{"id":"16485"}},"id":"16484","type":"GlyphRenderer"},{"attributes":{"source":{"id":"16478"}},"id":"16485","type":"CDSView"},{"attributes":{"data":{"x":{"__ndarray__":"21ua7zc6CUBO40MtB3UbQGXUB+QRfx9AHCT08bYHCkBPYpG0R/caQA==","dtype":"float64","shape":[5]},"y":{"__ndarray__":"72Ipr9SmG0A3vYF3txcfQNKn09RwrApAzIGX+G9NBEA0egPYyQf9Pw==","dtype":"float64","shape":[5]}},"selected":{"id":"16455"},"selection_policy":{"id":"16508"}},"id":"16454","type":"ColumnDataSource"},{"attributes":{},"id":"16516","type":"UnionRenderers"},{"attributes":{"fill_color":{"value":"#9367bc"},"line_color":{"value":"#9367bc"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"16489","type":"Scatter"},{"attributes":{"data_source":{"id":"16470"},"glyph":{"id":"16473"},"hover_glyph":null,"muted_glyph":{"id":"16475"},"nonselection_glyph":{"id":"16474"},"selection_glyph":null,"view":{"id":"16477"}},"id":"16476","type":"GlyphRenderer"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#000000"},"line_alpha":{"value":0.1},"line_color":{"value":"#000000"},"marker":{"value":"cross"},"size":{"units":"screen","value":10.0},"x":{"field":"x"},"y":{"field":"y"}},"id":"16458","type":"Scatter"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#9367bc"},"line_alpha":{"value":0.1},"line_color":{"value":"#9367bc"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"16490","type":"Scatter"},{"attributes":{"fill_color":{"value":"#8c564b"},"line_color":{"value":"#8c564b"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"16497","type":"Scatter"},{"attributes":{"source":{"id":"16470"}},"id":"16477","type":"CDSView"},{"attributes":{},"id":"16487","type":"Selection"},{"attributes":{"end":10.724528113151496,"reset_end":10.724528113151496,"reset_start":-2.160941383586099,"start":-2.160941383586099,"tags":[[["y","y",null]]]},"id":"16414","type":"Range1d"},{"attributes":{},"id":"16452","type":"BasicTickFormatter"},{"attributes":{"data_source":{"id":"16454"},"glyph":{"id":"16457"},"hover_glyph":null,"muted_glyph":{"id":"16459"},"nonselection_glyph":{"id":"16458"},"selection_glyph":null,"view":{"id":"16461"}},"id":"16460","type":"GlyphRenderer"},{"attributes":{},"id":"16512","type":"UnionRenderers"},{"attributes":{"text":"Clusters K=5"},"id":"16422","type":"Title"},{"attributes":{"source":{"id":"16494"}},"id":"16501","type":"CDSView"},{"attributes":{},"id":"16479","type":"Selection"},{"attributes":{"fill_color":{"value":"#d62628"},"line_color":{"value":"#d62628"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"16481","type":"Scatter"},{"attributes":{},"id":"16442","type":"ResetTool"},{"attributes":{"fill_color":{"value":"#2ba02b"},"line_color":{"value":"#2ba02b"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"16473","type":"Scatter"},{"attributes":{},"id":"16510","type":"UnionRenderers"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#2ba02b"},"line_alpha":{"value":0.1},"line_color":{"value":"#2ba02b"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"16474","type":"Scatter"},{"attributes":{},"id":"16495","type":"Selection"},{"attributes":{},"id":"16463","type":"Selection"},{"attributes":{"fill_color":{"value":"#ff7e0e"},"line_color":{"value":"#ff7e0e"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"16465","type":"Scatter"},{"attributes":{},"id":"16508","type":"UnionRenderers"},{"attributes":{"axis_label":"y","bounds":"auto","formatter":{"id":"16452"},"major_label_orientation":"horizontal","ticker":{"id":"16435"}},"id":"16434","type":"LinearAxis"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"16415"},{"id":"16438"},{"id":"16439"},{"id":"16440"},{"id":"16441"},{"id":"16442"}]},"id":"16443","type":"Toolbar"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"value":"#ff7e0e"},"line_alpha":{"value":0.2},"line_color":{"value":"#ff7e0e"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"16467","type":"Scatter"},{"attributes":{"data":{"x":{"__ndarray__":"Nqs88p0DIEDYHwmL748ZQB3pOGksPSFANmOL8bg1HUDvOshQR1ofQE+ztlkKah9A/37PZ+xPHkBiUw1M2nMgQJHzWVQdkx9AVM4XakE5IEAizr966NkfQFSdlztXrxxA6bqfj0VWHUDxSFRxJi8gQPgDw7TJ8CFASFd2BNrvGUBDepU/OAQdQMGmJGM2hiBA87dUMCOdH0CPeZ9RMj8gQB91R7evqh1A9rWzWoofIECCtIpi4c8fQEvSLUNpFCFAufXUwTHiIEAcp38M7OsgQLDG1BUKchpAwzVC/H+5IEDEbLdc4GsiQOGJY4hdJB9A","dtype":"float64","shape":[30]},"y":{"__ndarray__":"H7NE9dozBkDLxQfC37cUQG/UqydL4wdAZMAU+pFTCUAI1eVRX+4DQJHdjVaVPwRAtmKTiFWZDkBi4/02ehUCQN4MMlDUqgxAwqWFY7A4CkA4sgWNeIoGQHl2DB0UpxRA+pABrd/UB0DjPzJqDSALQI+kVZ9xkgpA7/Bm3zktFEDYNJ/KnjoGQE5Gs5zwRQxAyQbb6z9GAkAaMcJUatwEQBDtoHUcUwlAirjFUEstEEAkwlt/r9IIQELIWtMtDwtArFBTaux5AUCb6sxZ/dAGQEhthrYvSBJATJ/1P4m3CEDWa1Cm5woSQAAN8C2ZBAlA","dtype":"float64","shape":[30]}},"selected":{"id":"16479"},"selection_policy":{"id":"16514"}},"id":"16478","type":"ColumnDataSource"},{"attributes":{"data":{"x":{"__ndarray__":"73axVGbAIUCKg3Pxu3EYQNbNrNzFjRpAVKiGf2z1GEBxoyZx+mMeQF/TtqVK4hlAuke6Ne3NE0AaU8+NQXAgQJEbivM7iiJA3dq0+VnoG0BvqtsQICcgQI0SCKv5kRRANTNyeQ53FUCz22QJBsIgQIiYEP0PZyBAa6leLeh+GEAql99izMcbQLp7gRebjR9A0mDKpyrAFkCBq3MljJ4ZQAWPreZoxh9AQDSpRo/cGEDd+49qx0cWQIJ6V2o/ShRAvTlchh1wIECXUg/HSA4hQIsHBGTdgyFA/LjfoHrbE0Ai/Znz9BUXQF9UKMoWbRtAVjpGbZvoHkB+JpppQzUhQM+0InFYFxZAfRSUuPnAFkBRaROKY6MZQG+9AthrOBhAQQGjxMcVH0Cp5VjYxOwVQNaCNddcrCBAmmfQiHQVHkBese+AyOYcQHt/nFlXHh5AcsCeESYhGECT/EN/K9YYQN4S5luoayBAIWxb/4W4H0DuVRipezAgQHlIo2riTBVAga4oGjC3FEDwBkFl6mUYQCr0Fbo9sh5A3a1baJv3G0BIFPHOT6EbQJNgebBm4RlANROrhL68H0At1JcUxi0UQAD16kLQ2RlAE8KoKv76FkB6K2i7KVshQCnE3OWhXBRACkRvCSEQIEBAIjOqTRkUQE6GuHOIQR5APqb0Yg4BFUCub1wSrgIfQKh0aJc2oRtA+104aGFxIEAaDn4nPWkaQA==","dtype":"float64","shape":[68]},"y":{"__ndarray__":"ADAALv7rIUCCESVunfAYQIo9knHmqyBAPM1w2bQzGkCkYb8hyMEfQM4asDfXzRVADAI17rgqIEApvPvg9zsiQJDVI6f2PyNAX3XiEkHcH0AmnlnHEYsiQLcNaC3AvyBAeMnVv68OGkBsWtaZDEAhQOfyqT8DbSJAnFM8zAv4FUAogyJ7QJwgQBEziJRl0iBAnC2Ic/uHFUDBijjQUWwWQHilmnhdbCBA9LRAaaoLGUDiw+E1McYgQIRf1pDmlx9A1AY3F/DmIUDomMrFiRohQLhYZ2KJoiFAE3fCStWMH0D0z3iz3RQiQMRRaK0U5h5ABjVEBhF7HkDVPu2b34UhQLkGSZgjFhZApAHls2mLIEAICBDJz2YVQIz7LRCZ6xxAuy+pkxzUIUB9i7aA9TQaQJW7YevUeSJAWuRLQrSZIUBB6/zSo+4gQCqguL2jlyFA5rpYGlK5IUC8tfunPKQYQPUEiBVpXiBAP8uBxrZHIED+GjulASsfQLoef0dqvB5Aqnr0q6mSIUBMqhEhJQkiQP66r6NEgx1Adbvk1kcsF0Cjl8tfmZogQJDL/e5SKRZAY1uf3s1aIEB6KiIUMPsgQM2QLOkcVxdA0vYqRwdIFUCq/xYt1ywiQGa+kdk3CSBAjtU4NYPEIUBHn9HTQ3ogQI6bOCtOUx9A653Gyfd7IUBN0kyDhVghQF4ZWW9aBxhAEdpR2QU2IUCz9YiARj4ZQA==","dtype":"float64","shape":[68]}},"selected":{"id":"16471"},"selection_policy":{"id":"16512"}},"id":"16470","type":"ColumnDataSource"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"value":"#d62628"},"line_alpha":{"value":0.2},"line_color":{"value":"#d62628"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"16483","type":"Scatter"}],"root_ids":["16411"]},"title":"Bokeh Application","version":"2.0.0"}}
+        </script>
+        <script type="text/javascript">
+          (function() {
+            var fn = function() {
+              Bokeh.safely(function() {
+                (function(root) {
+                  function embed_document(root) {
+                    
+                  var docs_json = document.getElementById('16900').textContent;
+                  var render_items = [{"docid":"48474e91-3824-4a27-9322-8e1b04ef2dbf","root_ids":["16411"],"roots":{"16411":"3e697e29-865a-48d8-94a9-0d33011c1a68"}}];
+                  root.Bokeh.embed.embed_items(docs_json, render_items);
+                
+                  }
+                  if (root.Bokeh !== undefined) {
+                    embed_document(root);
+                  } else {
+                    var attempts = 0;
+                    var timer = setInterval(function(root) {
+                      if (root.Bokeh !== undefined) {
+                        clearInterval(timer);
+                        embed_document(root);
+                      } else {
+                        attempts++;
+                        if (attempts > 100) {
+                          clearInterval(timer);
+                          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+                        }
+                      }
+                    }, 10, root)
+                  }
+                })(window);
+              });
+            };
+            if (document.readyState != "loading") fn();
+            else document.addEventListener("DOMContentLoaded", fn);
+          })();
+        </script>
+    
+  </body>
+  
+</html>
