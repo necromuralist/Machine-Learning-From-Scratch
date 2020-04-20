@@ -1,7 +1,7 @@
-asu-cse-575
+ML From Scratch
 ==============================
 
-CSE 575 Project
+Machine Learning Without SKLearn.
 
 Project Organization
 ------------

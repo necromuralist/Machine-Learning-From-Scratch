@@ -35,7 +35,7 @@ import scipy.io
 #+end_src
 *** This Project
 #+begin_src python :results none
-from cse_575.coursera import geneNewData
+from ml_from_scratch.coursera import geneNewData
 #+end_src
 ** Some Constants
 #+begin_src python :results none

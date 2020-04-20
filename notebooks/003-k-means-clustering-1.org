@@ -5,7 +5,7 @@
 .. tags: project,clustering,unsupervised
 .. category: Project
 .. link: 
-.. description: Part 1 of Part 2 of the CSE 575 Project.
+.. description: K-Means Clustering using random initial points.
 .. type: text
 .. status: 
 .. updated: 
@@ -43,7 +43,7 @@ import seaborn
 #+end_src
 *** Coursera Code
 #+begin_src python :results none
-from cse_575.coursera.Precode import initial_S1
+from ml_from_scratch.coursera.Precode import initial_S1
 #+end_src
 *** Others
 #+begin_src python :results none

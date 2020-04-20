@@ -1,10 +1,10 @@
 from setuptools import find_packages, setup
 
 setup(
-    name='cse_575',
+    name='ml_from_scratch',
     packages=find_packages(),
     version='0.1.0',
-    description='CSE 575 Project',
+    description='Machine Learning Without Sklearn',
     author='cloistered monkey',
     license='MIT',
 )
