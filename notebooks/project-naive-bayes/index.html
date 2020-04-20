@@ -69,47 +69,47 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org73ac75f">Beginning</a>
+<li><a href="#orga253b46">Beginning</a>
 <ul>
-<li><a href="#org772dda5">Imports</a>
+<li><a href="#org831548d">Imports</a>
 <ul>
-<li><a href="#orga6e3c19">Python</a></li>
-<li><a href="#org8647910">PyPi</a></li>
-<li><a href="#orgc1bc634">This Project</a></li>
+<li><a href="#org4abc883">Python</a></li>
+<li><a href="#orgf8da0c3">PyPi</a></li>
+<li><a href="#orge156dad">This Project</a></li>
 </ul>
 </li>
-<li><a href="#orgda7c08a">Some Constants</a></li>
+<li><a href="#org3ff3c13">Some Constants</a></li>
 </ul>
 </li>
-<li><a href="#org0a89f12">Middle</a>
+<li><a href="#orgf63a545">Middle</a>
 <ul>
-<li><a href="#org2b3845f">Load The Data</a>
+<li><a href="#org3f86aaf">Load The Data</a>
 <ul>
-<li><a href="#org9f08a45">Grab a Sample</a></li>
+<li><a href="#orgc43ecb9">Grab a Sample</a></li>
 </ul>
 </li>
-<li><a href="#org515951a">Flatten The Images</a></li>
-<li><a href="#orgd4fba90">The Means</a></li>
-<li><a href="#org050dc42">The Parameters</a></li>
-<li><a href="#orgb14e262">The Gaussian</a></li>
-<li><a href="#org7c32ee1">Evaluate The Accuracy</a></li>
-<li><a href="#orgbfd89b6">Reporting</a></li>
-<li><a href="#org30b3e76">The Main</a></li>
+<li><a href="#org0ce8222">Flatten The Images</a></li>
+<li><a href="#orgdf82b24">The Means</a></li>
+<li><a href="#orge74f8f3">The Parameters</a></li>
+<li><a href="#org18597f2">The Gaussian</a></li>
+<li><a href="#org7bcd6a4">Evaluate The Accuracy</a></li>
+<li><a href="#org0ce15a0">Reporting</a></li>
+<li><a href="#orga4a8032">The Main</a></li>
 </ul>
 </li>
-<li><a href="#orgd2e6e1a">End</a></li>
+<li><a href="#org6dfef8f">End</a></li>
 </ul>
 </div>
 </div>
-<div class="outline-2" id="outline-container-org73ac75f">
-<h2 id="org73ac75f">Beginning</h2>
-<div class="outline-text-2" id="text-org73ac75f"></div>
-<div class="outline-3" id="outline-container-org772dda5">
-<h3 id="org772dda5">Imports</h3>
-<div class="outline-text-3" id="text-org772dda5"></div>
-<div class="outline-4" id="outline-container-orga6e3c19">
-<h4 id="orga6e3c19">Python</h4>
-<div class="outline-text-4" id="text-orga6e3c19">
+<div class="outline-2" id="outline-container-orga253b46">
+<h2 id="orga253b46">Beginning</h2>
+<div class="outline-text-2" id="text-orga253b46"></div>
+<div class="outline-3" id="outline-container-org831548d">
+<h3 id="org831548d">Imports</h3>
+<div class="outline-text-3" id="text-org831548d"></div>
+<div class="outline-4" id="outline-container-org4abc883">
+<h4 id="org4abc883">Python</h4>
+<div class="outline-text-4" id="text-org4abc883">
 <div class="highlight">
 <pre><span></span><span class="kn">from</span> <span class="nn">argparse</span> <span class="kn">import</span> <span class="n">Namespace</span>
 <span class="kn">import</span> <span class="nn">math</span>
@@ -118,9 +118,9 @@
 </pre></div>
 </div>
 </div>
-<div class="outline-4" id="outline-container-org8647910">
-<h4 id="org8647910">PyPi</h4>
-<div class="outline-text-4" id="text-org8647910">
+<div class="outline-4" id="outline-container-orgf8da0c3">
+<h4 id="orgf8da0c3">PyPi</h4>
+<div class="outline-text-4" id="text-orgf8da0c3">
 <div class="highlight">
 <pre><span></span><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
 <span class="kn">import</span> <span class="nn">numpy</span>
@@ -129,18 +129,18 @@
 </pre></div>
 </div>
 </div>
-<div class="outline-4" id="outline-container-orgc1bc634">
-<h4 id="orgc1bc634">This Project</h4>
-<div class="outline-text-4" id="text-orgc1bc634">
+<div class="outline-4" id="outline-container-orge156dad">
+<h4 id="orge156dad">This Project</h4>
+<div class="outline-text-4" id="text-orge156dad">
 <div class="highlight">
-<pre><span></span><span class="kn">from</span> <span class="nn">cse_575.coursera</span> <span class="kn">import</span> <span class="n">geneNewData</span>
+<pre><span></span><span class="kn">from</span> <span class="nn">ml_from_scratch.coursera</span> <span class="kn">import</span> <span class="n">geneNewData</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="outline-3" id="outline-container-orgda7c08a">
-<h3 id="orgda7c08a">Some Constants</h3>
-<div class="outline-text-3" id="text-orgda7c08a">
+<div class="outline-3" id="outline-container-org3ff3c13">
+<h3 id="org3ff3c13">Some Constants</h3>
+<div class="outline-text-3" id="text-org3ff3c13">
 <div class="highlight">
 <pre><span></span><span class="n">load_dotenv</span><span class="p">()</span>
 </pre></div>
@@ -154,12 +154,12 @@
 </div>
 </div>
 </div>
-<div class="outline-2" id="outline-container-org0a89f12">
-<h2 id="org0a89f12">Middle</h2>
-<div class="outline-text-2" id="text-org0a89f12"></div>
-<div class="outline-3" id="outline-container-org2b3845f">
-<h3 id="org2b3845f">Load The Data</h3>
-<div class="outline-text-3" id="text-org2b3845f">
+<div class="outline-2" id="outline-container-orgf63a545">
+<h2 id="orgf63a545">Middle</h2>
+<div class="outline-text-2" id="text-orgf63a545"></div>
+<div class="outline-3" id="outline-container-org3f86aaf">
+<h3 id="org3f86aaf">Load The Data</h3>
+<div class="outline-text-3" id="text-org3f86aaf">
 <p><code>load_data</code> is copied mostly from the ``main`` function. I added it so that ``main`` isn't just one monolithic function. Don't change it.</p>
 <div class="highlight">
 <pre><span></span><span class="k">def</span> <span class="nf">load_data</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
@@ -194,9 +194,9 @@ Your trainset and testset are generated successfully!
 (980, 28, 28)
 (1135, 28, 28)
 </pre></div>
-<div class="outline-4" id="outline-container-org9f08a45">
-<h4 id="org9f08a45">Grab a Sample</h4>
-<div class="outline-text-4" id="text-org9f08a45">
+<div class="outline-4" id="outline-container-orgc43ecb9">
+<h4 id="orgc43ecb9">Grab a Sample</h4>
+<div class="outline-text-4" id="text-orgc43ecb9">
 <p>This is to help the later functions double-check what they're doing by grabbing a sample row.</p>
 <div class="highlight">
 <pre><span></span><span class="k">def</span> <span class="nf">get_sample</span><span class="p">(</span><span class="n">dataset</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">flattened</span><span class="p">:</span> <span class="nb">bool</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">:</span>
@@ -211,9 +211,9 @@ Your trainset and testset are generated successfully!
 </div>
 </div>
 </div>
-<div class="outline-3" id="outline-container-org515951a">
-<h3 id="org515951a">Flatten The Images</h3>
-<div class="outline-text-3" id="text-org515951a">
+<div class="outline-3" id="outline-container-org0ce8222">
+<h3 id="org0ce8222">Flatten The Images</h3>
+<div class="outline-text-3" id="text-org0ce8222">
 <p>The images are 28 x 28 images, but for our purposes we want one flat array so we have to flatten them.</p>
 <div class="highlight">
 <pre><span></span><span class="k">def</span> <span class="nf">flatten_image</span><span class="p">(</span><span class="n">dataset</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">:</span>
@@ -239,9 +239,9 @@ Your trainset and testset are generated successfully!
 (1135, 784)
 </pre></div>
 </div>
-<div class="outline-3" id="outline-container-orgd4fba90">
-<h3 id="orgd4fba90">The Means</h3>
-<div class="outline-text-3" id="text-orgd4fba90">
+<div class="outline-3" id="outline-container-orgdf82b24">
+<h3 id="orgdf82b24">The Means</h3>
+<div class="outline-text-3" id="text-orgdf82b24">
 <p>For each of the images we want to calculate the mean pixel value</p>
 <div class="highlight">
 <pre><span></span><span class="k">def</span> <span class="nf">get_mean</span><span class="p">(</span><span class="n">dataset</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">:</span>
@@ -276,9 +276,9 @@ Your trainset and testset are generated successfully!
 </pre></div>
 </div>
 </div>
-<div class="outline-3" id="outline-container-org050dc42">
-<h3 id="org050dc42">The Parameters</h3>
-<div class="outline-text-3" id="text-org050dc42">
+<div class="outline-3" id="outline-container-orge74f8f3">
+<h3 id="orge74f8f3">The Parameters</h3>
+<div class="outline-text-3" id="text-orge74f8f3">
 <p>We need to take the mean and variance of the values we calculated for each digit.</p>
 <div class="highlight">
 <pre><span></span><span class="k">def</span> <span class="nf">get_parameters</span><span class="p">(</span><span class="n">means</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">deviations</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Namespace</span><span class="p">:</span>
@@ -298,9 +298,9 @@ Your trainset and testset are generated successfully!
 </pre></div>
 </div>
 </div>
-<div class="outline-3" id="outline-container-orgb14e262">
-<h3 id="orgb14e262">The Gaussian</h3>
-<div class="outline-text-3" id="text-orgb14e262">
+<div class="outline-3" id="outline-container-org18597f2">
+<h3 id="org18597f2">The Gaussian</h3>
+<div class="outline-text-3" id="text-org18597f2">
 <p>This calculates the probability P(x|y) for each column.</p>
 <div class="highlight">
 <pre><span></span><span class="k">def</span> <span class="nf">gaussian</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">mu</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">variance</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
@@ -343,9 +343,9 @@ Your trainset and testset are generated successfully!
 </pre></div>
 </div>
 </div>
-<div class="outline-3" id="outline-container-org7c32ee1">
-<h3 id="org7c32ee1">Evaluate The Accuracy</h3>
-<div class="outline-text-3" id="text-org7c32ee1">
+<div class="outline-3" id="outline-container-org7bcd6a4">
+<h3 id="org7bcd6a4">Evaluate The Accuracy</h3>
+<div class="outline-text-3" id="text-org7bcd6a4">
 <div class="highlight">
 <pre><span></span><span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="n">test_0</span><span class="p">:</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">test_1</span><span class="p">:</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Namespace</span><span class="p">:</span>
     <span class="sd">"""Check the accuracy of our model</span>
@@ -379,9 +379,9 @@ Accuracy predicting ones: 93.48 %
 Overall Accuracy: 92.20 %
 </pre></div>
 </div>
-<div class="outline-3" id="outline-container-orgbfd89b6">
-<h3 id="orgbfd89b6">Reporting</h3>
-<div class="outline-text-3" id="text-orgbfd89b6">
+<div class="outline-3" id="outline-container-org0ce15a0">
+<h3 id="org0ce15a0">Reporting</h3>
+<div class="outline-text-3" id="text-org0ce15a0">
 <div class="highlight">
 <pre><span></span><span class="k">def</span> <span class="nf">report_parameters</span><span class="p">(</span><span class="n">parameters</span><span class="p">:</span> <span class="n">Namespace</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"|Digit| Statistic | Feature| Outcome|"</span><span class="p">)</span>
@@ -436,9 +436,9 @@ Overall Accuracy: 92.20 %
 </table>
 </div>
 </div>
-<div class="outline-3" id="outline-container-org30b3e76">
-<h3 id="org30b3e76">The Main</h3>
-<div class="outline-text-3" id="text-org30b3e76">
+<div class="outline-3" id="outline-container-orga4a8032">
+<h3 id="orga4a8032">The Main</h3>
+<div class="outline-text-3" id="text-orga4a8032">
 <p>This is presumably the way that the code will be called. It won't work here because you need to change the paths, this is just to double-check it up on Coursera.</p>
 <div class="highlight">
 <pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
@@ -499,8 +499,8 @@ Overall Accuracy: 92.20 %
 </div>
 </div>
 </div>
-<div class="outline-2" id="outline-container-orgd2e6e1a">
-<h2 id="orgd2e6e1a">End</h2>
+<div class="outline-2" id="outline-container-org6dfef8f">
+<h2 id="org6dfef8f">End</h2>
 </div>
 </div>
 <aside class="postpromonav">

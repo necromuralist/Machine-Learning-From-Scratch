@@ -5,7 +5,7 @@
 .. tags: project,k-means,clustering,unsupervised
 .. category: Project
 .. link: 
-.. description: Part 2 of Part 2 of the CSE 575 projec.
+.. description: A variation of initial center-of-mass selection for K-Means.
 .. type: text
 .. status: 
 .. updated: 
@@ -44,7 +44,7 @@ from tabulate import tabulate
 #+end_src
 *** Coursera
 #+begin_src python :results none
-from cse_575.coursera.Precode2 import initial_S2
+from ml_from_scratch.coursera.Precode2 import initial_S2
 #+end_src
 *** Others
 #+begin_src python :results none

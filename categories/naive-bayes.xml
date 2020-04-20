@@ -1,51 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ML From Scratch (Posts about naive-bayes)</title><link>https://necromuralist.github.io/Machine-Learning-From-Scratch/</link><description></description><atom:link href="https://necromuralist.github.io/Machine-Learning-From-Scratch/categories/naive-bayes.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:necromuralist@protonmail.com"&gt;Cloistered Monkey&lt;/a&gt; </copyright><lastBuildDate>Mon, 20 Apr 2020 00:02:04 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Project: Naive-Bayes</title><link>https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/</link><dc:creator>Cloistered Monkey</dc:creator><description>&lt;div id="table-of-contents"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ML From Scratch (Posts about naive-bayes)</title><link>https://necromuralist.github.io/Machine-Learning-From-Scratch/</link><description></description><atom:link href="https://necromuralist.github.io/Machine-Learning-From-Scratch/categories/naive-bayes.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:necromuralist@protonmail.com"&gt;Cloistered Monkey&lt;/a&gt; </copyright><lastBuildDate>Mon, 20 Apr 2020 00:07:41 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Project: Naive-Bayes</title><link>https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/</link><dc:creator>Cloistered Monkey</dc:creator><description>&lt;div id="table-of-contents"&gt;
 &lt;h2&gt;Table of Contents&lt;/h2&gt;
 &lt;div id="text-table-of-contents"&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#org73ac75f"&gt;Beginning&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#orga253b46"&gt;Beginning&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#org772dda5"&gt;Imports&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#org831548d"&gt;Imports&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#orga6e3c19"&gt;Python&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#org8647910"&gt;PyPi&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#orgc1bc634"&gt;This Project&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#org4abc883"&gt;Python&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#orgf8da0c3"&gt;PyPi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#orge156dad"&gt;This Project&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#orgda7c08a"&gt;Some Constants&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#org3ff3c13"&gt;Some Constants&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#org0a89f12"&gt;Middle&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#orgf63a545"&gt;Middle&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#org2b3845f"&gt;Load The Data&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#org3f86aaf"&gt;Load The Data&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#org9f08a45"&gt;Grab a Sample&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#orgc43ecb9"&gt;Grab a Sample&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#org515951a"&gt;Flatten The Images&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#orgd4fba90"&gt;The Means&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#org050dc42"&gt;The Parameters&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#orgb14e262"&gt;The Gaussian&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#org7c32ee1"&gt;Evaluate The Accuracy&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#orgbfd89b6"&gt;Reporting&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#org30b3e76"&gt;The Main&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#org0ce8222"&gt;Flatten The Images&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#orgdf82b24"&gt;The Means&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#orge74f8f3"&gt;The Parameters&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#org18597f2"&gt;The Gaussian&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#org7bcd6a4"&gt;Evaluate The Accuracy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#org0ce15a0"&gt;Reporting&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#orga4a8032"&gt;The Main&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#orgd2e6e1a"&gt;End&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#org6dfef8f"&gt;End&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org73ac75f" class="outline-2"&gt;
-&lt;h2 id="org73ac75f"&gt;Beginning&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org73ac75f"&gt;
+&lt;div id="outline-container-orga253b46" class="outline-2"&gt;
+&lt;h2 id="orga253b46"&gt;Beginning&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orga253b46"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org772dda5" class="outline-3"&gt;
-&lt;h3 id="org772dda5"&gt;Imports&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org772dda5"&gt;
+&lt;div id="outline-container-org831548d" class="outline-3"&gt;
+&lt;h3 id="org831548d"&gt;Imports&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org831548d"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orga6e3c19" class="outline-4"&gt;
-&lt;h4 id="orga6e3c19"&gt;Python&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orga6e3c19"&gt;
+&lt;div id="outline-container-org4abc883" class="outline-4"&gt;
+&lt;h4 id="org4abc883"&gt;Python&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org4abc883"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;argparse&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Namespace&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;math&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
@@ -53,9 +53,9 @@
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org8647910" class="outline-4"&gt;
-&lt;h4 id="org8647910"&gt;PyPi&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org8647910"&gt;
+&lt;div id="outline-container-orgf8da0c3" class="outline-4"&gt;
+&lt;h4 id="orgf8da0c3"&gt;PyPi&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgf8da0c3"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;dotenv&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;load_dotenv&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt;
@@ -63,17 +63,17 @@
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgc1bc634" class="outline-4"&gt;
-&lt;h4 id="orgc1bc634"&gt;This Project&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgc1bc634"&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;cse_575.coursera&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;geneNewData&lt;/span&gt;
+&lt;div id="outline-container-orge156dad" class="outline-4"&gt;
+&lt;h4 id="orge156dad"&gt;This Project&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orge156dad"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;ml_from_scratch.coursera&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;geneNewData&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgda7c08a" class="outline-3"&gt;
-&lt;h3 id="orgda7c08a"&gt;Some Constants&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgda7c08a"&gt;
+&lt;div id="outline-container-org3ff3c13" class="outline-3"&gt;
+&lt;h3 id="org3ff3c13"&gt;Some Constants&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org3ff3c13"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;load_dotenv&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -86,13 +86,13 @@
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org0a89f12" class="outline-2"&gt;
-&lt;h2 id="org0a89f12"&gt;Middle&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org0a89f12"&gt;
+&lt;div id="outline-container-orgf63a545" class="outline-2"&gt;
+&lt;h2 id="orgf63a545"&gt;Middle&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgf63a545"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org2b3845f" class="outline-3"&gt;
-&lt;h3 id="org2b3845f"&gt;Load The Data&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org2b3845f"&gt;
+&lt;div id="outline-container-org3f86aaf" class="outline-3"&gt;
+&lt;h3 id="org3f86aaf"&gt;Load The Data&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org3f86aaf"&gt;
 &lt;p&gt;
 &lt;code&gt;load_data&lt;/code&gt; is copied mostly from the ``main`` function. I added it so that ``main`` isn't just one monolithic function. Don't change it.
 &lt;/p&gt;
@@ -132,9 +132,9 @@ Your trainset and testset are generated successfully!
 (1135, 28, 28)
 &lt;/pre&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org9f08a45" class="outline-4"&gt;
-&lt;h4 id="org9f08a45"&gt;Grab a Sample&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org9f08a45"&gt;
+&lt;div id="outline-container-orgc43ecb9" class="outline-4"&gt;
+&lt;h4 id="orgc43ecb9"&gt;Grab a Sample&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgc43ecb9"&gt;
 &lt;p&gt;
 This is to help the later functions double-check what they're doing by grabbing a sample row.
 &lt;/p&gt;
@@ -150,9 +150,9 @@ This is to help the later functions double-check what they're doing by grabbing 
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org515951a" class="outline-3"&gt;
-&lt;h3 id="org515951a"&gt;Flatten The Images&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org515951a"&gt;
+&lt;div id="outline-container-org0ce8222" class="outline-3"&gt;
+&lt;h3 id="org0ce8222"&gt;Flatten The Images&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org0ce8222"&gt;
 &lt;p&gt;
 The images are 28 x 28 images, but for our purposes we want one flat array so we have to flatten them.
 &lt;/p&gt;
@@ -182,9 +182,9 @@ The images are 28 x 28 images, but for our purposes we want one flat array so we
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgd4fba90" class="outline-3"&gt;
-&lt;h3 id="orgd4fba90"&gt;The Means&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgd4fba90"&gt;
+&lt;div id="outline-container-orgdf82b24" class="outline-3"&gt;
+&lt;h3 id="orgdf82b24"&gt;The Means&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgdf82b24"&gt;
 &lt;p&gt;
 For each of the images we want to calculate the mean pixel value
 &lt;/p&gt;
@@ -224,9 +224,9 @@ Standard Deviations
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org050dc42" class="outline-3"&gt;
-&lt;h3 id="org050dc42"&gt;The Parameters&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org050dc42"&gt;
+&lt;div id="outline-container-orge74f8f3" class="outline-3"&gt;
+&lt;h3 id="orge74f8f3"&gt;The Parameters&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orge74f8f3"&gt;
 &lt;p&gt;
 We need to take the mean and variance of the values we calculated for each digit.
 &lt;/p&gt;
@@ -248,9 +248,9 @@ We need to take the mean and variance of the values we calculated for each digit
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgb14e262" class="outline-3"&gt;
-&lt;h3 id="orgb14e262"&gt;The Gaussian&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgb14e262"&gt;
+&lt;div id="outline-container-org18597f2" class="outline-3"&gt;
+&lt;h3 id="org18597f2"&gt;The Gaussian&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org18597f2"&gt;
 &lt;p&gt;
 This calculates the probability P(x|y) for each column.
 &lt;/p&gt;
@@ -297,9 +297,9 @@ This calculates the probability P(x|y) for each column.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org7c32ee1" class="outline-3"&gt;
-&lt;h3 id="org7c32ee1"&gt;Evaluate The Accuracy&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org7c32ee1"&gt;
+&lt;div id="outline-container-org7bcd6a4" class="outline-3"&gt;
+&lt;h3 id="org7bcd6a4"&gt;Evaluate The Accuracy&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org7bcd6a4"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;evaluate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;test_0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;pandas&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;test_1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;pandas&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;parameters&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Namespace&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="sd"&gt;"""Check the accuracy of our model&lt;/span&gt;
 
@@ -335,9 +335,9 @@ Overall Accuracy: 92.20 %
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgbfd89b6" class="outline-3"&gt;
-&lt;h3 id="orgbfd89b6"&gt;Reporting&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgbfd89b6"&gt;
+&lt;div id="outline-container-org0ce15a0" class="outline-3"&gt;
+&lt;h3 id="org0ce15a0"&gt;Reporting&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org0ce15a0"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;report_parameters&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;parameters&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Namespace&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"|Digit| Statistic | Feature| Outcome|"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"|-+-+-+-|"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -399,9 +399,9 @@ Overall Accuracy: 92.20 %
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org30b3e76" class="outline-3"&gt;
-&lt;h3 id="org30b3e76"&gt;The Main&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org30b3e76"&gt;
+&lt;div id="outline-container-orga4a8032" class="outline-3"&gt;
+&lt;h3 id="orga4a8032"&gt;The Main&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orga4a8032"&gt;
 &lt;p&gt;
 This is presumably the way that the code will be called. It won't work here because you need to change the paths, this is just to double-check it up on Coursera.
 &lt;/p&gt;
@@ -463,6 +463,6 @@ This is presumably the way that the code will be called. It won't work here beca
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgd2e6e1a" class="outline-2"&gt;
-&lt;h2 id="orgd2e6e1a"&gt;End&lt;/h2&gt;
+&lt;div id="outline-container-org6dfef8f" class="outline-2"&gt;
+&lt;h2 id="org6dfef8f"&gt;End&lt;/h2&gt;
 &lt;/div&gt;</description><category>naive-bayes</category><category>project</category><guid>https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/</guid><pubDate>Sat, 04 Apr 2020 23:43:33 GMT</pubDate></item></channel></rss>
