@@ -17,15 +17,15 @@ import time
 
 # Data about this site
 BLOG_AUTHOR = "Cloistered Monkey"  # (translatable)
-BLOG_TITLE = "ASU CSE-575"  # (translatable)
+BLOG_TITLE = "ML From Scratch"  # (translatable)
 # This is the main URL for your site. It will be used
 # in a prominent link. Don't forget the protocol (http/https)!
-SITE_URL = "https://necromuralist.github.io/asu-cse-575/"
+SITE_URL = "https://necromuralist.github.io/Machine-Learning-From-Scratch/"
 # This is the URL where Nikola's output will be deployed.
 # If not set, defaults to SITE_URL
 # BASE_URL = "https://necromuralist.github.io/"
 BLOG_EMAIL = "necromuralist@protonmail.com"
-BLOG_DESCRIPTION = "ASU Machine Learning Course."  # (translatable)
+BLOG_DESCRIPTION = "Machine Learning the hard way."  # (translatable)
 
 # Nikola is multilingual!
 #
