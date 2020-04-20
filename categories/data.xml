@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ASU CSE-575 (Posts about data)</title><link>https://necromuralist.github.io/asu-cse-575/</link><description></description><atom:link href="https://necromuralist.github.io/asu-cse-575/categories/data.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:necromuralist@protonmail.com"&gt;Cloistered Monkey&lt;/a&gt; </copyright><lastBuildDate>Tue, 14 Apr 2020 23:16:16 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Loading the Zeros and Ones</title><link>https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/</link><dc:creator>Cloistered Monkey</dc:creator><description>&lt;div id="table-of-contents"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ML From Scratch (Posts about data)</title><link>https://necromuralist.github.io/Machine-Learning-From-Scratch/</link><description></description><atom:link href="https://necromuralist.github.io/Machine-Learning-From-Scratch/categories/data.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:necromuralist@protonmail.com"&gt;Cloistered Monkey&lt;/a&gt; </copyright><lastBuildDate>Mon, 20 Apr 2020 00:02:04 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Loading the Zeros and Ones</title><link>https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/</link><dc:creator>Cloistered Monkey</dc:creator><description>&lt;div id="table-of-contents"&gt;
 &lt;h2&gt;Table of Contents&lt;/h2&gt;
 &lt;div id="text-table-of-contents"&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/#org48e4333"&gt;Beginning&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/#org48e4333"&gt;Beginning&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/#orga93e007"&gt;Imports&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/#orga93e007"&gt;Imports&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/#org56ea529"&gt;From python's Standard Library&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/#org15922e1"&gt;From PyPi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/#org56ea529"&gt;From python's Standard Library&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/#org15922e1"&gt;From PyPi&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/#org4321e4b"&gt;Set Up&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/#org4321e4b"&gt;Set Up&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/#orgf1ed732"&gt;The Environment&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/#orgf1ed732"&gt;The Environment&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/#org2b71702"&gt;Load the Environment&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/#orgcd7a0ed"&gt;Plotting&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/#org2b71702"&gt;Load the Environment&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/#orgcd7a0ed"&gt;Plotting&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/#orgfa377bb"&gt;Middle&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/#orgfa377bb"&gt;Middle&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/#org8930e6a"&gt;Load the Zeros&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/#org8930e6a"&gt;Load the Zeros&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/#org6f94a13"&gt;Flattening&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/#orgbf9407d"&gt;The Variances&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/#org6f94a13"&gt;Flattening&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/#orgbf9407d"&gt;The Variances&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -218,7 +218,7 @@ Here's a sample zero image.
 
 
 &lt;div class="figure"&gt;
-&lt;p&gt;&lt;img src="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/zero_sample.png" alt="zero_sample.png"&gt;
+&lt;p&gt;&lt;img src="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/zero_sample.png" alt="zero_sample.png"&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 
@@ -270,7 +270,7 @@ It looks like the labels aren't really useful here.
 
 
 &lt;div class="figure"&gt;
-&lt;p&gt;&lt;img src="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/mean_zeros_distribution.png" alt="mean_zeros_distribution.png"&gt;
+&lt;p&gt;&lt;img src="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/mean_zeros_distribution.png" alt="mean_zeros_distribution.png"&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 
@@ -304,10 +304,10 @@ Besides getting the mean brightness for each image we need the mean row-variance
 
 
 &lt;div class="figure"&gt;
-&lt;p&gt;&lt;img src="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/mean_zeros_variance_distribution.png" alt="mean_zeros_variance_distribution.png"&gt;
+&lt;p&gt;&lt;img src="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/mean_zeros_variance_distribution.png" alt="mean_zeros_variance_distribution.png"&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>data</category><category>project</category><guid>https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/</guid><pubDate>Sun, 22 Mar 2020 19:30:08 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;</description><category>data</category><category>project</category><guid>https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/</guid><pubDate>Sun, 22 Mar 2020 19:30:08 GMT</pubDate></item></channel></rss>

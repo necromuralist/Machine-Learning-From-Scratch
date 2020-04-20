@@ -1,4 +1,4 @@
-Sitemap: https://necromuralist.github.io/asu-cse-575/sitemapindex.xml
+Sitemap: https://necromuralist.github.io/Machine-Learning-From-Scratch/sitemapindex.xml
 
 User-Agent: *
 Host: necromuralist.github.io

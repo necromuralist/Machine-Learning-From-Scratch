@@ -1,59 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ASU CSE-575 (Posts about project)</title><link>https://necromuralist.github.io/asu-cse-575/</link><description></description><atom:link href="https://necromuralist.github.io/asu-cse-575/categories/project.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:necromuralist@protonmail.com"&gt;Cloistered Monkey&lt;/a&gt; </copyright><lastBuildDate>Mon, 20 Apr 2020 00:00:16 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>K-Means Clustering 2</title><link>https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/</link><dc:creator>Cloistered Monkey</dc:creator><description>&lt;div id="table-of-contents"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ML From Scratch (Posts about project)</title><link>https://necromuralist.github.io/Machine-Learning-From-Scratch/</link><description></description><atom:link href="https://necromuralist.github.io/Machine-Learning-From-Scratch/categories/project.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:necromuralist@protonmail.com"&gt;Cloistered Monkey&lt;/a&gt; </copyright><lastBuildDate>Mon, 20 Apr 2020 00:02:04 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>K-Means Clustering 2</title><link>https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/</link><dc:creator>Cloistered Monkey</dc:creator><description>&lt;div id="table-of-contents"&gt;
 &lt;h2&gt;Table of Contents&lt;/h2&gt;
 &lt;div id="text-table-of-contents"&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/#org8b011e4"&gt;Beginning&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org8b011e4"&gt;Beginning&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/#org9a7333d"&gt;Imports&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org9a7333d"&gt;Imports&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/#orgae73d7c"&gt;Python&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/#org11e5939"&gt;PyPi&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/#orgae5ac7c"&gt;Coursera&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/#org57234b0"&gt;Others&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orgae73d7c"&gt;Python&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org11e5939"&gt;PyPi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orgae5ac7c"&gt;Coursera&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org57234b0"&gt;Others&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/#orge1fb389"&gt;Set Up&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orge1fb389"&gt;Set Up&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/#org9a33a77"&gt;Tables&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/#org47d89da"&gt;Plotting&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org9a33a77"&gt;Tables&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org47d89da"&gt;Plotting&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/#org463f0b8"&gt;The Data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org463f0b8"&gt;The Data&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/#org682d3c4"&gt;Middle&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org682d3c4"&gt;Middle&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/#orgdc12a2a"&gt;The Data&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/#orgd7afa65"&gt;Coursera's Splitting&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/#org252fb9a"&gt;Initial Points&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orgdc12a2a"&gt;The Data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orgd7afa65"&gt;Coursera's Splitting&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org252fb9a"&gt;Initial Points&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/#org9aca1a3"&gt;First Points&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/#org75b9ef5"&gt;The Initial Points&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org9aca1a3"&gt;First Points&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org75b9ef5"&gt;The Initial Points&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/#org63621fd"&gt;From the Previous Section&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org63621fd"&gt;From the Previous Section&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/#orga37073a"&gt;Clusters&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/#orga5ae4ba"&gt;Get Centroids&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orga37073a"&gt;Clusters&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orga5ae4ba"&gt;Get Centroids&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/#org88e5b6d"&gt;The Objective Function&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/#orgc9b2dac"&gt;Putting Them All Together&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/#org041816f"&gt;K From Two To Ten&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org88e5b6d"&gt;The Objective Function&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orgc9b2dac"&gt;Putting Them All Together&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org041816f"&gt;K From Two To Ten&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/#orgb0d3be5"&gt;End&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orgb0d3be5"&gt;End&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/#org4d42bd8"&gt;Submissions&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org4d42bd8"&gt;Submissions&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/#orgeaeb3ca"&gt;Plotting the two runs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orgeaeb3ca"&gt;Plotting the two runs&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/#org8c7d0e0"&gt;The ID-Specific Data&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org8c7d0e0"&gt;The ID-Specific Data&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/#orga9c471b"&gt;First Check&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/#orgd92199d"&gt;Second Check&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orga9c471b"&gt;First Check&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orgd92199d"&gt;Second Check&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -179,7 +179,7 @@
 
 
 &lt;div class="figure"&gt;
-&lt;p&gt;&lt;img src="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/scatter.png" alt="scatter.png"&gt;
+&lt;p&gt;&lt;img src="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/scatter.png" alt="scatter.png"&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -503,7 +503,7 @@ The objective of training is to minimize the variation within a cluster. In this
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;object type="text/html" data="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/loss_vs_k.html" style="width:100%" height="800"&gt;
+&lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/loss_vs_k.html" style="width:100%" height="800"&gt;
   &lt;p&gt;Figure Missing&lt;/p&gt;
 &lt;/object&gt;
 
@@ -538,7 +538,7 @@ It looks like 6 clusters is about as much as you want to go.
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;object type="text/html" data="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/clusters_10.html" style="width:100%" height="800"&gt;
+&lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/clusters_10.html" style="width:100%" height="800"&gt;
   &lt;p&gt;Figure Missing&lt;/p&gt;
 &lt;/object&gt;
 
@@ -573,7 +573,7 @@ This does sort of look like the clusters did a little better than the random cen
 
 
 &lt;div class="figure"&gt;
-&lt;p&gt;&lt;img src="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/strategy_2_run_one.png" alt="strategy_2_run_one.png"&gt;
+&lt;p&gt;&lt;img src="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/strategy_2_run_one.png" alt="strategy_2_run_one.png"&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 
@@ -587,7 +587,7 @@ It kind of looks like either k=4 or k=6 is the actual optimum (based on the assu
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;object type="text/html" data="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/clusters_2.html" style="width:100%" height="800"&gt;
+&lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/clusters_2.html" style="width:100%" height="800"&gt;
   &lt;p&gt;Figure Missing&lt;/p&gt;
 &lt;/object&gt;
 
@@ -598,7 +598,7 @@ It kind of looks like either k=4 or k=6 is the actual optimum (based on the assu
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;object type="text/html" data="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/clusters_3.html" style="width:100%" height="800"&gt;
+&lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/clusters_3.html" style="width:100%" height="800"&gt;
   &lt;p&gt;Figure Missing&lt;/p&gt;
 &lt;/object&gt;
 
@@ -608,7 +608,7 @@ It kind of looks like either k=4 or k=6 is the actual optimum (based on the assu
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;object type="text/html" data="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/clusters_4.html" style="width:100%" height="800"&gt;
+&lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/clusters_4.html" style="width:100%" height="800"&gt;
   &lt;p&gt;Figure Missing&lt;/p&gt;
 &lt;/object&gt;
 
@@ -618,7 +618,7 @@ It kind of looks like either k=4 or k=6 is the actual optimum (based on the assu
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;object type="text/html" data="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/clusters_5.html" style="width:100%" height="800"&gt;
+&lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/clusters_5.html" style="width:100%" height="800"&gt;
   &lt;p&gt;Figure Missing&lt;/p&gt;
 &lt;/object&gt;
 
@@ -628,7 +628,7 @@ It kind of looks like either k=4 or k=6 is the actual optimum (based on the assu
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;object type="text/html" data="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/clusters_6.html" style="width:100%" height="800"&gt;
+&lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/clusters_6.html" style="width:100%" height="800"&gt;
   &lt;p&gt;Figure Missing&lt;/p&gt;
 &lt;/object&gt;
 
@@ -638,7 +638,7 @@ It kind of looks like either k=4 or k=6 is the actual optimum (based on the assu
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;object type="text/html" data="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/clusters_7.html" style="width:100%" height="800"&gt;
+&lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/clusters_7.html" style="width:100%" height="800"&gt;
   &lt;p&gt;Figure Missing&lt;/p&gt;
 &lt;/object&gt;
 
@@ -649,7 +649,7 @@ It kind of looks like either k=4 or k=6 is the actual optimum (based on the assu
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;object type="text/html" data="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/clusters_8.html" style="width:100%" height="800"&gt;
+&lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/clusters_8.html" style="width:100%" height="800"&gt;
   &lt;p&gt;Figure Missing&lt;/p&gt;
 &lt;/object&gt;
 
@@ -659,7 +659,7 @@ It kind of looks like either k=4 or k=6 is the actual optimum (based on the assu
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;object type="text/html" data="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/clusters_9.html" style="width:100%" height="800"&gt;
+&lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/clusters_9.html" style="width:100%" height="800"&gt;
   &lt;p&gt;Figure Missing&lt;/p&gt;
 &lt;/object&gt;
 
@@ -669,7 +669,7 @@ It kind of looks like either k=4 or k=6 is the actual optimum (based on the assu
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;object type="text/html" data="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/clusters_10.html" style="width:100%" height="800"&gt;
+&lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/clusters_10.html" style="width:100%" height="800"&gt;
   &lt;p&gt;Figure Missing&lt;/p&gt;
 &lt;/object&gt;
 
@@ -769,62 +769,62 @@ Objective Function: 1963.908359892354
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>clustering</category><category>k-means</category><category>project</category><category>unsupervised</category><guid>https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-2/</guid><pubDate>Mon, 13 Apr 2020 06:25:10 GMT</pubDate></item><item><title>K-Means Clustering 1</title><link>https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/</link><dc:creator>Cloistered Monkey</dc:creator><description>&lt;div id="table-of-contents"&gt;
+&lt;/div&gt;</description><category>clustering</category><category>k-means</category><category>project</category><category>unsupervised</category><guid>https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/</guid><pubDate>Mon, 13 Apr 2020 06:25:10 GMT</pubDate></item><item><title>K-Means Clustering 1</title><link>https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/</link><dc:creator>Cloistered Monkey</dc:creator><description>&lt;div id="table-of-contents"&gt;
 &lt;h2&gt;Table of Contents&lt;/h2&gt;
 &lt;div id="text-table-of-contents"&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/#org985ac74"&gt;Beginning&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/#org985ac74"&gt;Beginning&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/#orgb69e851"&gt;Imports&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/#orgb69e851"&gt;Imports&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/#orge2251d8"&gt;Python&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/#orgebe7a36"&gt;PyPi&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/#org7a222f4"&gt;Coursera Code&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/#org528968f"&gt;Others&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/#orge2251d8"&gt;Python&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/#orgebe7a36"&gt;PyPi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/#org7a222f4"&gt;Coursera Code&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/#org528968f"&gt;Others&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/#org84abd4d"&gt;Plotting&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/#orgad0cbae"&gt;The Data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/#org84abd4d"&gt;Plotting&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/#orgad0cbae"&gt;The Data&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/#orgb00ad64"&gt;Middle&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/#orgb00ad64"&gt;Middle&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/#org6e0da99"&gt;Some Plotting&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/#org6e0da99"&gt;Some Plotting&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/#org52939f0"&gt;Looking at the Distribution&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/#org52939f0"&gt;Looking at the Distribution&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/#orge2f4454"&gt;Coursera's Splitting&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/#orge2f4454"&gt;Coursera's Splitting&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/#orge2c633c"&gt;More on the functions&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/#orgd8e2a8f"&gt;init_point&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/#orge2c633c"&gt;More on the functions&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/#orgd8e2a8f"&gt;init_point&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/#orga2c6903"&gt;Getting Updated Centroids&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/#orga2c6903"&gt;Getting Updated Centroids&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/#org4367eb3"&gt;Clusters&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/#org29e3d7b"&gt;Get Centroids&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/#orgfb199f9"&gt;Test the Get Centroids&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/#org4367eb3"&gt;Clusters&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/#org29e3d7b"&gt;Get Centroids&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/#orgfb199f9"&gt;Test the Get Centroids&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/#orga4df0a3"&gt;The Objective Function&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/#orgc3dd317"&gt;Getting the Random Indices&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/#orgb10c3d9"&gt;Putting Them All Together&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/#org9b70ef2"&gt;Running K-means&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/#orgbccc059"&gt;K From Two To Ten&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/#orga4df0a3"&gt;The Objective Function&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/#orgc3dd317"&gt;Getting the Random Indices&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/#orgb10c3d9"&gt;Putting Them All Together&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/#org9b70ef2"&gt;Running K-means&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/#orgbccc059"&gt;K From Two To Ten&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/#org1903a24"&gt;End&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/#org1903a24"&gt;End&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/#orga817e2a"&gt;Submissions&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/#orga817e2a"&gt;Submissions&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/#orgac09500"&gt;Plotting the two runs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/#orgac09500"&gt;Plotting the two runs&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/#org8911fc5"&gt;The ID-Specific Data&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/#org8911fc5"&gt;The ID-Specific Data&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/#org073af64"&gt;First Check&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/#orgc71be2d"&gt;Second Check&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/#org073af64"&gt;First Check&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/#orgc71be2d"&gt;Second Check&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -943,7 +943,7 @@ This is part 1 of the K-means clustering project. In this portion we'll implemen
 
 
 &lt;div class="figure"&gt;
-&lt;p&gt;&lt;img src="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/data_distribution.png" alt="data_distribution.png"&gt;
+&lt;p&gt;&lt;img src="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/data_distribution.png" alt="data_distribution.png"&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 
@@ -959,7 +959,7 @@ It looks like there might be at least three sub-populations there.
 
 
 &lt;div class="figure"&gt;
-&lt;p&gt;&lt;img src="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/scatter.png" alt="scatter.png"&gt;
+&lt;p&gt;&lt;img src="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/scatter.png" alt="scatter.png"&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 
@@ -1343,7 +1343,7 @@ Clusters(clusters=array([[[0, 0],
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
-: &lt;object type="text/html" data="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/loss_vs_k.html" style="width:100%" height="800"&gt;
+: &lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/loss_vs_k.html" style="width:100%" height="800"&gt;
 :   &lt;p&gt;Figure Missing&lt;/p&gt;
 : &lt;/object&gt;
 
@@ -1374,7 +1374,7 @@ Clusters(clusters=array([[[0, 0],
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;object type="text/html" data="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/clusters_10.html" style="width:100%" height="800"&gt;
+&lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/clusters_10.html" style="width:100%" height="800"&gt;
   &lt;p&gt;Figure Missing&lt;/p&gt;
 &lt;/object&gt;
 &lt;/div&gt;
@@ -1406,7 +1406,7 @@ Clusters(clusters=array([[[0, 0],
 
 
 &lt;div class="figure"&gt;
-&lt;p&gt;&lt;img src="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/strategy_1_run_one.png" alt="strategy_1_run_one.png"&gt;
+&lt;p&gt;&lt;img src="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/strategy_1_run_one.png" alt="strategy_1_run_one.png"&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 
@@ -1420,7 +1420,7 @@ It kind of looks like either k=4 or k=5 is the actual optimum (based on the assu
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;object type="text/html" data="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/clusters_4.html" style="width:100%" height="800"&gt;
+&lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/clusters_4.html" style="width:100%" height="800"&gt;
   &lt;p&gt;Figure Missing&lt;/p&gt;
 &lt;/object&gt;
 
@@ -1430,7 +1430,7 @@ It kind of looks like either k=4 or k=5 is the actual optimum (based on the assu
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;object type="text/html" data="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/clusters_5.html" style="width:100%" height="800"&gt;
+&lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/clusters_5.html" style="width:100%" height="800"&gt;
   &lt;p&gt;Figure Missing&lt;/p&gt;
 &lt;/object&gt;
 
@@ -1440,7 +1440,7 @@ It kind of looks like either k=4 or k=5 is the actual optimum (based on the assu
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;object type="text/html" data="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/clusters_6.html" style="width:100%" height="800"&gt;
+&lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/clusters_6.html" style="width:100%" height="800"&gt;
   &lt;p&gt;Figure Missing&lt;/p&gt;
 &lt;/object&gt;
 
@@ -1450,7 +1450,7 @@ It kind of looks like either k=4 or k=5 is the actual optimum (based on the assu
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;object type="text/html" data="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/clusters_7.html" style="width:100%" height="800"&gt;
+&lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/clusters_7.html" style="width:100%" height="800"&gt;
   &lt;p&gt;Figure Missing&lt;/p&gt;
 &lt;/object&gt;
 
@@ -1461,7 +1461,7 @@ It kind of looks like either k=4 or k=5 is the actual optimum (based on the assu
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
-: &lt;object type="text/html" data="https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/clusters_8.html" style="width:100%" height="800"&gt;
+: &lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/clusters_8.html" style="width:100%" height="800"&gt;
 :   &lt;p&gt;Figure Missing&lt;/p&gt;
 : &lt;/object&gt;
 &lt;/div&gt;
@@ -1537,39 +1537,39 @@ Objective Function: 2069.2452603873444
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>clustering</category><category>project</category><category>unsupervised</category><guid>https://necromuralist.github.io/asu-cse-575/notebooks/k-means-clustering-1/</guid><pubDate>Mon, 13 Apr 2020 06:19:50 GMT</pubDate></item><item><title>Project: Naive-Bayes</title><link>https://necromuralist.github.io/asu-cse-575/notebooks/project-naive-bayes/</link><dc:creator>Cloistered Monkey</dc:creator><description>&lt;div id="table-of-contents"&gt;
+&lt;/div&gt;</description><category>clustering</category><category>project</category><category>unsupervised</category><guid>https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-1/</guid><pubDate>Mon, 13 Apr 2020 06:19:50 GMT</pubDate></item><item><title>Project: Naive-Bayes</title><link>https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/</link><dc:creator>Cloistered Monkey</dc:creator><description>&lt;div id="table-of-contents"&gt;
 &lt;h2&gt;Table of Contents&lt;/h2&gt;
 &lt;div id="text-table-of-contents"&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/project-naive-bayes/#org73ac75f"&gt;Beginning&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#org73ac75f"&gt;Beginning&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/project-naive-bayes/#org772dda5"&gt;Imports&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#org772dda5"&gt;Imports&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/project-naive-bayes/#orga6e3c19"&gt;Python&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/project-naive-bayes/#org8647910"&gt;PyPi&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/project-naive-bayes/#orgc1bc634"&gt;This Project&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#orga6e3c19"&gt;Python&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#org8647910"&gt;PyPi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#orgc1bc634"&gt;This Project&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/project-naive-bayes/#orgda7c08a"&gt;Some Constants&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#orgda7c08a"&gt;Some Constants&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/project-naive-bayes/#org0a89f12"&gt;Middle&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#org0a89f12"&gt;Middle&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/project-naive-bayes/#org2b3845f"&gt;Load The Data&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#org2b3845f"&gt;Load The Data&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/project-naive-bayes/#org9f08a45"&gt;Grab a Sample&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#org9f08a45"&gt;Grab a Sample&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/project-naive-bayes/#org515951a"&gt;Flatten The Images&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/project-naive-bayes/#orgd4fba90"&gt;The Means&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/project-naive-bayes/#org050dc42"&gt;The Parameters&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/project-naive-bayes/#orgb14e262"&gt;The Gaussian&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/project-naive-bayes/#org7c32ee1"&gt;Evaluate The Accuracy&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/project-naive-bayes/#orgbfd89b6"&gt;Reporting&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/project-naive-bayes/#org30b3e76"&gt;The Main&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#org515951a"&gt;Flatten The Images&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#orgd4fba90"&gt;The Means&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#org050dc42"&gt;The Parameters&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#orgb14e262"&gt;The Gaussian&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#org7c32ee1"&gt;Evaluate The Accuracy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#orgbfd89b6"&gt;Reporting&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#org30b3e76"&gt;The Main&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/project-naive-bayes/#orgd2e6e1a"&gt;End&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/#orgd2e6e1a"&gt;End&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -2003,33 +2003,33 @@ This is presumably the way that the code will be called. It won't work here beca
 &lt;/div&gt;
 &lt;div id="outline-container-orgd2e6e1a" class="outline-2"&gt;
 &lt;h2 id="orgd2e6e1a"&gt;End&lt;/h2&gt;
-&lt;/div&gt;</description><category>naive-bayes</category><category>project</category><guid>https://necromuralist.github.io/asu-cse-575/notebooks/project-naive-bayes/</guid><pubDate>Sat, 04 Apr 2020 23:43:33 GMT</pubDate></item><item><title>Loading the Zeros and Ones</title><link>https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/</link><dc:creator>Cloistered Monkey</dc:creator><description>&lt;div id="table-of-contents"&gt;
+&lt;/div&gt;</description><category>naive-bayes</category><category>project</category><guid>https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/project-naive-bayes/</guid><pubDate>Sat, 04 Apr 2020 23:43:33 GMT</pubDate></item><item><title>Loading the Zeros and Ones</title><link>https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/</link><dc:creator>Cloistered Monkey</dc:creator><description>&lt;div id="table-of-contents"&gt;
 &lt;h2&gt;Table of Contents&lt;/h2&gt;
 &lt;div id="text-table-of-contents"&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/#org48e4333"&gt;Beginning&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/#org48e4333"&gt;Beginning&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/#orga93e007"&gt;Imports&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/#orga93e007"&gt;Imports&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/#org56ea529"&gt;From python's Standard Library&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/#org15922e1"&gt;From PyPi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/#org56ea529"&gt;From python's Standard Library&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/#org15922e1"&gt;From PyPi&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/#org4321e4b"&gt;Set Up&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/#org4321e4b"&gt;Set Up&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/#orgf1ed732"&gt;The Environment&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/#orgf1ed732"&gt;The Environment&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/#org2b71702"&gt;Load the Environment&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/#orgcd7a0ed"&gt;Plotting&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/#org2b71702"&gt;Load the Environment&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/#orgcd7a0ed"&gt;Plotting&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/#orgfa377bb"&gt;Middle&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/#orgfa377bb"&gt;Middle&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/#org8930e6a"&gt;Load the Zeros&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/#org8930e6a"&gt;Load the Zeros&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/#org6f94a13"&gt;Flattening&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/#orgbf9407d"&gt;The Variances&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/#org6f94a13"&gt;Flattening&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/#orgbf9407d"&gt;The Variances&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -2222,7 +2222,7 @@ Here's a sample zero image.
 
 
 &lt;div class="figure"&gt;
-&lt;p&gt;&lt;img src="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/zero_sample.png" alt="zero_sample.png"&gt;
+&lt;p&gt;&lt;img src="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/zero_sample.png" alt="zero_sample.png"&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 
@@ -2274,7 +2274,7 @@ It looks like the labels aren't really useful here.
 
 
 &lt;div class="figure"&gt;
-&lt;p&gt;&lt;img src="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/mean_zeros_distribution.png" alt="mean_zeros_distribution.png"&gt;
+&lt;p&gt;&lt;img src="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/mean_zeros_distribution.png" alt="mean_zeros_distribution.png"&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 
@@ -2308,10 +2308,10 @@ Besides getting the mean brightness for each image we need the mean row-variance
 
 
 &lt;div class="figure"&gt;
-&lt;p&gt;&lt;img src="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/mean_zeros_variance_distribution.png" alt="mean_zeros_variance_distribution.png"&gt;
+&lt;p&gt;&lt;img src="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/mean_zeros_variance_distribution.png" alt="mean_zeros_variance_distribution.png"&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description><category>data</category><category>project</category><guid>https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/</guid><pubDate>Sun, 22 Mar 2020 19:30:08 GMT</pubDate></item></channel></rss>
+&lt;/div&gt;</description><category>data</category><category>project</category><guid>https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/loading-the-zeros-and-ones/</guid><pubDate>Sun, 22 Mar 2020 19:30:08 GMT</pubDate></item></channel></rss>
