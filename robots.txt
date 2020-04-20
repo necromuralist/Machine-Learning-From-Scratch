@@ -1,0 +1,4 @@
+Sitemap: https://necromuralist.github.io/asu-cse-575/sitemapindex.xml
+
+User-Agent: *
+Host: necromuralist.github.io

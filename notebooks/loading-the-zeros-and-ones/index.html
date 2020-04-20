@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+<head>
+<meta charset="utf-8">
+<meta content="Loading the MNIST Zeros and Ones." name="description">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<title>Loading the Zeros and Ones | ASU CSE-575</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<meta content="#5670d4" name="theme-color">
+<meta content="Nikola (getnikola.com)" name="generator">
+<link href="../../rss.xml" rel="alternate" title="RSS" type="application/rss+xml">
+<link href="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/" rel="canonical"><!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]-->
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script><!-- favicons -->
+<link href="../../apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
+<link href="../../favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
+<link href="../../favicon-16x16.png" rel="icon" sizes="16x16" type="image/png">
+<link href="../../site.webmanifest" rel="manifest">
+<meta content="Cloistered Monkey" name="author">
+<link href="../project-naive-bayes/" rel="next" title="Project: Naive-Bayes" type="text/html">
+<meta content="ASU CSE-575" property="og:site_name">
+<meta content="Loading the Zeros and Ones" property="og:title">
+<meta content="https://necromuralist.github.io/asu-cse-575/notebooks/loading-the-zeros-and-ones/" property="og:url">
+<meta content="Loading the MNIST Zeros and Ones." property="og:description">
+<meta content="article" property="og:type">
+<meta content="2020-03-22T12:30:08-07:00" property="article:published_time">
+<meta content="data" property="article:tag">
+<meta content="project" property="article:tag">
+</head>
+<body>
+<a class="sr-only sr-only-focusable" href="#content">Skip to main content</a> <!-- Menubar -->
+<nav class="navbar navbar-expand-md static-top mb-4 navbar-light bg-light">
+<div class="container"><!-- This keeps the margins nice -->
+ <a class="navbar-brand" href="https://necromuralist.github.io/asu-cse-575/"><span id="blog-title">ASU CSE-575</span></a> <button aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#bs-navbar" data-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button>
+<div class="collapse navbar-collapse" id="bs-navbar">
+<ul class="navbar-nav mr-auto">
+<li class="nav-item"><a class="nav-link" href="../../archive.html">Archive</a></li>
+<li class="nav-item"><a class="nav-link" href="../../categories/">Tags</a></li>
+<li class="nav-item"><a class="nav-link" href="../../rss.xml">RSS feed</a></li>
+<li class="nav-item dropdown"><a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Pages</a>
+<div class="dropdown-menu"><a class="dropdown-item" href="https://necromuralist.github.io/">Cloistered Monkey</a></div>
+</li>
+</ul>
+<!-- DuckDuckGo custom search -->
+<form action="https://duckduckgo.com/" class="navbar-form pull-left" id="search" method="get" name="search"><input name="sites" type="hidden" value="https://necromuralist.github.io/asu-cse-575/"><input name="k8" type="hidden" value="#444444"><input name="k9" type="hidden" value="#D51920"><input name="kt" type="hidden" value="h"><input class="span2" maxlength="255" name="q" placeholder="Search…" type="text"><input style="visibility: hidden;display:none" type="submit" value="DuckDuckGo Search"></form>
+<!-- End of custom search -->
+<ul class="navbar-nav navbar-right">
+<li class="nav-item"><a class="nav-link" href="index.org" id="sourcelink">Source</a></li>
+</ul>
+</div>
+<!-- /.navbar-collapse --></div>
+<!-- /.container --></nav>
+<!-- End of Menubar -->
+<div class="container" id="content" role="main">
+<div class="body-content"><!--Body content-->
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article">
+<header>
+<h1 class="p-name entry-title" itemprop="headline name"><a class="u-url" href=".">Loading the Zeros and Ones</a></h1>
+<div class="metadata">
+<p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">Cloistered Monkey</span></p>
+<p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2020-03-22T12:30:08-07:00" itemprop="datePublished" title="2020-03-22 12:30">2020-03-22 12:30</time></a></p>
+<p class="sourceline"><a class="sourcelink" href="index.org">Source</a></p>
+</div>
+</header>
+<div class="e-content entry-content" itemprop="articleBody text">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org48e4333">Beginning</a>
+<ul>
+<li><a href="#orga93e007">Imports</a>
+<ul>
+<li><a href="#org56ea529">From python's Standard Library</a></li>
+<li><a href="#org15922e1">From PyPi</a></li>
+</ul>
+</li>
+<li><a href="#org4321e4b">Set Up</a>
+<ul>
+<li><a href="#orgf1ed732">The Environment</a></li>
+</ul>
+</li>
+<li><a href="#org2b71702">Load the Environment</a></li>
+<li><a href="#orgcd7a0ed">Plotting</a></li>
+</ul>
+</li>
+<li><a href="#orgfa377bb">Middle</a>
+<ul>
+<li><a href="#org8930e6a">Load the Zeros</a>
+<ul>
+<li><a href="#org6f94a13">Flattening</a></li>
+<li><a href="#orgbf9407d">The Variances</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="outline-2" id="outline-container-org48e4333">
+<h2 id="org48e4333">Beginning</h2>
+<div class="outline-text-2" id="text-org48e4333">
+<p>This is the beginning of the CSE 575 Statistical Machine Learning Class project. The first part is <i>Density Estimation and Classification</i> and will characterize a subset of the <a href="http://yann.lecun.com/exdb/mnist/">MNIST</a> dataset of handwritten digits which only contains the zeros and ones (<code>0</code> and <code>1</code>). This first post will just make sure that we can load the data.</p>
+</div>
+<div class="outline-3" id="outline-container-orga93e007">
+<h3 id="orga93e007">Imports</h3>
+<div class="outline-text-3" id="text-orga93e007"></div>
+<div class="outline-4" id="outline-container-org56ea529">
+<h4 id="org56ea529">From python's Standard Library</h4>
+<div class="outline-text-4" id="text-org56ea529">
+<div class="highlight">
+<pre><span></span><span class="kn">from</span> <span class="nn">argparse</span> <span class="kn">import</span> <span class="n">Namespace</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">random</span>
+</pre></div>
+</div>
+</div>
+<div class="outline-4" id="outline-container-org15922e1">
+<h4 id="org15922e1">From PyPi</h4>
+<div class="outline-text-4" id="text-org15922e1">
+<div class="highlight">
+<pre><span></span><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">from</span> <span class="nn">expects</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">be_true</span><span class="p">,</span>
+    <span class="n">equal</span><span class="p">,</span>
+    <span class="n">expect</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">pytest</span> <span class="kn">import</span> <span class="n">approx</span> <span class="k">as</span> <span class="n">around</span>
+
+<span class="kn">import</span> <span class="nn">hvplot.pandas</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">pyplot</span>
+<span class="kn">import</span> <span class="nn">pandas</span>
+<span class="kn">import</span> <span class="nn">seaborn</span>
+<span class="kn">import</span> <span class="nn">scipy.io</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="outline-3" id="outline-container-org4321e4b">
+<h3 id="org4321e4b">Set Up</h3>
+<div class="outline-text-3" id="text-org4321e4b"></div>
+<div class="outline-4" id="outline-container-orgf1ed732">
+<h4 id="orgf1ed732">The Environment</h4>
+<div class="outline-text-4" id="text-orgf1ed732">
+<div class="highlight">
+<pre><span></span><span class="n">Environment</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span>
+    <span class="n">raw</span><span class="o">=</span><span class="s2">"RAW_DATA"</span><span class="p">,</span>
+    <span class="n">train_images</span><span class="o">=</span><span class="s2">"TRAIN_IMAGES"</span><span class="p">,</span>
+    <span class="n">train_labels</span><span class="o">=</span><span class="s2">"TRAIN_LABELS"</span><span class="p">,</span>
+    <span class="n">test_images</span><span class="o">=</span><span class="s2">"TEST_IMAGES"</span><span class="p">,</span>
+    <span class="n">test_labels</span><span class="o">=</span><span class="s2">"TEST_LABELS"</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="outline-3" id="outline-container-org2b71702">
+<h3 id="org2b71702">Load the Environment</h3>
+<div class="outline-text-3" id="text-org2b71702">
+<div class="highlight">
+<pre><span></span><span class="n">load_dotenv</span><span class="p">(</span><span class="n">override</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ENVIRONMENT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span>
+<span class="n">RAW_PATH</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">ENVIRONMENT</span><span class="p">[</span><span class="n">Environment</span><span class="o">.</span><span class="n">raw</span><span class="p">])</span><span class="o">.</span><span class="n">expanduser</span><span class="p">()</span>
+<span class="k">assert</span> <span class="n">RAW_PATH</span><span class="o">.</span><span class="n">is_dir</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="outline-3" id="outline-container-orgcd7a0ed">
+<h3 id="orgcd7a0ed">Plotting</h3>
+<div class="outline-text-3" id="text-orgcd7a0ed">
+<div class="highlight">
+<pre><span></span><span class="n">SLUG</span> <span class="o">=</span> <span class="s2">"loading-the-zeros-and-ones"</span>
+<span class="n">PLOT_PATH</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="sa">f</span><span class="s2">"../files/notebooks/</span><span class="si">{</span><span class="n">SLUG</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+<div class="highlight">
+<pre><span></span><span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_line_magic</span><span class="p">(</span><span class="s1">'matplotlib'</span><span class="p">,</span> <span class="s1">'inline'</span><span class="p">)</span>
+<span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_line_magic</span><span class="p">(</span><span class="s1">'config'</span><span class="p">,</span> <span class="s2">"InlineBackend.figure_format = 'retina'"</span><span class="p">)</span>
+<span class="n">seaborn</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">"whitegrid"</span><span class="p">,</span>
+            <span class="n">rc</span><span class="o">=</span><span class="p">{</span><span class="s2">"axes.grid"</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                <span class="s2">"xtick.labelsize"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+                <span class="s2">"ytick.labelsize"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+                <span class="s2">"font.size"</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span>
+                <span class="s2">"font.family"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"sans-serif"</span><span class="p">],</span>
+                <span class="s2">"font.sans-serif"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"Open Sans"</span><span class="p">,</span> <span class="s2">"Latin Modern Sans"</span><span class="p">,</span> <span class="s2">"Lato"</span><span class="p">],</span>
+                <span class="s2">"figure.figsize"</span><span class="p">:</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">)},</span>
+            <span class="n">font_scale</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="outline-2" id="outline-container-orgfa377bb">
+<h2 id="orgfa377bb">Middle</h2>
+<div class="outline-text-2" id="text-orgfa377bb">
+<p>We are going to need to find the distributions for each digits' image using the training data. The images are separated by digit, training or testing, and image or label. It seems unnecessary to have labels given that the image files are already labeled, but perhaps this is a convenience for some.</p>
+</div>
+<div class="outline-3" id="outline-container-org8930e6a">
+<h3 id="org8930e6a">Load the Zeros</h3>
+<div class="outline-text-3" id="text-org8930e6a">
+<div class="highlight">
+<pre><span></span><span class="n">ZERO_TRAIN_IMAGES_PATH</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">ENVIRONMENT</span><span class="p">[</span><span class="n">Environment</span><span class="o">.</span><span class="n">train_images</span><span class="p">]</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">expanduser</span><span class="p">()</span>
+<span class="n">ZERO_TRAIN_LABELS_PATH</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">ENVIRONMENT</span><span class="p">[</span><span class="n">Environment</span><span class="o">.</span><span class="n">train_labels</span><span class="p">]</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">expanduser</span><span class="p">()</span>
+
+<span class="n">ZERO_TEST_IMAGES_PATH</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">ENVIRONMENT</span><span class="p">[</span><span class="n">Environment</span><span class="o">.</span><span class="n">test_images</span><span class="p">]</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">expanduser</span><span class="p">()</span>
+<span class="n">ZERO_TEST_LABELS_PATH</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">ENVIRONMENT</span><span class="p">[</span><span class="n">Environment</span><span class="o">.</span><span class="n">test_labels</span><span class="p">]</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">expanduser</span><span class="p">()</span>
+
+<span class="k">assert</span> <span class="n">ZERO_TRAIN_IMAGES_PATH</span><span class="o">.</span><span class="n">is_file</span><span class="p">()</span>
+<span class="k">assert</span> <span class="n">ZERO_TRAIN_LABELS_PATH</span><span class="o">.</span><span class="n">is_file</span><span class="p">()</span>
+<span class="k">assert</span> <span class="n">ZERO_TEST_IMAGES_PATH</span><span class="o">.</span><span class="n">is_file</span><span class="p">()</span>
+<span class="k">assert</span> <span class="n">ZERO_TEST_LABELS_PATH</span><span class="o">.</span><span class="n">is_file</span><span class="p">()</span>
+</pre></div>
+<div class="highlight">
+<pre><span></span><span class="n">ZERO_TRAIN_IMAGES</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">loadmat</span><span class="p">(</span><span class="n">ZERO_TRAIN_IMAGES_PATH</span><span class="p">)</span>
+<span class="n">ZERO_TRAIN_LABELS</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">loadmat</span><span class="p">(</span><span class="n">ZERO_TRAIN_LABELS_PATH</span><span class="p">)</span>
+<span class="n">ZERO_TEST_IMAGES</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">loadmat</span><span class="p">(</span><span class="n">ZERO_TEST_IMAGES_PATH</span><span class="p">)</span>
+<span class="n">ZERO_TEST_LABELS</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">loadmat</span><span class="p">(</span><span class="n">ZERO_TEST_LABELS_PATH</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">ZERO_TRAIN_IMAGES</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">ZERO_TRAIN_LABELS</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">ZERO_TEST_IMAGES</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">ZERO_TEST_LABELS</span><span class="p">))</span>
+</pre></div>
+<pre class="example">
+&lt;class 'dict'&gt;
+&lt;class 'dict'&gt;
+&lt;class 'dict'&gt;
+&lt;class 'dict'&gt;
+</pre>
+<div class="highlight">
+<pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ZERO_TRAIN_IMAGES</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ZERO_TRAIN_LABELS</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</pre></div>
+<pre class="example">
+dict_keys(['__header__', '__version__', '__globals__', 'target_img'])
+dict_keys(['__header__', '__version__', '__globals__', 'target_label'])
+</pre>
+<div class="highlight">
+<pre><span></span><span class="n">DataKeys</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span>
+    <span class="n">images</span> <span class="o">=</span> <span class="s2">"target_img"</span><span class="p">,</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="s2">"target_label"</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+<div class="highlight">
+<pre><span></span><span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">ZERO_TRAIN_IMAGES</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">key</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"_"</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">ZERO_TRAIN_IMAGES</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+</pre></div>
+<pre class="example">
+b'MATLAB 5.0 MAT-file, Platform: PCWIN64, Created on: Fri Jul 05 12:26:06 2019'
+1.0
+[]
+</pre>
+<div class="highlight">
+<pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ZERO_TRAIN_IMAGES</span><span class="p">[</span><span class="n">DataKeys</span><span class="o">.</span><span class="n">images</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+<pre class="example">
+(28, 28, 5923)
+</pre>
+<p>According to the document provided by ASU, there are 5,923 images of zeros in the training set, so it looks like the first two dimensions are the images and the third is the samples.</p>
+<div class="highlight">
+<pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="n">PLOT_PATH</span><span class="o">/</span><span class="s2">"zero_sample.png"</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">ZERO_TRAIN_IMAGES</span><span class="p">[</span><span class="n">DataKeys</span><span class="o">.</span><span class="n">images</span><span class="p">][:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+<p>Here's a sample zero image.</p>
+<div class="figure">
+<p><img alt="zero_sample.png" src="zero_sample.png"></p>
+</div>
+<div class="highlight">
+<pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">ZERO_TRAIN_LABELS</span><span class="p">[</span><span class="n">DataKeys</span><span class="o">.</span><span class="n">labels</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">ZERO_TEST_LABELS</span><span class="p">[</span><span class="n">DataKeys</span><span class="o">.</span><span class="n">labels</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">()))</span>
+</pre></div>
+<pre class="example">
+{0}
+{0}
+</pre>
+<p>It looks like the labels aren't really useful here.</p>
+</div>
+<div class="outline-4" id="outline-container-org6f94a13">
+<h4 id="org6f94a13">Flattening</h4>
+<div class="outline-text-4" id="text-org6f94a13">
+<div class="highlight">
+<pre><span></span><span class="n">PIXELS</span> <span class="o">=</span> <span class="mi">28</span> <span class="o">*</span> <span class="mi">28</span>
+<span class="n">ZERO_IMAGES</span> <span class="o">=</span> <span class="n">ZERO_TRAIN_IMAGES</span><span class="p">[</span><span class="n">DataKeys</span><span class="o">.</span><span class="n">images</span><span class="p">]</span>
+<span class="n">SAMPLES</span>  <span class="o">=</span> <span class="n">ZERO_IMAGES</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">SAMPLE_INDEX</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="n">SAMPLES</span><span class="p">)</span>
+<span class="n">SAMPLE</span> <span class="o">=</span> <span class="n">ZERO_IMAGES</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">SAMPLE_INDEX</span><span class="p">]</span>
+<span class="n">ZERO_TRAIN</span> <span class="o">=</span> <span class="n">ZERO_IMAGES</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">PIXELS</span><span class="p">,</span> <span class="n">SAMPLES</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+<div class="highlight">
+<pre><span></span><span class="n">expect</span><span class="p">(</span><span class="nb">all</span><span class="p">(</span><span class="n">SAMPLE</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span> <span class="o">==</span> <span class="n">ZERO_TRAIN</span><span class="p">[</span><span class="n">SAMPLE_INDEX</span><span class="p">]))</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">be_true</span><span class="p">)</span>
+</pre></div>
+<div class="highlight">
+<pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">ZERO_TRAIN</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">ZERO_FRAME</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ZERO_TRAIN</span><span class="p">)</span>
+</pre></div>
+<pre class="example">
+(5923, 784)
+</pre>
+<div class="highlight">
+<pre><span></span><span class="n">means</span> <span class="o">=</span> <span class="n">ZERO_FRAME</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">"columns"</span><span class="p">)</span>
+<span class="n">figure</span><span class="p">,</span> <span class="n">axe</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">plot</span> <span class="o">=</span> <span class="n">means</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">kde</span><span class="p">()</span>
+<span class="n">figure</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">"Mean Brightness of Zeros"</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s2">"bold"</span><span class="p">)</span>
+<span class="n">seaborn</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">means</span><span class="p">,</span> <span class="n">rug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axe</span><span class="p">)</span>
+<span class="c1"># figure.savefig(PLOT_PATH/"mean_zeros_distribution.png")</span>
+</pre></div>
+<div class="figure">
+<p><img alt="mean_zeros_distribution.png" src="mean_zeros_distribution.png"></p>
+</div>
+<div class="highlight">
+<pre><span></span><span class="n">expect</span><span class="p">(</span><span class="n">SAMPLE</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">equal</span><span class="p">(</span><span class="n">means</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">SAMPLE_INDEX</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="outline-4" id="outline-container-orgbf9407d">
+<h4 id="orgbf9407d">The Variances</h4>
+<div class="outline-text-4" id="text-orgbf9407d">
+<p>Besides getting the mean brightness for each image we need the mean row-variance for each image.</p>
+<div class="highlight">
+<pre><span></span><span class="n">accumulator</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">SAMPLE</span><span class="p">)):</span>
+    <span class="n">accumulator</span> <span class="o">+=</span> <span class="n">SAMPLE</span><span class="p">[</span><span class="n">row</span><span class="p">]</span><span class="o">.</span><span class="n">var</span><span class="p">()</span>
+
+<span class="n">SAMPLE_VARIANCE</span> <span class="o">=</span> <span class="n">accumulator</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">SAMPLE</span><span class="p">)</span>
+
+<span class="n">ZERO_VARIANCES</span> <span class="o">=</span> <span class="n">ZERO_IMAGES</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">expect</span><span class="p">(</span><span class="n">SAMPLE_VARIANCE</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">equal</span><span class="p">(</span><span class="n">around</span><span class="p">(</span><span class="n">ZERO_VARIANCES</span><span class="p">[</span><span class="n">SAMPLE_INDEX</span><span class="p">])))</span>
+</pre></div>
+<div class="highlight">
+<pre><span></span><span class="n">figure</span><span class="p">,</span> <span class="n">axe</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="c1">#plot = ZERO_VARIANCES.plot.kde()</span>
+<span class="n">figure</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">"Mean Variances of Zeros"</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s2">"bold"</span><span class="p">)</span>
+<span class="n">seaborn</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">ZERO_VARIANCES</span><span class="p">,</span> <span class="n">rug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axe</span><span class="p">)</span>
+</pre></div>
+<div class="figure">
+<p><img alt="mean_zeros_variance_distribution.png" src="mean_zeros_variance_distribution.png"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<aside class="postpromonav">
+<nav>
+<ul class="tags" itemprop="keywords">
+<li><a class="tag p-category" href="../../categories/data/" rel="tag">data</a></li>
+<li><a class="tag p-category" href="../../categories/project/" rel="tag">project</a></li>
+</ul>
+<ul class="pager hidden-print">
+<li class="next"><a href="../project-naive-bayes/" rel="next" title="Project: Naive-Bayes">Next post</a></li>
+</ul>
+</nav>
+</aside>
+</article>
+<!--End of body content-->
+<footer id="footer">Contents © 2020 <a href="mailto:necromuralist@protonmail.com">Cloistered Monkey</a> - Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a></footer>
+</div>
+</div>
+<script src="../../assets/js/all-nocdn.js"></script>
+<script>
+
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+</script>
+</body>
+</html>

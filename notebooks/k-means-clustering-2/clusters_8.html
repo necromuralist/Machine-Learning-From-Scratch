@@ -1,0 +1,553 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    
+      <meta charset="utf-8">
+      <title>Panel</title>
+      
+      
+        
+          
+        <style>
+            .json-formatter-row {
+                  font-family: monospace;
+                }
+                .json-formatter-row,
+                .json-formatter-row a,
+                .json-formatter-row a:hover {
+                  color: black;
+                  text-decoration: none;
+                }
+                .json-formatter-row .json-formatter-row {
+                  margin-left: 1rem;
+                }
+                .json-formatter-row .json-formatter-children.json-formatter-empty {
+                  opacity: 0.5;
+                  margin-left: 1rem;
+                }
+                .json-formatter-row .json-formatter-children.json-formatter-empty:after {
+                  display: none;
+                }
+                .json-formatter-row .json-formatter-children.json-formatter-empty.json-formatter-object:after {
+                  content: "No properties";
+                }
+                .json-formatter-row .json-formatter-children.json-formatter-empty.json-formatter-array:after {
+                  content: "[]";
+                }
+                .json-formatter-row .json-formatter-string,
+                .json-formatter-row .json-formatter-stringifiable {
+                  color: green;
+                  white-space: pre;
+                  word-wrap: break-word;
+                }
+                .json-formatter-row .json-formatter-number {
+                  color: blue;
+                }
+                .json-formatter-row .json-formatter-boolean {
+                  color: red;
+                }
+                .json-formatter-row .json-formatter-null {
+                  color: #855A00;
+                }
+                .json-formatter-row .json-formatter-undefined {
+                  color: #ca0b69;
+                }
+                .json-formatter-row .json-formatter-function {
+                  color: #FF20ED;
+                }
+                .json-formatter-row .json-formatter-date {
+                  background-color: rgba(0, 0, 0, 0.05);
+                }
+                .json-formatter-row .json-formatter-url {
+                  text-decoration: underline;
+                  color: blue;
+                  cursor: pointer;
+                }
+                .json-formatter-row .json-formatter-bracket {
+                  color: blue;
+                }
+                .json-formatter-row .json-formatter-key {
+                  color: #00008B;
+                  padding-right: 0.2rem;
+                }
+                .json-formatter-row .json-formatter-toggler-link {
+                  cursor: pointer;
+                }
+                .json-formatter-row .json-formatter-toggler {
+                  line-height: 1.2rem;
+                  font-size: 0.7rem;
+                  vertical-align: middle;
+                  opacity: 0.6;
+                  cursor: pointer;
+                  padding-right: 0.2rem;
+                }
+                .json-formatter-row .json-formatter-toggler:after {
+                  display: inline-block;
+                  transition: transform 100ms ease-in;
+                  content: "\25BA";
+                }
+                .json-formatter-row > a > .json-formatter-preview-text {
+                  opacity: 0;
+                  transition: opacity 0.15s ease-in;
+                  font-style: italic;
+                }
+                .json-formatter-row:hover > a > .json-formatter-preview-text {
+                  opacity: 0.6;
+                }
+                .json-formatter-row.json-formatter-open > .json-formatter-toggler-link .json-formatter-toggler:after {
+                  transform: rotate(90deg);
+                }
+                .json-formatter-row.json-formatter-open > .json-formatter-children:after {
+                  display: inline-block;
+                }
+                .json-formatter-row.json-formatter-open > a > .json-formatter-preview-text {
+                  display: none;
+                }
+                .json-formatter-row.json-formatter-open.json-formatter-empty:after {
+                  display: block;
+                }
+                .json-formatter-dark.json-formatter-row {
+                  font-family: monospace;
+                }
+                .json-formatter-dark.json-formatter-row,
+                .json-formatter-dark.json-formatter-row a,
+                .json-formatter-dark.json-formatter-row a:hover {
+                  color: white;
+                  text-decoration: none;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-row {
+                  margin-left: 1rem;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-children.json-formatter-empty {
+                  opacity: 0.5;
+                  margin-left: 1rem;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-children.json-formatter-empty:after {
+                  display: none;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-children.json-formatter-empty.json-formatter-object:after {
+                  content: "No properties";
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-children.json-formatter-empty.json-formatter-array:after {
+                  content: "[]";
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-string,
+                .json-formatter-dark.json-formatter-row .json-formatter-stringifiable {
+                  color: #31F031;
+                  white-space: pre;
+                  word-wrap: break-word;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-number {
+                  color: #66C2FF;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-boolean {
+                  color: #EC4242;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-null {
+                  color: #EEC97D;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-undefined {
+                  color: #ef8fbe;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-function {
+                  color: #FD48CB;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-date {
+                  background-color: rgba(255, 255, 255, 0.05);
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-url {
+                  text-decoration: underline;
+                  color: #027BFF;
+                  cursor: pointer;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-bracket {
+                  color: #9494FF;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-key {
+                  color: #23A0DB;
+                  padding-right: 0.2rem;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-toggler-link {
+                  cursor: pointer;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-toggler {
+                  line-height: 1.2rem;
+                  font-size: 0.7rem;
+                  vertical-align: middle;
+                  opacity: 0.6;
+                  cursor: pointer;
+                  padding-right: 0.2rem;
+                }
+                .json-formatter-dark.json-formatter-row .json-formatter-toggler:after {
+                  display: inline-block;
+                  transition: transform 100ms ease-in;
+                  content: "\25BA";
+                }
+                .json-formatter-dark.json-formatter-row > a > .json-formatter-preview-text {
+                  opacity: 0;
+                  transition: opacity 0.15s ease-in;
+                  font-style: italic;
+                }
+                .json-formatter-dark.json-formatter-row:hover > a > .json-formatter-preview-text {
+                  opacity: 0.6;
+                }
+                .json-formatter-dark.json-formatter-row.json-formatter-open > .json-formatter-toggler-link .json-formatter-toggler:after {
+                  transform: rotate(90deg);
+                }
+                .json-formatter-dark.json-formatter-row.json-formatter-open > .json-formatter-children:after {
+                  display: inline-block;
+                }
+                .json-formatter-dark.json-formatter-row.json-formatter-open > a > .json-formatter-preview-text {
+                  display: none;
+                }
+                .json-formatter-dark.json-formatter-row.json-formatter-open.json-formatter-empty:after {
+                  display: block;
+                }
+
+        </style>
+        <style>
+            table.panel-df {
+                    margin-left: auto;
+                    margin-right: auto;
+                    border: none;
+                    border-collapse: collapse;
+                    border-spacing: 0;
+                    color: black;
+                    font-size: 12px;
+                    table-layout: fixed;
+                    width: 100%;
+                }
+
+                .panel-df tr, th, td {
+                    text-align: right;
+                    vertical-align: middle;
+                    padding: 0.5em 0.5em !important;
+                    line-height: normal;
+                    white-space: normal;
+                    max-width: none;
+                    border: none;
+                }
+
+                .panel-df tbody {
+                    display: table-row-group;
+                    vertical-align: middle;
+                    border-color: inherit;
+                }
+
+                .panel-df tbody tr:nth-child(odd) {
+                    background: #f5f5f5;
+                }
+
+                .panel-df thead {
+                    border-bottom: 1px solid black;
+                    vertical-align: bottom;
+                }
+
+                .panel-df tr:hover {
+                    background: lightblue !important;
+                    cursor: pointer;
+                }
+
+        </style>
+        <style>
+            .codehilite .hll { background-color: #ffffcc }
+                .codehilite  { background: #f8f8f8; }
+                .codehilite .c { color: #408080; font-style: italic } /* Comment */
+                .codehilite .err { border: 1px solid #FF0000 } /* Error */
+                .codehilite .k { color: #008000; font-weight: bold } /* Keyword */
+                .codehilite .o { color: #666666 } /* Operator */
+                .codehilite .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+                .codehilite .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+                .codehilite .cp { color: #BC7A00 } /* Comment.Preproc */
+                .codehilite .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+                .codehilite .c1 { color: #408080; font-style: italic } /* Comment.Single */
+                .codehilite .cs { color: #408080; font-style: italic } /* Comment.Special */
+                .codehilite .gd { color: #A00000 } /* Generic.Deleted */
+                .codehilite .ge { font-style: italic } /* Generic.Emph */
+                .codehilite .gr { color: #FF0000 } /* Generic.Error */
+                .codehilite .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+                .codehilite .gi { color: #00A000 } /* Generic.Inserted */
+                .codehilite .go { color: #888888 } /* Generic.Output */
+                .codehilite .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+                .codehilite .gs { font-weight: bold } /* Generic.Strong */
+                .codehilite .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+                .codehilite .gt { color: #0044DD } /* Generic.Traceback */
+                .codehilite .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+                .codehilite .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+                .codehilite .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+                .codehilite .kp { color: #008000 } /* Keyword.Pseudo */
+                .codehilite .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+                .codehilite .kt { color: #B00040 } /* Keyword.Type */
+                .codehilite .m { color: #666666 } /* Literal.Number */
+                .codehilite .s { color: #BA2121 } /* Literal.String */
+                .codehilite .na { color: #7D9029 } /* Name.Attribute */
+                .codehilite .nb { color: #008000 } /* Name.Builtin */
+                .codehilite .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+                .codehilite .no { color: #880000 } /* Name.Constant */
+                .codehilite .nd { color: #AA22FF } /* Name.Decorator */
+                .codehilite .ni { color: #999999; font-weight: bold } /* Name.Entity */
+                .codehilite .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+                .codehilite .nf { color: #0000FF } /* Name.Function */
+                .codehilite .nl { color: #A0A000 } /* Name.Label */
+                .codehilite .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+                .codehilite .nt { color: #008000; font-weight: bold } /* Name.Tag */
+                .codehilite .nv { color: #19177C } /* Name.Variable */
+                .codehilite .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+                .codehilite .w { color: #bbbbbb } /* Text.Whitespace */
+                .codehilite .mb { color: #666666 } /* Literal.Number.Bin */
+                .codehilite .mf { color: #666666 } /* Literal.Number.Float */
+                .codehilite .mh { color: #666666 } /* Literal.Number.Hex */
+                .codehilite .mi { color: #666666 } /* Literal.Number.Integer */
+                .codehilite .mo { color: #666666 } /* Literal.Number.Oct */
+                .codehilite .sa { color: #BA2121 } /* Literal.String.Affix */
+                .codehilite .sb { color: #BA2121 } /* Literal.String.Backtick */
+                .codehilite .sc { color: #BA2121 } /* Literal.String.Char */
+                .codehilite .dl { color: #BA2121 } /* Literal.String.Delimiter */
+                .codehilite .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+                .codehilite .s2 { color: #BA2121 } /* Literal.String.Double */
+                .codehilite .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+                .codehilite .sh { color: #BA2121 } /* Literal.String.Heredoc */
+                .codehilite .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+                .codehilite .sx { color: #008000 } /* Literal.String.Other */
+                .codehilite .sr { color: #BB6688 } /* Literal.String.Regex */
+                .codehilite .s1 { color: #BA2121 } /* Literal.String.Single */
+                .codehilite .ss { color: #19177C } /* Literal.String.Symbol */
+                .codehilite .bp { color: #008000 } /* Name.Builtin.Pseudo */
+                .codehilite .fm { color: #0000FF } /* Name.Function.Magic */
+                .codehilite .vc { color: #19177C } /* Name.Variable.Class */
+                .codehilite .vg { color: #19177C } /* Name.Variable.Global */
+                .codehilite .vi { color: #19177C } /* Name.Variable.Instance */
+                .codehilite .vm { color: #19177C } /* Name.Variable.Magic */
+                .codehilite .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+                .markdown h1 { margin-block-start: 0.34em }
+                .markdown h2 { margin-block-start: 0.42em }
+                .markdown h3 { margin-block-start: 0.5em }
+                .markdown h4 { margin-block-start: 0.67em }
+                .markdown h5 { margin-block-start: 0.84em }
+                .markdown h6 { margin-block-start: 1.17em }
+                .markdown ul { padding-inline-start: 2em }
+                .markdown ol { padding-inline-start: 2em }
+                .markdown strong { font-weight: 600 }
+                .markdown a { color: -webkit-link }
+                .markdown a { color: -moz-hyperlinkText }
+
+        </style>
+        <style>
+            .widget-box {
+                	min-height: 20px;
+                	background-color: #f5f5f5;
+                	border: 1px solid #e3e3e3 !important;
+                	border-radius: 4px;
+                	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+                	box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+                	overflow-x: hidden;
+                	overflow-y: hidden;
+                }
+
+                .scrollable {
+                  overflow: scroll;
+                }
+
+                progress {
+                	appearance: none;
+                	-moz-appearance: none;
+                	-webkit-appearance: none;
+
+                	border: none;
+                	height: 20px;
+                	background-color: whiteSmoke;
+                	border-radius: 3px;
+                	box-shadow: 0 2px 3px rgba(0,0,0,.5) inset;
+                	color: royalblue;
+                	position: relative;
+                	margin: 0 0 1.5em;
+                }
+
+                progress[value]::-webkit-progress-bar {
+                	background-color: whiteSmoke;
+                	border-radius: 3px;
+                	box-shadow: 0 2px 3px rgba(0,0,0,.5) inset;
+                }
+
+                progress[value]::-webkit-progress-value {
+                	position: relative;
+
+                	background-size: 35px 20px, 100% 100%, 100% 100%;
+                	border-radius:3px;
+                }
+
+                progress.active:not([value])::before {
+                	background-position: 10%;
+                	animation-name: stripes;
+                	animation-duration: 3s;
+                	animation-timing-function: linear;
+                	animation-iteration-count: infinite;
+                }
+
+                progress[value]::-moz-progress-bar {
+                	background-size: 35px 20px, 100% 100%, 100% 100%;
+                	border-radius:3px;
+                }
+
+                progress:not([value])::-moz-progress-bar {
+                	border-radius:3px;
+                	background:
+                	linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, 0.2) 33%, rgba(0, 0, 0, 0.2) 66%, transparent 66%) left/2.5em 1.5em;
+
+                }
+
+                progress.active:not([value])::-moz-progress-bar {
+                	background-position: 10%;
+                	animation-name: stripes;
+                	animation-duration: 3s;
+                	animation-timing-function: linear;
+                	animation-iteration-count: infinite;
+                }
+
+                progress.active:not([value])::-webkit-progress-bar {
+                	background-position: 10%;
+                	animation-name: stripes;
+                	animation-duration: 3s;
+                	animation-timing-function: linear;
+                	animation-iteration-count: infinite;
+                }
+
+                progress.primary[value]::-webkit-progress-value { background-color: #007bff; }
+                progress.primary:not([value])::before { background-color: #007bff; }
+                progress.primary:not([value])::-webkit-progress-bar { background-color: #007bff; }
+                progress.primary::-moz-progress-bar { background-color: #007bff; }
+
+                progress.secondary[value]::-webkit-progress-value { background-color: #6c757d; }
+                progress.secondary:not([value])::before { background-color: #6c757d; }
+                progress.secondary:not([value])::-webkit-progress-bar { background-color: #6c757d; }
+                progress.secondary::-moz-progress-bar { background-color: #6c757d; }
+
+                progress.success[value]::-webkit-progress-value { background-color: #28a745; }
+                progress.success:not([value])::before { background-color: #28a745; }
+                progress.success:not([value])::-webkit-progress-bar { background-color: #28a745; }
+                progress.success::-moz-progress-bar { background-color: #28a745; }
+
+                progress.danger[value]::-webkit-progress-value { background-color: #dc3545; }
+                progress.danger:not([value])::before { background-color: #dc3545; }
+                progress.danger:not([value])::-webkit-progress-bar { background-color: #dc3545; }
+                progress.danger::-moz-progress-bar { background-color: #dc3545; }
+
+                progress.warning[value]::-webkit-progress-value { background-color: #ffc107; }
+                progress.warning:not([value])::before { background-color: #ffc107; }
+                progress.warning:not([value])::-webkit-progress-bar { background-color: #ffc107; }
+                progress.warning::-moz-progress-bar { background-color: #ffc107; }
+
+                progress.info[value]::-webkit-progress-value { background-color: #17a2b8; }
+                progress.info:not([value])::before { background-color: #17a2b8; }
+                progress.info:not([value])::-webkit-progress-bar { background-color: #17a2b8; }
+                progress.info::-moz-progress-bar { background-color: #17a2b8; }
+
+                progress.light[value]::-webkit-progress-value { background-color: #f8f9fa; }
+                progress.light:not([value])::before { background-color: #f8f9fa; }
+                progress.light:not([value])::-webkit-progress-bar { background-color: #f8f9fa; }
+                progress.light::-moz-progress-bar { background-color: #f8f9fa; }
+
+                progress.dark[value]::-webkit-progress-value { background-color: #343a40; }
+                progress.dark:not([value])::-webkit-progress-bar { background-color: #343a40; }
+                progress.dark:not([value])::before { background-color: #343a40; }
+                progress.dark::-moz-progress-bar { background-color: #343a40; }
+
+                progress:not([value])::-webkit-progress-bar {
+                	border-radius: 3px;
+                	background:
+                	linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, 0.2) 33%, rgba(0, 0, 0, 0.2) 66%, transparent 66%) left/2.5em 1.5em;
+                }
+                progress:not([value])::before {
+                	content:" ";
+                	position:absolute;
+                	height: 20px;
+                	top:0;
+                	left:0;
+                	right:0;
+                	bottom:0;
+                	border-radius: 3px;
+                	background:
+                	linear-gradient(-45deg, transparent 33%, rgba(0, 0, 0, 0.2) 33%, rgba(0, 0, 0, 0.2) 66%, transparent 66%) left/2.5em 1.5em;
+                }
+
+                @keyframes stripes {
+                  from {background-position: 0%}
+                  to {background-position: 100%}
+                }
+        </style>
+        
+        
+          
+        <script type="text/javascript" src="https://cdn.bokeh.org/bokeh/release/bokeh-2.0.0.min.js" integrity="sha384-5Y+xuMRAbgBj/2WKUiL8yzV4fBFic1HJPo2hT3pq2IsEzbsJjj8kT2i0b1lZ7C2N" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+            Bokeh.set_log_level("info");
+        </script>
+        
+      
+      
+    
+  </head>
+  
+  
+  <body>
+    
+      
+        
+          
+          
+            
+              <div class="bk-root" id="effdbe64-87e6-4508-9d7f-e232698ce6de" data-root-id="7628"></div>
+            
+          
+        
+      
+      
+        <script type="application/json" id="8276">
+          {"e5ea23f6-7b6e-43aa-8403-92f5dc5ffa42":{"roots":{"references":[{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#d62628"},"line_alpha":{"value":0.1},"line_color":{"value":"#d62628"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"7702","type":"Scatter"},{"attributes":{"data_source":{"id":"7714"},"glyph":{"id":"7717"},"hover_glyph":null,"muted_glyph":{"id":"7719"},"nonselection_glyph":{"id":"7718"},"selection_glyph":null,"view":{"id":"7721"}},"id":"7720","type":"GlyphRenderer"},{"attributes":{"children":[{"id":"7629"},{"id":"7641"},{"id":"7938"}],"margin":[0,0,0,0],"name":"Row23701","tags":["embedded"]},"id":"7628","type":"Row"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"7632"},{"id":"7658"},{"id":"7659"},{"id":"7660"},{"id":"7661"},{"id":"7662"}]},"id":"7663","type":"Toolbar"},{"attributes":{"data":{"x":{"__ndarray__":"tgsLjVd5AEC4Z5c54Eb/Py6yhKAIvg5A+fyIs2gh+z8JB/MUT+sDQEmT9MelfQ5AUKz8P8OhAECHzAgwTI8IQEE3Od0fKwhAYqT5Ztzl/j9MD8yzFQMDQN/4ZJsut/o/wLnNwhXmBEAGmmyttEYGQEENOn3YOfM/nNv2UQ4MCUAoJjBJc+ICQOT81Cgy8ABAuH0VQUme+z/D0NBql48FQE7vUJ6enAdAfH1RtniaDECKw5UckFEBQPa3gy7ZRwdAamp4ZvNPBkDOtTXGbNQCQGcR/dDGqgJAvatFKKZHA0DkcIPVNtkAQPdxAbezKwFAbON5XvP3C0D2D4x4s0sIQCaiQO4s9wlAcbTbeZx3CUDwBVtOMhACQMbqtdz31Ps/eMKWQOCvA0B0MZOBdBUIQDeUTAxUt/4/EglSRC8oBUDRkFuUs58HQKpfnH5XMPg/KHE398ykBEANmbO6OS0GQCRB3B+opv4/LjNva+B9AEAK4fw0ST38Pye1WQ8VNghAcLxOVBzQB0CUx0TlkP4JQKDTauh/kwpANiKlhzHVCkD4RiBh/TgMQDb0fcTUhA5AJlr81r8dA0AMQATG2R8EQFG+7R4gdv8/SbDZt6xx/D/2Aw3803cCQA7+hXG1LAVA","dtype":"float64","shape":[60]},"y":{"__ndarray__":"z7RUg+7SHEB22SP/CSMfQMWbknJRJBZAJNs+FCq5HkD2xQ2JC80gQMd4477N7BdAxo7XGmmrHEBK0FCNfeEXQNosSfI2hiJA0RJ9iWq/G0BmvR+0CU4gQJdVaw8sQiBAb0oF/0bIIECHqUWdUHkaQFPCm+Tevh5AFUZC9ZY0GUBJSH5MKAgYQOyW2aOEdhpAGBy2qtRFG0BP4srGOcIXQMgLGDaLEB9AaTcO4vLoFUCDVdf+W/kfQP67YQnoEx5AyVHPxSbGGUDuILoaQzEZQOYdfz3f9BxAO7veKo33H0COPCtus3YgQCVW9D4eqSFA5zaGR3ktF0BnbckI2EkXQJvB0apdliFAX+YE3PavFUAWB0XZhsodQF8BpEbr1x1AUcRZL9h5G0CEc3av5CsaQOdEXppI7xxAUKVK0JIcFkBcBSOpLU0jQASLwxSH7h1AMO2GDfYeGkD0y8L5PX8XQMi6qoS/UhtAdD+Wx6FzIECBqQfBj+sbQNWFl62e9hZA/Z3zynUKGEDvbtMWcV0WQIiQPpjEnxhAZybwYSQvF0BOTSx7TvQWQLHUfb17rBtAWMGNVkjjHEC9Ycwwk6QZQFfdm2raOx1A/g1RW8rfHEC5VDXbrZIdQFfb7Y40SxlA","dtype":"float64","shape":[60]}},"selected":{"id":"7683"},"selection_policy":{"id":"7754"}},"id":"7682","type":"ColumnDataSource"},{"attributes":{"fill_color":{"value":"#e277c1"},"line_color":{"value":"#e277c1"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"7725","type":"Scatter"},{"attributes":{"fill_color":{"value":"#7e7e7e"},"line_color":{"value":"#7e7e7e"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"7733","type":"Scatter"},{"attributes":{},"id":"7715","type":"Selection"},{"attributes":{"data":{"x":{"__ndarray__":"WUd/uwBUCEBk4LQOJdEOQJLxtbAiTgpAdKr2wTOxCUAdZ+MN6h4JQJsuFBqIPQtARXJA6WBoBkAIG5c05ycLQNtseaPGbRBAbosg8UT3CEAlD03jXVsMQEihwFVwKQ9AIlI3phn2CUCA/+hAUmEOQLZdJeoZSg1AE0OcZnouCEA73ySzycwIQKvhj4OfRAxAoN0vbSJKEUA=","dtype":"float64","shape":[19]},"y":{"__ndarray__":"iCRHBe4g179wFFnE+WTxv/ns4i6Z+eY/YiqzjmC+8T86Z9ZBJCPWPziE+CMCzPA//X6YbBqC8D+lMjPidmvkPxx4qWVCCdA/NPdxeLtY3z98GHXw7inuP0u6DGk/oeY/e1dxEXxM6j+krFuaex/mPxgx7w93R+S/qnXDFQ6m6z9w6LuYZtXqP6g7gohOP9U/jo7hbUgt1T8=","dtype":"float64","shape":[19]}},"selected":{"id":"7731"},"selection_policy":{"id":"7766"}},"id":"7730","type":"ColumnDataSource"},{"attributes":{"source":{"id":"7674"}},"id":"7681","type":"CDSView"},{"attributes":{"axis_label":"y","bounds":"auto","formatter":{"id":"7673"},"major_label_orientation":"horizontal","ticker":{"id":"7655"}},"id":"7654","type":"LinearAxis"},{"attributes":{},"id":"7754","type":"UnionRenderers"},{"attributes":{"data_source":{"id":"7698"},"glyph":{"id":"7701"},"hover_glyph":null,"muted_glyph":{"id":"7703"},"nonselection_glyph":{"id":"7702"},"selection_glyph":null,"view":{"id":"7705"}},"id":"7704","type":"GlyphRenderer"},{"attributes":{},"id":"7691","type":"Selection"},{"attributes":{"data":{"x":{"__ndarray__":"73axVGbAIUDWzazcxY0aQHGjJnH6Yx5AGlPPjUFwIECRG4rzO4oiQN3atPlZ6BtAb6rbECAnIECz22QJBsIgQIiYEP0PZyBAKpffYszHG0C6e4EXm40fQAWPreZoxh9AvTlchh1wIECXUg/HSA4hQIsHBGTdgyFAIv2Z8/QVF0BfVCjKFm0bQFY6Rm2b6B5AfiaaaUM1IUBBAaPExxUfQNaCNddcrCBAmmfQiHQVHkBese+AyOYcQHt/nFlXHh5AcsCeESYhGEDeEuZbqGsgQCFsW/+FuB9A7lUYqXswIEDwBkFl6mUYQCr0Fbo9sh5ASBTxzk+hG0A1E6uEvrwfQHoraLspWyFACkRvCSEQIEBOhrhziEEeQK5vXBKuAh9A+104aGFxIEA=","dtype":"float64","shape":[37]},"y":{"__ndarray__":"ADAALv7rIUCKPZJx5qsgQKRhvyHIwR9AKbz74Pc7IkCQ1SOn9j8jQF914hJB3B9AJp5ZxxGLIkBsWtaZDEAhQOfyqT8DbSJAKIMie0CcIEARM4iUZdIgQHilmnhdbCBA1AY3F/DmIUDomMrFiRohQLhYZ2KJoiFA9M94s90UIkDEUWitFOYeQAY1RAYRex5A1T7tm9+FIUC7L6mTHNQhQJW7YevUeSJAWuRLQrSZIUBB6/zSo+4gQCqguL2jlyFA5rpYGlK5IUD1BIgVaV4gQD/Lgca2RyBA/ho7pQErH0BMqhEhJQkiQP66r6NEgx1Ao5fLX5maIEBjW5/ezVogQKr/Fi3XLCJAjtU4NYPEIUCOmzgrTlMfQE3STIOFWCFAEdpR2QU2IUA=","dtype":"float64","shape":[37]}},"selected":{"id":"7691"},"selection_policy":{"id":"7756"}},"id":"7690","type":"ColumnDataSource"},{"attributes":{},"id":"7762","type":"UnionRenderers"},{"attributes":{},"id":"7764","type":"UnionRenderers"},{"attributes":{"data":{"x":{"__ndarray__":"qZkRbreBBEBQOXyLowYfQKEkwQ6EOR5AC3y98Ph4E0C0rf2Fa9sVQF/ibxaOEQBANt1NzXKSC0C8C00JnZUFQA==","dtype":"float64","shape":[8]},"y":{"__ndarray__":"Xvcaw7PpG0DtOI9gBh0hQL89Rb2f4QFALtaFTDbBDUB3osmT0VkbQC+ZGVtXYwxA+zf7XAOV3j9Mm7RynzEAQA==","dtype":"float64","shape":[8]}},"selected":{"id":"7675"},"selection_policy":{"id":"7752"}},"id":"7674","type":"ColumnDataSource"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"value":"#000000"},"line_alpha":{"value":0.2},"line_color":{"value":"#000000"},"marker":{"value":"cross"},"size":{"units":"screen","value":10.0},"x":{"field":"x"},"y":{"field":"y"}},"id":"7679","type":"Scatter"},{"attributes":{},"id":"7752","type":"UnionRenderers"},{"attributes":{"source":{"id":"7722"}},"id":"7729","type":"CDSView"},{"attributes":{"data":{"x":{"__ndarray__":"qXg439WZAUAigc3mXjUGQOYubBAmYQhAyC/abO2nBUBU4kkg9P4GQFlfqQ5McgVAw++hpyJFBUCyAznS5NwFQLDVXkaxIQVALMIMtxoTCECEcPJtrNoDQNasrWbqlgNArIntw5kECkChoVViJUsEQETZPZbszQBAfB9iisWmCEBUSAPCjsQHQA4kXuAX6gJA","dtype":"float64","shape":[18]},"y":{"__ndarray__":"muVGzjye+D9KsdkxpfcFQIbxCHjh7fg/znUzk4s9+j+aNqlDw0IFQBW2oX3Gzvk/Kf7So9cQ/D/gEwSTWKQGQPNm2ub++QRA1CTASuQ19z9d8Wvuzsj6PypUfK/BawRAY2rmF7HUA0D6CZGPFPABQM/0hZUjEPc/eveEsL+AAUC7UTbPbSwDQJ7hmstj1fA/","dtype":"float64","shape":[18]}},"selected":{"id":"7739"},"selection_policy":{"id":"7768"}},"id":"7738","type":"ColumnDataSource"},{"attributes":{"source":{"id":"7698"}},"id":"7705","type":"CDSView"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"value":"#2ba02b"},"line_alpha":{"value":0.2},"line_color":{"value":"#2ba02b"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"7695","type":"Scatter"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#ff7e0e"},"line_alpha":{"value":0.1},"line_color":{"value":"#ff7e0e"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"7686","type":"Scatter"},{"attributes":{"data_source":{"id":"7706"},"glyph":{"id":"7709"},"hover_glyph":null,"muted_glyph":{"id":"7711"},"nonselection_glyph":{"id":"7710"},"selection_glyph":null,"view":{"id":"7713"}},"id":"7712","type":"GlyphRenderer"},{"attributes":{},"id":"7739","type":"Selection"},{"attributes":{},"id":"7760","type":"UnionRenderers"},{"attributes":{"fill_color":{"value":"#ff7e0e"},"line_color":{"value":"#ff7e0e"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"7685","type":"Scatter"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"value":"#7e7e7e"},"line_alpha":{"value":0.2},"line_color":{"value":"#7e7e7e"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"7735","type":"Scatter"},{"attributes":{"data_source":{"id":"7674"},"glyph":{"id":"7677"},"hover_glyph":null,"muted_glyph":{"id":"7679"},"nonselection_glyph":{"id":"7678"},"selection_glyph":null,"view":{"id":"7681"}},"id":"7680","type":"GlyphRenderer"},{"attributes":{},"id":"7658","type":"SaveTool"},{"attributes":{"fill_color":{"value":"#9367bc"},"line_color":{"value":"#9367bc"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"7709","type":"Scatter"},{"attributes":{"source":{"id":"7730"}},"id":"7737","type":"CDSView"},{"attributes":{"fill_color":{"value":"#bcbc21"},"line_color":{"value":"#bcbc21"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"7741","type":"Scatter"},{"attributes":{"callback":null,"renderers":[{"id":"7680"},{"id":"7688"},{"id":"7696"},{"id":"7704"},{"id":"7712"},{"id":"7720"},{"id":"7728"},{"id":"7736"},{"id":"7744"}],"tags":["hv_created"],"tooltips":[["x","@{x}"],["y","@{y}"]]},"id":"7632","type":"HoverTool"},{"attributes":{"fill_color":{"value":"#d62628"},"line_color":{"value":"#d62628"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"7701","type":"Scatter"},{"attributes":{"data_source":{"id":"7690"},"glyph":{"id":"7693"},"hover_glyph":null,"muted_glyph":{"id":"7695"},"nonselection_glyph":{"id":"7694"},"selection_glyph":null,"view":{"id":"7697"}},"id":"7696","type":"GlyphRenderer"},{"attributes":{"data_source":{"id":"7738"},"glyph":{"id":"7741"},"hover_glyph":null,"muted_glyph":{"id":"7743"},"nonselection_glyph":{"id":"7742"},"selection_glyph":null,"view":{"id":"7745"}},"id":"7744","type":"GlyphRenderer"},{"attributes":{"data":{"x":{"__ndarray__":"2B8Ji++PGUCKg3Pxu3EYQFSohn9s9RhAX9O2pUriGUCNCIYqHH8VQBxa8XEEXRJAuke6Ne3NE0Aqvg2s4xUVQAPZqJbmoxJAJtCE9OSqE0CNEgir+ZEUQDUzcnkOdxVAa6leLeh+GEDSYMqnKsAWQIGrcyWMnhlAQDSpRo/cGEDd+49qx0cWQIJ6V2o/ShRAVJ2XO1evHEBv3SD7S18TQINePghD1BNA/LjfoHrbE0AMUsjnjrESQEhXdgTa7xlAtgQvbCp8EkDPtCJxWBcWQGnFhI35PBFAfRSUuPnAFkBRaROKY6MZQJGxTnnD/BJAb70C2Gs4GECp5VjYxOwVQIG/DbASkRRAk/xDfyvWGEB0vQQMZuQTQFUJOq02nhFAeUijauJMFUCBrigaMLcUQOYeGfq2CBNAM7Ypgoo1EUDdrVtom/cbQH7LW39RmRNAk2B5sGbhGUAt1JcUxi0UQKbT0AhfthFAAPXqQtDZGUATwqgq/voWQCnE3OWhXBRAQCIzqk0ZFEC1J+iGYVkSQD6m9GIOARVAqHRolzahG0AaDn4nPWkaQOeA1nRwIhNA","dtype":"float64","shape":[54]},"y":{"__ndarray__":"y8UHwt+3FECCESVunfAYQDzNcNm0MxpAzhqwN9fNFUD5+1ERzsQVQKmIWDK+Ix5ADAI17rgqIEA8DD7bAiQWQH/swMIMPhxAWp0XUqsNHkC3DWgtwL8gQHjJ1b+vDhpAnFM8zAv4FUCcLYhz+4cVQMGKONBRbBZA9LRAaaoLGUDiw+E1McYgQIRf1pDmlx9AeXYMHRSnFEDfm6jGwgceQIYWe5zLohtAE3fCStWMH0BNk/YMFJccQO/wZt85LRRAMsfo1to/H0C5BkmYIxYWQL70mv0K2BtApAHls2mLIEAICBDJz2YVQPgtCzZnESBAjPstEJnrHEB9i7aA9TQaQDCaSrl13RZAvLX7pzykGECkivdBV7cdQIxADcFSBBtAuh5/R2q8HkCqevSrqZIhQI/KJWGBfCBAYNBLyu1WHEB1u+TWRywXQL+ac46LgR1AkMv97lIpFkB6KiIUMPsgQGt3MrO1px1AzZAs6RxXF0DS9ipHB0gVQGa+kdk3CSBAR5/R00N6IEC8JUDNNCkdQOudxsn3eyFAXhlZb1oHGECz9YiARj4ZQGbOulz/bBxA","dtype":"float64","shape":[54]}},"selected":{"id":"7715"},"selection_policy":{"id":"7762"}},"id":"7714","type":"ColumnDataSource"},{"attributes":{"data_source":{"id":"7682"},"glyph":{"id":"7685"},"hover_glyph":null,"muted_glyph":{"id":"7687"},"nonselection_glyph":{"id":"7686"},"selection_glyph":null,"view":{"id":"7689"}},"id":"7688","type":"GlyphRenderer"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#bcbc21"},"line_alpha":{"value":0.1},"line_color":{"value":"#bcbc21"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"7742","type":"Scatter"},{"attributes":{"data_source":{"id":"7722"},"glyph":{"id":"7725"},"hover_glyph":null,"muted_glyph":{"id":"7727"},"nonselection_glyph":{"id":"7726"},"selection_glyph":null,"view":{"id":"7729"}},"id":"7728","type":"GlyphRenderer"},{"attributes":{"source":{"id":"7690"}},"id":"7697","type":"CDSView"},{"attributes":{"data":{"x":{"__ndarray__":"TjUkGe6S9T+W5g4PR2UAQIhRkwPxR/4/gc8BSCr//D82f/0fc8cDQBGPhvS/ufw/ACBpNMOHBkD5S7Gp0lQBQP44j2BVz/4/OB9TiuRr+z+DbPJvqn0AQOaV92RRbfg/MnkL96fhAUBs+JCwtNXwP3Bo2QU+RPw/vfVD62pf/z8kGlmFmF3+P0GTm0pJfAFA9P0iKABO/j+2W/F8sOsEQOP5lVl+CAlAgmVnuOvw/T8=","dtype":"float64","shape":[22]},"y":{"__ndarray__":"jX8V4Nq1D0CUd3YhMRMGQC6eDrdRaQhAIwWQijVDC0DcS1QaGNQNQJbXEqDp4A1AuWv0LYuZCUAR1xADA/QHQGBbN7Sa6AVA+zsB0gZBEUA53zUd5lIMQH0foht5+xBA1Pg8B24tDkDtUq9ckR0PQJr96m2eqxFAlg30naB7DUBcaiY4SgAMQMLdJktq8AhAX4q8qZLmCkAINc7ebnQOQERQU0ApOwtAeosGzyF4C0A=","dtype":"float64","shape":[22]}},"selected":{"id":"7723"},"selection_policy":{"id":"7764"}},"id":"7722","type":"ColumnDataSource"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#e277c1"},"line_alpha":{"value":0.1},"line_color":{"value":"#e277c1"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"7726","type":"Scatter"},{"attributes":{"end":10.724528113151496,"reset_end":10.724528113151496,"reset_start":-2.160941383586099,"start":-2.160941383586099,"tags":[[["y","y",null]]]},"id":"7631","type":"Range1d"},{"attributes":{"source":{"id":"7706"}},"id":"7713","type":"CDSView"},{"attributes":{},"id":"7660","type":"WheelZoomTool"},{"attributes":{"data_source":{"id":"7730"},"glyph":{"id":"7733"},"hover_glyph":null,"muted_glyph":{"id":"7735"},"nonselection_glyph":{"id":"7734"},"selection_glyph":null,"view":{"id":"7737"}},"id":"7736","type":"GlyphRenderer"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"value":"#bcbc21"},"line_alpha":{"value":0.2},"line_color":{"value":"#bcbc21"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"7743","type":"Scatter"},{"attributes":{},"id":"7683","type":"Selection"},{"attributes":{"end":9.927413791924085,"reset_end":9.927413791924085,"reset_start":0.39474912265809114,"start":0.39474912265809114,"tags":[[["x","x",null]]]},"id":"7630","type":"Range1d"},{"attributes":{"overlay":{"id":"7751"}},"id":"7661","type":"BoxZoomTool"},{"attributes":{"data":{"x":{"__ndarray__":"vF6t6bMRFEAOeKUC7DoTQHcR/EMuNBBAillTIdvqEkCZ0dgZX5wTQJ9x8D8rYRFAdmhf0bb+E0DntVi33+UPQFqnkS8yiRVAh/kPFV6sF0A7rjelOqcTQHjz2dU0ohVAljRxazC4D0Bxi9WmWcwTQEQtEZgZMRVA7mqqx+9RFEBL+BJta2YWQK6b/HC4nBFAtvXtcwdXFUDI4t8q9OURQCifNaN3whFAKfwbxaK5EkAGMFWsEXAWQID1jzbFOBVA4LjOXBgADkBZqkuNJk4UQKgOStpO3xBAGNeX02sCEkBTDp7xEc8NQB+kfw0r/BJAsMbUFQpyGkAsE9JGtM4TQMVP448nlBRAKBz4hBYFEkC8o2Wb5AETQAp6UUEZqRZA","dtype":"float64","shape":[36]},"y":{"__ndarray__":"sZWYh94aDkBnK2tW9kYIQKXK2/RgNRBA8+vpaJV3DkDQ6DWxNOQLQDUdwfJm+g9An89dyYQAB0Awe32mkSsQQASECO6mTgxA+uAqpahWCEBQ92q70Q8KQMjZ6IqGvQdAXmtwEBXNFECzjXMYW88JQJtdRpp8OA1AOo3uhCQHCkAraTMlxi8IQMQk1UXjQRNAjGNTjS6YCEBt/GeCCh0QQBLcLZXBow1A/oD9XQPdD0B6nFerYE4HQFTRzjQdLgtAInFAZlGaE0CLBttSd2wKQJhcPLv/EBFApeqI2VhuB0D0ML9pOtEUQNIcVFd1XwxASG2Gti9IEkCYT5J3Y3gQQMoe0GSMIApAZooX9MjiEkBHNTrZ/c4QQJGNpJm02QVA","dtype":"float64","shape":[36]}},"selected":{"id":"7707"},"selection_policy":{"id":"7760"}},"id":"7706","type":"ColumnDataSource"},{"attributes":{"source":{"id":"7738"}},"id":"7745","type":"CDSView"},{"attributes":{},"id":"7662","type":"ResetTool"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"value":"#d62628"},"line_alpha":{"value":0.2},"line_color":{"value":"#d62628"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"7703","type":"Scatter"},{"attributes":{"axis":{"id":"7650"},"grid_line_color":null,"ticker":null},"id":"7653","type":"Grid"},{"attributes":{},"id":"7699","type":"Selection"},{"attributes":{},"id":"7707","type":"Selection"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#2ba02b"},"line_alpha":{"value":0.1},"line_color":{"value":"#2ba02b"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"7694","type":"Scatter"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"value":"#ff7e0e"},"line_alpha":{"value":0.2},"line_color":{"value":"#ff7e0e"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"7687","type":"Scatter"},{"attributes":{"fill_color":{"value":"#2ba02b"},"line_color":{"value":"#2ba02b"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"7693","type":"Scatter"},{"attributes":{},"id":"7731","type":"Selection"},{"attributes":{"align":null,"below":[{"id":"7650"}],"center":[{"id":"7653"},{"id":"7657"}],"left":[{"id":"7654"}],"margin":null,"min_border_bottom":10,"min_border_left":10,"min_border_right":10,"min_border_top":10,"plot_height":800,"plot_width":1000,"renderers":[{"id":"7680"},{"id":"7688"},{"id":"7696"},{"id":"7704"},{"id":"7712"},{"id":"7720"},{"id":"7728"},{"id":"7736"},{"id":"7744"}],"sizing_mode":"fixed","title":{"id":"7642"},"toolbar":{"id":"7663"},"x_range":{"id":"7630"},"x_scale":{"id":"7646"},"y_range":{"id":"7631"},"y_scale":{"id":"7648"}},"id":"7641","subtype":"Figure","type":"Plot"},{"attributes":{"bottom_units":"screen","fill_alpha":0.5,"fill_color":"lightgrey","left_units":"screen","level":"overlay","line_alpha":1.0,"line_color":"black","line_dash":[4,4],"line_width":2,"render_mode":"css","right_units":"screen","top_units":"screen"},"id":"7751","type":"BoxAnnotation"},{"attributes":{},"id":"7723","type":"Selection"},{"attributes":{},"id":"7768","type":"UnionRenderers"},{"attributes":{},"id":"7671","type":"BasicTickFormatter"},{"attributes":{"fill_color":{"value":"#000000"},"line_color":{"value":"#000000"},"marker":{"value":"cross"},"size":{"units":"screen","value":10.0},"x":{"field":"x"},"y":{"field":"y"}},"id":"7677","type":"Scatter"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"value":"#9367bc"},"line_alpha":{"value":0.2},"line_color":{"value":"#9367bc"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"7711","type":"Scatter"},{"attributes":{"source":{"id":"7714"}},"id":"7721","type":"CDSView"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"value":"#8c564b"},"line_alpha":{"value":0.2},"line_color":{"value":"#8c564b"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"7719","type":"Scatter"},{"attributes":{"data":{"x":{"__ndarray__":"Nqs88p0DIEAd6ThpLD0hQLOMIbdmthpA5JUzIaZjHkA2Y4vxuDUdQKRyjVa6iBpA5QaotUQOHkDvOshQR1ofQArpZahRuR5APqyvAFSdHEBPs7ZZCmofQKwlRkwUax1AkPt8xJ/aGUD/fs9n7E8eQGJTDUzacyBAkfNZVB2TH0D4Gdhh0T4bQFTOF2pBOSBAIs6/eujZH0CROcNqhI8dQOm6n49FVh1A8UhUcSYvIEDoLNrriSsbQNXpKUWSQhtAYy9FLTszH0D4A8O0yfAhQEN6lT84BB1A0ikVYfp2GkB6liHdfpQbQMGmJGM2hiBAhVCmGkxDHEDJshuUqFIaQPO3VDAjnR9Aj3mfUTI/IEC/X5w3Hc8dQI4H+vyRghxAsVKDsHyXHUAfdUe3r6odQHgjkPnIlRlA9rWzWoofIEADNibj9RIbQCB7j/yWbBxAgrSKYuHPH0BL0i1DaRQhQLn11MEx4iBAHKd/DOzrIECFR/FtUGkeQMM1Qvx/uSBATGFlyGbHHUBRC6DsdLMbQDDxgyIbnxpAZc2jiqP+HkDEbLdc4GsiQOGJY4hdJB9A","dtype":"float64","shape":[54]},"y":{"__ndarray__":"H7NE9dozBkBv1KsnS+MHQH3G8apuuvE/IEBGxQik8j9kwBT6kVMJQBykgSzbXe8/zOKdi51y/T8I1eVRX+4DQMuvSaDDu+o/+KQa61foBECR3Y1WlT8EQOLydxrQDu4/Vfq9b3zK6D+2YpOIVZkOQGLj/TZ6FQJA3gwyUNSqDECrm8uYA/DvP8KlhWOwOApAOLIFjXiKBkCrUYpl8xzyP/qQAa3f1AdA4z8yag0gC0CAE2BMJH8EQPHzmWReFQFA8kROZdmN/j+PpFWfcZIKQNg0n8qeOgZAsfPxOzZc5T/tlijDGIPuP05Gs5zwRQxAzueeahy3AEDgIdwadaGzv8kG2+s/RgJAGjHCVGrcBEC7Pyz/GyYCQIHff3CxzPM/7F7XqhCIAUAQ7aB1HFMJQGH9k+kv3PM/irjFUEstEEClUHJBTiL2PwBdflEAKfM/JMJbf6/SCEBCyFrTLQ8LQKxQU2rseQFAm+rMWf3QBkAMg2/JUuvoP0yf9T+JtwhArZdY9BJZA0AKJncgPhsCQNhS9bZM3/Q/iS9ty259+z/Wa1Cm5woSQAAN8C2ZBAlA","dtype":"float64","shape":[54]}},"selected":{"id":"7699"},"selection_policy":{"id":"7758"}},"id":"7698","type":"ColumnDataSource"},{"attributes":{},"id":"7766","type":"UnionRenderers"},{"attributes":{"margin":[5,5,5,5],"name":"HSpacer23705","sizing_mode":"stretch_width"},"id":"7629","type":"Spacer"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#7e7e7e"},"line_alpha":{"value":0.1},"line_color":{"value":"#7e7e7e"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"7734","type":"Scatter"},{"attributes":{},"id":"7648","type":"LinearScale"},{"attributes":{"margin":[5,5,5,5],"name":"HSpacer23706","sizing_mode":"stretch_width"},"id":"7938","type":"Spacer"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#8c564b"},"line_alpha":{"value":0.1},"line_color":{"value":"#8c564b"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"7718","type":"Scatter"},{"attributes":{},"id":"7651","type":"BasicTicker"},{"attributes":{"source":{"id":"7682"}},"id":"7689","type":"CDSView"},{"attributes":{},"id":"7659","type":"PanTool"},{"attributes":{},"id":"7673","type":"BasicTickFormatter"},{"attributes":{},"id":"7646","type":"LinearScale"},{"attributes":{},"id":"7655","type":"BasicTicker"},{"attributes":{"axis_label":"x","bounds":"auto","formatter":{"id":"7671"},"major_label_orientation":"horizontal","ticker":{"id":"7651"}},"id":"7650","type":"LinearAxis"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#000000"},"line_alpha":{"value":0.1},"line_color":{"value":"#000000"},"marker":{"value":"cross"},"size":{"units":"screen","value":10.0},"x":{"field":"x"},"y":{"field":"y"}},"id":"7678","type":"Scatter"},{"attributes":{},"id":"7758","type":"UnionRenderers"},{"attributes":{"text":"Clusters K=8"},"id":"7642","type":"Title"},{"attributes":{"fill_color":{"value":"#8c564b"},"line_color":{"value":"#8c564b"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"7717","type":"Scatter"},{"attributes":{},"id":"7675","type":"Selection"},{"attributes":{},"id":"7756","type":"UnionRenderers"},{"attributes":{"axis":{"id":"7654"},"dimension":1,"grid_line_color":null,"ticker":null},"id":"7657","type":"Grid"},{"attributes":{"fill_alpha":{"value":0.1},"fill_color":{"value":"#9367bc"},"line_alpha":{"value":0.1},"line_color":{"value":"#9367bc"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"7710","type":"Scatter"},{"attributes":{"fill_alpha":{"value":0.2},"fill_color":{"value":"#e277c1"},"line_alpha":{"value":0.2},"line_color":{"value":"#e277c1"},"size":{"units":"screen","value":5.477225575051661},"x":{"field":"x"},"y":{"field":"y"}},"id":"7727","type":"Scatter"}],"root_ids":["7628"]},"title":"Bokeh Application","version":"2.0.0"}}
+        </script>
+        <script type="text/javascript">
+          (function() {
+            var fn = function() {
+              Bokeh.safely(function() {
+                (function(root) {
+                  function embed_document(root) {
+                    
+                  var docs_json = document.getElementById('8276').textContent;
+                  var render_items = [{"docid":"e5ea23f6-7b6e-43aa-8403-92f5dc5ffa42","root_ids":["7628"],"roots":{"7628":"effdbe64-87e6-4508-9d7f-e232698ce6de"}}];
+                  root.Bokeh.embed.embed_items(docs_json, render_items);
+                
+                  }
+                  if (root.Bokeh !== undefined) {
+                    embed_document(root);
+                  } else {
+                    var attempts = 0;
+                    var timer = setInterval(function(root) {
+                      if (root.Bokeh !== undefined) {
+                        clearInterval(timer);
+                        embed_document(root);
+                      } else {
+                        attempts++;
+                        if (attempts > 100) {
+                          clearInterval(timer);
+                          console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing");
+                        }
+                      }
+                    }, 10, root)
+                  }
+                })(window);
+              });
+            };
+            if (document.readyState != "loading") fn();
+            else document.addEventListener("DOMContentLoaded", fn);
+          })();
+        </script>
+    
+  </body>
+  
+</html>

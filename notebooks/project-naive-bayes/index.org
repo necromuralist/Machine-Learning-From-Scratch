@@ -1,0 +1,379 @@
+#+BEGIN_COMMENT
+.. title: Project: Naive-Bayes
+.. slug: project-naive-bayes
+.. date: 2020-04-04 16:43:33 UTC-07:00
+.. tags: project,naive-bayes
+.. category: Project
+.. link: 
+.. description: The notebook version of this project from Coursera.
+.. type: text
+
+#+END_COMMENT
+
+#+OPTIONS: ^:{}
+#+TOC: headlines 5
+#+PROPERTY: header-args :session /home/athena/.local/share/jupyter/runtime/kernel-8862b12e-be6d-4eca-b2fa-b34452d4b451.json
+#+BEGIN_SRC python :results none :exports none
+%load_ext autoreload
+%autoreload 2
+#+END_SRC
+* Beginning
+** Imports
+*** Python
+#+begin_src python :results none
+from argparse import Namespace
+import math
+import os
+import random
+#+end_src
+*** PyPi
+#+begin_src python :results none
+from dotenv import load_dotenv
+import numpy
+import pandas
+import scipy.io
+#+end_src
+*** This Project
+#+begin_src python :results none
+from cse_575.coursera import geneNewData
+#+end_src
+** Some Constants
+#+begin_src python :results none
+load_dotenv()
+#+end_src
+
+#+begin_src python :results none
+DATA_PATH = geneNewData.PATH
+STUDENT_ID = os.environ["STUDENT_ID"]
+PIXELS = 28 * 28
+SAMPLE_SHAPE_INDEX = 0
+DELTA_DEGREES_OF_FREEDOM = 1
+#+end_src
+* Middle
+** Load The Data
+=load_data= is copied mostly from the ``main`` function. I added it so that ``main`` isn't just one monolithic function. Don't change it.
+#+begin_src python :results none
+def load_data() -> tuple:
+    geneNewData.geneData(STUDENT_ID)
+    myID = STUDENT_ID
+    Numpyfile0 = scipy.io.loadmat(DATA_PATH/f'digit0_stu_train{myID}.mat')
+    Numpyfile1 = scipy.io.loadmat(DATA_PATH/f'digit1_stu_train{myID}.mat')
+    Numpyfile2 = scipy.io.loadmat(DATA_PATH/'digit0_testset.mat')
+    Numpyfile3 = scipy.io.loadmat(DATA_PATH/'digit1_testset.mat')
+    train0 = Numpyfile0.get('target_img')
+    train1 = Numpyfile1.get('target_img')
+    test0 = Numpyfile2.get('target_img')
+    test1 = Numpyfile3.get('target_img')
+    print([len(train0),len(train1),len(test0),len(test1)])
+    print('Your trainset and testset are generated successfully!')
+    return train0, train1, test0, test1
+#+end_src
+
+#+begin_src python :results output :exports both
+train_0, train_1, test_0, test_1 = load_data()
+#+end_src
+
+#+RESULTS:
+: [5000, 5000, 980, 1135]
+: Your trainset and testset are generated successfully!
+
+#+begin_src python :results output :exports both
+for dataset in (train_0, train_1, test_0, test_1):
+    print(dataset.shape)
+#+end_src
+
+#+RESULTS:
+: (5000, 28, 28)
+: (5000, 28, 28)
+: (980, 28, 28)
+: (1135, 28, 28)
+*** Grab a Sample
+
+This is to help the later functions double-check what they're doing by grabbing a sample row.
+#+begin_src python :results none
+def get_sample(dataset: numpy.array, flattened: bool=True) -> numpy.array:
+    SAMPLES = dataset.shape[SAMPLE_SHAPE_INDEX]
+    SAMPLE_INDEX = random.randrange(SAMPLES)
+    if flattened:
+        SAMPLE = dataset[SAMPLE_INDEX, :]
+    else:
+        SAMPLE = dataset[SAMPLE_INDEX, :, :]
+    return SAMPLE, SAMPLE_INDEX
+#+end_src
+** Flatten The Images
+
+The images are 28 x 28 images, but for our purposes we want one flat array so we have to flatten them.
+#+begin_src python :results none
+def flatten_image(dataset: numpy.array) -> numpy.array:
+    SAMPLES = dataset.shape[SAMPLE_SHAPE_INDEX]
+    SAMPLE, SAMPLE_INDEX = get_sample(dataset, flattened=False)
+    flattened = dataset.flatten().reshape(SAMPLES, PIXELS)
+    assert len(flattened) == SAMPLES
+    assert flattened.shape[-1] == PIXELS
+    assert all(SAMPLE.flatten() == flattened[SAMPLE_INDEX])
+    print(flattened.shape)
+    return flattened
+#+end_src
+
+#+begin_src python :results output :exports both
+ZERO_TRAIN = flatten_image(train_0)
+ONE_TRAIN = flatten_image(train_1)
+ZERO_TEST = flatten_image(test_0)
+ONE_TEST = flatten_image(test_1)
+#+end_src
+
+#+RESULTS:
+: (5000, 784)
+: (5000, 784)
+: (980, 784)
+: (1135, 784)
+
+** The Means
+ For each of the images we want to calculate the mean pixel value
+#+begin_src python :results none
+def get_mean(dataset: numpy.array) -> numpy.array:
+    SAMPLE, SAMPLE_INDEX = get_sample(dataset)
+    means = dataset.mean(axis=1)
+    assert SAMPLE.mean() == means[SAMPLE_INDEX]
+    return means
+#+end_src
+
+#+begin_src python :results none
+ZERO_MEANS = get_mean(ZERO_TRAIN)
+ONE_MEANS = get_mean(ONE_TRAIN)
+ZERO_TEST_MEANS = get_mean(ZERO_TEST)
+ONE_TEST_MEANS = get_mean(ONE_TEST)
+#+end_src
+
+ Standard Deviations
+
+#+begin_src python :results none
+def get_std(dataset: numpy.array) -> numpy.array:
+    SAMPLE, SAMPLE_INDEX = get_sample(dataset)
+    deviants = dataset.std(axis=1, ddof=DELTA_DEGREES_OF_FREEDOM)
+    assert SAMPLE.std(ddof=DELTA_DEGREES_OF_FREEDOM) == deviants[SAMPLE_INDEX]
+    return deviants
+#+end_src
+
+#+begin_src python :results none
+ZERO_DEVIATIONS = get_std(ZERO_TRAIN)
+ONE_DEVIATIONS = get_std(ONE_TRAIN)
+ZERO_TEST_DEVIATIONS = get_std(ZERO_TEST)
+ONE_TEST_DEVIATIONS = get_std(ONE_TEST)
+#+end_src
+
+#+begin_src python :results none
+ZERO_TEST_TWO = pandas.DataFrame(dict(mu=ZERO_TEST_MEANS, variance=ZERO_TEST_DEVIATIONS))
+ONE_TEST_TWO = pandas.DataFrame(dict(mu=ONE_TEST_MEANS, variance=ONE_TEST_DEVIATIONS))
+#+end_src
+
+** The Parameters
+   We need to take the mean and variance of the values we calculated for each digit.
+
+#+begin_src python :results none
+def get_parameters(means: numpy.array, deviations: numpy.array) -> Namespace:
+    """Get the mean and variance for the array"""
+    return Namespace(
+        mean_of_means = means.mean(),
+        variance_of_means = means.var(),
+        mean_of_deviations = deviations.mean(),
+        variance_of_deviations = deviations.var(),
+    )
+#+end_src
+
+#+begin_src python :results none
+Parameters = Namespace(
+    zero = get_parameters(ZERO_MEANS, ZERO_DEVIATIONS),
+    one = get_parameters(ONE_MEANS, ONE_DEVIATIONS),
+    )
+#+end_src
+** The Gaussian
+   This calculates the probability P(x|y) for each column.
+
+#+begin_src python :results none
+def gaussian(x: numpy.array, mu: float, variance: float) -> float:
+    """find the probability of x | class
+
+    Args:
+     x: one-dimensional array (a single feature-column)
+     mu: the mean of the training set for this feature
+     variance: the variance of the training set for this feature
+
+    Returns:
+     the conditional probability of input given the parameters
+    """
+    difference = x - mu
+    return 1/(2 * math.pi * variance) * numpy.exp((-0.5 * numpy.square(difference))/variance)
+#+end_src
+
+#+begin_src python :results none
+def label(row: pandas.Series) -> int:
+    """decide if the row is more likely one or zero"""
+    return 1 if row.p_one > row.p_zero else 0
+#+end_src
+
+
+#+begin_src python :results none
+def predict(x: numpy.array, Parameters: Namespace) -> pandas.DataFrame:
+    """predict the class for each row
+
+    Args:
+     x: array of <mean, standard deviation> rows
+     Parameters: the model parameters
+    """
+    p_zero_mean = gaussian(x.mu, Parameters.zero.mean_of_means, Parameters.zero.variance_of_means)
+    p_zero_variance = gaussian(x.variance, Parameters.zero.mean_of_deviations, Parameters.zero.variance_of_deviations)
+    p_zero = p_zero_mean * p_zero_variance
+
+    p_one_mean = gaussian(x.mu, Parameters.one.mean_of_means, Parameters.one.variance_of_means)
+    p_one_variance = gaussian(x.variance, Parameters.one.mean_of_deviations, Parameters.one.variance_of_deviations)
+    p_one = p_one_mean * p_one_variance
+    predictions = pandas.DataFrame(dict(p_one=p_one, p_zero=p_zero))
+    predictions["label"] = predictions.apply(label, axis="columns")
+    return predictions
+#+end_src
+
+** Evaluate The Accuracy
+
+#+begin_src python :results output :exports both
+def evaluate(test_0: pandas.DataFrame, test_1: pandas.DataFrame, parameters) -> Namespace:
+    """Check the accuracy of our model
+
+    Args:
+     test_0: array of means and variances for class 0
+     test_1: array of means and variances for class 1
+    """
+    predict_zero = predict(test_0, parameters)
+    predict_one = predict(test_1, parameters)
+
+    correct = (len(predict_zero[predict_zero.label==0])
+               + len(predict_one[predict_one.label==1]))
+
+    total = len(test_0) + len(test_1)
+    zero_accuracy = len(predict_zero[predict_zero.label==0])/len(test_0)
+    one_accuracy = len(predict_one[predict_one.label==1])/len(test_1)
+    accuracy = correct/total
+    print(f"Accuracy predicting zeros: {100 * zero_accuracy:0.2f} %")
+    print(f"Accuracy predicting ones: {100 * one_accuracy:0.2f} %")
+    print(f"Overall Accuracy: {100 * accuracy:0.2f} %")
+    return Namespace(zero = zero_accuracy,
+                     one = one_accuracy,
+                     overall=accuracy)
+
+accuracy = evaluate(ZERO_TEST_TWO, ONE_TEST_TWO)
+#+end_src
+
+#+RESULTS:
+: Accuracy predicting zeros: 90.71 %
+: Accuracy predicting ones: 93.48 %
+: Overall Accuracy: 92.20 %
+
+** Reporting
+#+begin_src python :results output
+def report_parameters(parameters: Namespace):
+    print("|Digit| Statistic | Feature| Outcome|")
+    print("|-+-+-+-|")
+
+    print(f"|0|Mean| Mean Brightness| {parameters.zero.mean_of_means:0.3f}|")
+    print(f"|0|Variance| Mean Brightness| {parameters.zero.variance_of_means:0.3f}|")
+    print(f"|0|Mean| Brightness Standard Deviation| {parameters.zero.mean_of_deviations:0.3f}|")
+    print(f"|0|Variance| Brightness Standard Deviation| {parameters.zero.variance_of_deviations:0.3f}|")
+    print(f"|1|Mean| Mean Brightness| {parameters.one.mean_of_means:0.3f}|")
+    print(f"|1|Variance| Mean Brightness| {parameters.one.variance_of_means:0.3f}|")
+    print(f"|1|Mean| Brightness Standard Deviation| {parameters.one.mean_of_deviations:0.3f}|")
+    print(f"|1|Variance| Brightness Standard Deviation| {parameters.one.variance_of_deviations:0.3f}|")
+
+report_parameters(Parameters)
+#+end_src
+
+#+RESULTS:
+| Digit | Statistic | Feature                       | Outcome |
+|-------+-----------+-------------------------------+---------|
+|     0 | Mean      | Mean Brightness               |  44.110 |
+|     0 | Variance  | Mean Brightness               | 115.509 |
+|     0 | Mean      | Brightness Standard Deviation |  87.400 |
+|     0 | Variance  | Brightness Standard Deviation | 101.600 |
+|     1 | Mean      | Mean Brightness               |  19.333 |
+|     1 | Variance  | Mean Brightness               |  30.883 |
+|     1 | Mean      | Brightness Standard Deviation |  61.343 |
+|     1 | Variance  | Brightness Standard Deviation |  81.259 |
+
+#+begin_src python :results output :exports both
+def report_accuracy(accuracy: Namespace):
+    print("|Digit| Accuracy|")
+    print("|-+-|")
+    print(f"|0| {100 * accuracy.zero:0.3f} %|")
+    print(f"|1| {100 * accuracy.one:0.3f} %|")
+    print(f"|Both| {100 * accuracy.overall:0.3f} %|")
+    return
+
+report_accuracy(accuracy)
+#+end_src
+
+#+RESULTS:
+| Digit | Accuracy |
+|-------+----------|
+|     0 | 90.714 % |
+|     1 | 93.480 % |
+|  Both | 92.199 % |
+
+** The Main
+This is presumably the way that the code will be called. It won't work here because you need to change the paths, this is just to double-check it up on Coursera.
+#+begin_src python :results none
+def main():
+    myID='9189'
+    geneNewData.geneData(myID)
+    Numpyfile0 = scipy.io.loadmat('digit0_stu_train'+myID+'.mat')
+    Numpyfile1 = scipy.io.loadmat('digit1_stu_train'+myID+'.mat')
+    Numpyfile2 = scipy.io.loadmat('digit0_testset'+'.mat')
+    Numpyfile3 = scipy.io.loadmat('digit1_testset'+'.mat')
+    train0 = Numpyfile0.get('target_img')
+    train1 = Numpyfile1.get('target_img')
+    test0 = Numpyfile2.get('target_img')
+    test1 = Numpyfile3.get('target_img')
+    print([len(train0),len(train1),len(test0),len(test1)])
+    print('Your trainset and testset are generated successfully!')
+
+    # flatten the images into single rows
+    ZERO_TRAIN = flatten_image(train_0)
+    ONE_TRAIN = flatten_image(train_1)
+    ZERO_TEST = flatten_image(test_0)
+    ONE_TEST = flatten_image(test_1)
+
+    # Get the feature columns
+    ZERO_MEANS = get_mean(ZERO_TRAIN)
+    ONE_MEANS = get_mean(ONE_TRAIN)
+    ZERO_TEST_MEANS = get_mean(ZERO_TEST)
+    ONE_TEST_MEANS = get_mean(ONE_TEST)
+
+    ZERO_DEVIATIONS = get_std(ZERO_TRAIN)
+    ONE_DEVIATIONS = get_std(ONE_TRAIN)
+    ZERO_TEST_DEVIATIONS = get_std(ZERO_TEST)
+    ONE_TEST_DEVIATIONS = get_std(ONE_TEST)
+
+    # put the data into data frames
+    ZERO_TEST_TWO = pandas.DataFrame(dict(
+        mu=ZERO_TEST_MEANS,
+        variance=ZERO_TEST_DEVIATIONS))
+    ONE_TEST_TWO = pandas.DataFrame(dict(
+        mu=ONE_TEST_MEANS,
+        variance=ONE_TEST_DEVIATIONS))
+
+    # calculate the parameters
+    Parameters = Namespace(
+        zero = get_parameters(ZERO_MEANS, ZERO_DEVIATIONS),
+        one = get_parameters(ONE_MEANS, ONE_DEVIATIONS),
+    )
+    
+    # evaluate the accuracy
+    accuracy = evaluate(ZERO_TEST_TWO, ONE_TEST_TWO)
+    report_parameters(Parameters)
+    report_accuracy(accuracy)
+    return
+
+
+if __name__ == '__main__':
+    main()
+#+end_src
+* End
+

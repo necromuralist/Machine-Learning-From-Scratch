@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+<head>
+<meta charset="utf-8">
+<meta content="The notebook version of this project from Coursera." name="description">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<title>Project: Naive-Bayes | ASU CSE-575</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/ipython.min.css" rel="stylesheet" type="text/css">
+<link href="../../assets/css/nikola_ipython.css" rel="stylesheet" type="text/css">
+<meta content="#5670d4" name="theme-color">
+<meta content="Nikola (getnikola.com)" name="generator">
+<link href="../../rss.xml" rel="alternate" title="RSS" type="application/rss+xml">
+<link href="https://necromuralist.github.io/asu-cse-575/notebooks/project-naive-bayes/" rel="canonical"><!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]-->
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script><!-- favicons -->
+<link href="../../apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
+<link href="../../favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
+<link href="../../favicon-16x16.png" rel="icon" sizes="16x16" type="image/png">
+<link href="../../site.webmanifest" rel="manifest">
+<meta content="Cloistered Monkey" name="author">
+<link href="../loading-the-zeros-and-ones/" rel="prev" title="Loading the Zeros and Ones" type="text/html">
+<link href="../k-means-clustering-1/" rel="next" title="K-Means Clustering 1" type="text/html">
+<meta content="ASU CSE-575" property="og:site_name">
+<meta content="Project: Naive-Bayes" property="og:title">
+<meta content="https://necromuralist.github.io/asu-cse-575/notebooks/project-naive-bayes/" property="og:url">
+<meta content="The notebook version of this project from Coursera." property="og:description">
+<meta content="article" property="og:type">
+<meta content="2020-04-04T16:43:33-07:00" property="article:published_time">
+<meta content="naive-bayes" property="article:tag">
+<meta content="project" property="article:tag">
+</head>
+<body>
+<a class="sr-only sr-only-focusable" href="#content">Skip to main content</a> <!-- Menubar -->
+<nav class="navbar navbar-expand-md static-top mb-4 navbar-light bg-light">
+<div class="container"><!-- This keeps the margins nice -->
+ <a class="navbar-brand" href="https://necromuralist.github.io/asu-cse-575/"><span id="blog-title">ASU CSE-575</span></a> <button aria-controls="bs-navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#bs-navbar" data-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button>
+<div class="collapse navbar-collapse" id="bs-navbar">
+<ul class="navbar-nav mr-auto">
+<li class="nav-item"><a class="nav-link" href="../../archive.html">Archive</a></li>
+<li class="nav-item"><a class="nav-link" href="../../categories/">Tags</a></li>
+<li class="nav-item"><a class="nav-link" href="../../rss.xml">RSS feed</a></li>
+<li class="nav-item dropdown"><a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Pages</a>
+<div class="dropdown-menu"><a class="dropdown-item" href="https://necromuralist.github.io/">Cloistered Monkey</a></div>
+</li>
+</ul>
+<!-- DuckDuckGo custom search -->
+<form action="https://duckduckgo.com/" class="navbar-form pull-left" id="search" method="get" name="search"><input name="sites" type="hidden" value="https://necromuralist.github.io/asu-cse-575/"><input name="k8" type="hidden" value="#444444"><input name="k9" type="hidden" value="#D51920"><input name="kt" type="hidden" value="h"><input class="span2" maxlength="255" name="q" placeholder="Search…" type="text"><input style="visibility: hidden;display:none" type="submit" value="DuckDuckGo Search"></form>
+<!-- End of custom search -->
+<ul class="navbar-nav navbar-right">
+<li class="nav-item"><a class="nav-link" href="index.org" id="sourcelink">Source</a></li>
+</ul>
+</div>
+<!-- /.navbar-collapse --></div>
+<!-- /.container --></nav>
+<!-- End of Menubar -->
+<div class="container" id="content" role="main">
+<div class="body-content"><!--Body content-->
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article">
+<header>
+<h1 class="p-name entry-title" itemprop="headline name"><a class="u-url" href=".">Project: Naive-Bayes</a></h1>
+<div class="metadata">
+<p class="byline author vcard p-author h-card"><span class="byline-name fn p-name" itemprop="author">Cloistered Monkey</span></p>
+<p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2020-04-04T16:43:33-07:00" itemprop="datePublished" title="2020-04-04 16:43">2020-04-04 16:43</time></a></p>
+<p class="sourceline"><a class="sourcelink" href="index.org">Source</a></p>
+</div>
+</header>
+<div class="e-content entry-content" itemprop="articleBody text">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org73ac75f">Beginning</a>
+<ul>
+<li><a href="#org772dda5">Imports</a>
+<ul>
+<li><a href="#orga6e3c19">Python</a></li>
+<li><a href="#org8647910">PyPi</a></li>
+<li><a href="#orgc1bc634">This Project</a></li>
+</ul>
+</li>
+<li><a href="#orgda7c08a">Some Constants</a></li>
+</ul>
+</li>
+<li><a href="#org0a89f12">Middle</a>
+<ul>
+<li><a href="#org2b3845f">Load The Data</a>
+<ul>
+<li><a href="#org9f08a45">Grab a Sample</a></li>
+</ul>
+</li>
+<li><a href="#org515951a">Flatten The Images</a></li>
+<li><a href="#orgd4fba90">The Means</a></li>
+<li><a href="#org050dc42">The Parameters</a></li>
+<li><a href="#orgb14e262">The Gaussian</a></li>
+<li><a href="#org7c32ee1">Evaluate The Accuracy</a></li>
+<li><a href="#orgbfd89b6">Reporting</a></li>
+<li><a href="#org30b3e76">The Main</a></li>
+</ul>
+</li>
+<li><a href="#orgd2e6e1a">End</a></li>
+</ul>
+</div>
+</div>
+<div class="outline-2" id="outline-container-org73ac75f">
+<h2 id="org73ac75f">Beginning</h2>
+<div class="outline-text-2" id="text-org73ac75f"></div>
+<div class="outline-3" id="outline-container-org772dda5">
+<h3 id="org772dda5">Imports</h3>
+<div class="outline-text-3" id="text-org772dda5"></div>
+<div class="outline-4" id="outline-container-orga6e3c19">
+<h4 id="orga6e3c19">Python</h4>
+<div class="outline-text-4" id="text-orga6e3c19">
+<div class="highlight">
+<pre><span></span><span class="kn">from</span> <span class="nn">argparse</span> <span class="kn">import</span> <span class="n">Namespace</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">random</span>
+</pre></div>
+</div>
+</div>
+<div class="outline-4" id="outline-container-org8647910">
+<h4 id="org8647910">PyPi</h4>
+<div class="outline-text-4" id="text-org8647910">
+<div class="highlight">
+<pre><span></span><span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">pandas</span>
+<span class="kn">import</span> <span class="nn">scipy.io</span>
+</pre></div>
+</div>
+</div>
+<div class="outline-4" id="outline-container-orgc1bc634">
+<h4 id="orgc1bc634">This Project</h4>
+<div class="outline-text-4" id="text-orgc1bc634">
+<div class="highlight">
+<pre><span></span><span class="kn">from</span> <span class="nn">cse_575.coursera</span> <span class="kn">import</span> <span class="n">geneNewData</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="outline-3" id="outline-container-orgda7c08a">
+<h3 id="orgda7c08a">Some Constants</h3>
+<div class="outline-text-3" id="text-orgda7c08a">
+<div class="highlight">
+<pre><span></span><span class="n">load_dotenv</span><span class="p">()</span>
+</pre></div>
+<div class="highlight">
+<pre><span></span><span class="n">DATA_PATH</span> <span class="o">=</span> <span class="n">geneNewData</span><span class="o">.</span><span class="n">PATH</span>
+<span class="n">STUDENT_ID</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"STUDENT_ID"</span><span class="p">]</span>
+<span class="n">PIXELS</span> <span class="o">=</span> <span class="mi">28</span> <span class="o">*</span> <span class="mi">28</span>
+<span class="n">SAMPLE_SHAPE_INDEX</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">DELTA_DEGREES_OF_FREEDOM</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="outline-2" id="outline-container-org0a89f12">
+<h2 id="org0a89f12">Middle</h2>
+<div class="outline-text-2" id="text-org0a89f12"></div>
+<div class="outline-3" id="outline-container-org2b3845f">
+<h3 id="org2b3845f">Load The Data</h3>
+<div class="outline-text-3" id="text-org2b3845f">
+<p><code>load_data</code> is copied mostly from the ``main`` function. I added it so that ``main`` isn't just one monolithic function. Don't change it.</p>
+<div class="highlight">
+<pre><span></span><span class="k">def</span> <span class="nf">load_data</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+    <span class="n">geneNewData</span><span class="o">.</span><span class="n">geneData</span><span class="p">(</span><span class="n">STUDENT_ID</span><span class="p">)</span>
+    <span class="n">myID</span> <span class="o">=</span> <span class="n">STUDENT_ID</span>
+    <span class="n">Numpyfile0</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">loadmat</span><span class="p">(</span><span class="n">DATA_PATH</span><span class="o">/</span><span class="sa">f</span><span class="s1">'digit0_stu_train</span><span class="si">{</span><span class="n">myID</span><span class="si">}</span><span class="s1">.mat'</span><span class="p">)</span>
+    <span class="n">Numpyfile1</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">loadmat</span><span class="p">(</span><span class="n">DATA_PATH</span><span class="o">/</span><span class="sa">f</span><span class="s1">'digit1_stu_train</span><span class="si">{</span><span class="n">myID</span><span class="si">}</span><span class="s1">.mat'</span><span class="p">)</span>
+    <span class="n">Numpyfile2</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">loadmat</span><span class="p">(</span><span class="n">DATA_PATH</span><span class="o">/</span><span class="s1">'digit0_testset.mat'</span><span class="p">)</span>
+    <span class="n">Numpyfile3</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">loadmat</span><span class="p">(</span><span class="n">DATA_PATH</span><span class="o">/</span><span class="s1">'digit1_testset.mat'</span><span class="p">)</span>
+    <span class="n">train0</span> <span class="o">=</span> <span class="n">Numpyfile0</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'target_img'</span><span class="p">)</span>
+    <span class="n">train1</span> <span class="o">=</span> <span class="n">Numpyfile1</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'target_img'</span><span class="p">)</span>
+    <span class="n">test0</span> <span class="o">=</span> <span class="n">Numpyfile2</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'target_img'</span><span class="p">)</span>
+    <span class="n">test1</span> <span class="o">=</span> <span class="n">Numpyfile3</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'target_img'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">train0</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">train1</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">test0</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">test1</span><span class="p">)])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Your trainset and testset are generated successfully!'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">train0</span><span class="p">,</span> <span class="n">train1</span><span class="p">,</span> <span class="n">test0</span><span class="p">,</span> <span class="n">test1</span>
+</pre></div>
+<div class="highlight">
+<pre><span></span><span class="n">train_0</span><span class="p">,</span> <span class="n">train_1</span><span class="p">,</span> <span class="n">test_0</span><span class="p">,</span> <span class="n">test_1</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">()</span>
+</pre></div>
+<pre class="example">
+[5000, 5000, 980, 1135]
+Your trainset and testset are generated successfully!
+</pre>
+<div class="highlight">
+<pre><span></span><span class="k">for</span> <span class="n">dataset</span> <span class="ow">in</span> <span class="p">(</span><span class="n">train_0</span><span class="p">,</span> <span class="n">train_1</span><span class="p">,</span> <span class="n">test_0</span><span class="p">,</span> <span class="n">test_1</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+<pre class="example">
+(5000, 28, 28)
+(5000, 28, 28)
+(980, 28, 28)
+(1135, 28, 28)
+</pre></div>
+<div class="outline-4" id="outline-container-org9f08a45">
+<h4 id="org9f08a45">Grab a Sample</h4>
+<div class="outline-text-4" id="text-org9f08a45">
+<p>This is to help the later functions double-check what they're doing by grabbing a sample row.</p>
+<div class="highlight">
+<pre><span></span><span class="k">def</span> <span class="nf">get_sample</span><span class="p">(</span><span class="n">dataset</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">flattened</span><span class="p">:</span> <span class="nb">bool</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">:</span>
+    <span class="n">SAMPLES</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">SAMPLE_SHAPE_INDEX</span><span class="p">]</span>
+    <span class="n">SAMPLE_INDEX</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="n">SAMPLES</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">flattened</span><span class="p">:</span>
+        <span class="n">SAMPLE</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">SAMPLE_INDEX</span><span class="p">,</span> <span class="p">:]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">SAMPLE</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">SAMPLE_INDEX</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
+    <span class="k">return</span> <span class="n">SAMPLE</span><span class="p">,</span> <span class="n">SAMPLE_INDEX</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="outline-3" id="outline-container-org515951a">
+<h3 id="org515951a">Flatten The Images</h3>
+<div class="outline-text-3" id="text-org515951a">
+<p>The images are 28 x 28 images, but for our purposes we want one flat array so we have to flatten them.</p>
+<div class="highlight">
+<pre><span></span><span class="k">def</span> <span class="nf">flatten_image</span><span class="p">(</span><span class="n">dataset</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">:</span>
+    <span class="n">SAMPLES</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">SAMPLE_SHAPE_INDEX</span><span class="p">]</span>
+    <span class="n">SAMPLE</span><span class="p">,</span> <span class="n">SAMPLE_INDEX</span> <span class="o">=</span> <span class="n">get_sample</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">flattened</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">flattened</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">SAMPLES</span><span class="p">,</span> <span class="n">PIXELS</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">flattened</span><span class="p">)</span> <span class="o">==</span> <span class="n">SAMPLES</span>
+    <span class="k">assert</span> <span class="n">flattened</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">PIXELS</span>
+    <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="n">SAMPLE</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span> <span class="o">==</span> <span class="n">flattened</span><span class="p">[</span><span class="n">SAMPLE_INDEX</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">flattened</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">flattened</span>
+</pre></div>
+<div class="highlight">
+<pre><span></span><span class="n">ZERO_TRAIN</span> <span class="o">=</span> <span class="n">flatten_image</span><span class="p">(</span><span class="n">train_0</span><span class="p">)</span>
+<span class="n">ONE_TRAIN</span> <span class="o">=</span> <span class="n">flatten_image</span><span class="p">(</span><span class="n">train_1</span><span class="p">)</span>
+<span class="n">ZERO_TEST</span> <span class="o">=</span> <span class="n">flatten_image</span><span class="p">(</span><span class="n">test_0</span><span class="p">)</span>
+<span class="n">ONE_TEST</span> <span class="o">=</span> <span class="n">flatten_image</span><span class="p">(</span><span class="n">test_1</span><span class="p">)</span>
+</pre></div>
+<pre class="example">
+(5000, 784)
+(5000, 784)
+(980, 784)
+(1135, 784)
+</pre></div>
+</div>
+<div class="outline-3" id="outline-container-orgd4fba90">
+<h3 id="orgd4fba90">The Means</h3>
+<div class="outline-text-3" id="text-orgd4fba90">
+<p>For each of the images we want to calculate the mean pixel value</p>
+<div class="highlight">
+<pre><span></span><span class="k">def</span> <span class="nf">get_mean</span><span class="p">(</span><span class="n">dataset</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">:</span>
+    <span class="n">SAMPLE</span><span class="p">,</span> <span class="n">SAMPLE_INDEX</span> <span class="o">=</span> <span class="n">get_sample</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+    <span class="n">means</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">SAMPLE</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">==</span> <span class="n">means</span><span class="p">[</span><span class="n">SAMPLE_INDEX</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">means</span>
+</pre></div>
+<div class="highlight">
+<pre><span></span><span class="n">ZERO_MEANS</span> <span class="o">=</span> <span class="n">get_mean</span><span class="p">(</span><span class="n">ZERO_TRAIN</span><span class="p">)</span>
+<span class="n">ONE_MEANS</span> <span class="o">=</span> <span class="n">get_mean</span><span class="p">(</span><span class="n">ONE_TRAIN</span><span class="p">)</span>
+<span class="n">ZERO_TEST_MEANS</span> <span class="o">=</span> <span class="n">get_mean</span><span class="p">(</span><span class="n">ZERO_TEST</span><span class="p">)</span>
+<span class="n">ONE_TEST_MEANS</span> <span class="o">=</span> <span class="n">get_mean</span><span class="p">(</span><span class="n">ONE_TEST</span><span class="p">)</span>
+</pre></div>
+<p>Standard Deviations</p>
+<div class="highlight">
+<pre><span></span><span class="k">def</span> <span class="nf">get_std</span><span class="p">(</span><span class="n">dataset</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">:</span>
+    <span class="n">SAMPLE</span><span class="p">,</span> <span class="n">SAMPLE_INDEX</span> <span class="o">=</span> <span class="n">get_sample</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+    <span class="n">deviants</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="n">DELTA_DEGREES_OF_FREEDOM</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">SAMPLE</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ddof</span><span class="o">=</span><span class="n">DELTA_DEGREES_OF_FREEDOM</span><span class="p">)</span> <span class="o">==</span> <span class="n">deviants</span><span class="p">[</span><span class="n">SAMPLE_INDEX</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">deviants</span>
+</pre></div>
+<div class="highlight">
+<pre><span></span><span class="n">ZERO_DEVIATIONS</span> <span class="o">=</span> <span class="n">get_std</span><span class="p">(</span><span class="n">ZERO_TRAIN</span><span class="p">)</span>
+<span class="n">ONE_DEVIATIONS</span> <span class="o">=</span> <span class="n">get_std</span><span class="p">(</span><span class="n">ONE_TRAIN</span><span class="p">)</span>
+<span class="n">ZERO_TEST_DEVIATIONS</span> <span class="o">=</span> <span class="n">get_std</span><span class="p">(</span><span class="n">ZERO_TEST</span><span class="p">)</span>
+<span class="n">ONE_TEST_DEVIATIONS</span> <span class="o">=</span> <span class="n">get_std</span><span class="p">(</span><span class="n">ONE_TEST</span><span class="p">)</span>
+</pre></div>
+<div class="highlight">
+<pre><span></span><span class="n">ZERO_TEST_TWO</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">ZERO_TEST_MEANS</span><span class="p">,</span> <span class="n">variance</span><span class="o">=</span><span class="n">ZERO_TEST_DEVIATIONS</span><span class="p">))</span>
+<span class="n">ONE_TEST_TWO</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">ONE_TEST_MEANS</span><span class="p">,</span> <span class="n">variance</span><span class="o">=</span><span class="n">ONE_TEST_DEVIATIONS</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="outline-3" id="outline-container-org050dc42">
+<h3 id="org050dc42">The Parameters</h3>
+<div class="outline-text-3" id="text-org050dc42">
+<p>We need to take the mean and variance of the values we calculated for each digit.</p>
+<div class="highlight">
+<pre><span></span><span class="k">def</span> <span class="nf">get_parameters</span><span class="p">(</span><span class="n">means</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">deviations</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Namespace</span><span class="p">:</span>
+    <span class="sd">"""Get the mean and variance for the array"""</span>
+    <span class="k">return</span> <span class="n">Namespace</span><span class="p">(</span>
+        <span class="n">mean_of_means</span> <span class="o">=</span> <span class="n">means</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+        <span class="n">variance_of_means</span> <span class="o">=</span> <span class="n">means</span><span class="o">.</span><span class="n">var</span><span class="p">(),</span>
+        <span class="n">mean_of_deviations</span> <span class="o">=</span> <span class="n">deviations</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+        <span class="n">variance_of_deviations</span> <span class="o">=</span> <span class="n">deviations</span><span class="o">.</span><span class="n">var</span><span class="p">(),</span>
+    <span class="p">)</span>
+</pre></div>
+<div class="highlight">
+<pre><span></span><span class="n">Parameters</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span>
+    <span class="n">zero</span> <span class="o">=</span> <span class="n">get_parameters</span><span class="p">(</span><span class="n">ZERO_MEANS</span><span class="p">,</span> <span class="n">ZERO_DEVIATIONS</span><span class="p">),</span>
+    <span class="n">one</span> <span class="o">=</span> <span class="n">get_parameters</span><span class="p">(</span><span class="n">ONE_MEANS</span><span class="p">,</span> <span class="n">ONE_DEVIATIONS</span><span class="p">),</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="outline-3" id="outline-container-orgb14e262">
+<h3 id="orgb14e262">The Gaussian</h3>
+<div class="outline-text-3" id="text-orgb14e262">
+<p>This calculates the probability P(x|y) for each column.</p>
+<div class="highlight">
+<pre><span></span><span class="k">def</span> <span class="nf">gaussian</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">mu</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">variance</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="sd">"""find the probability of x | class</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">     x: one-dimensional array (a single feature-column)</span>
+<span class="sd">     mu: the mean of the training set for this feature</span>
+<span class="sd">     variance: the variance of the training set for this feature</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">     the conditional probability of input given the parameters</span>
+<span class="sd">    """</span>
+    <span class="n">difference</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">mu</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">variance</span><span class="p">)</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">difference</span><span class="p">))</span><span class="o">/</span><span class="n">variance</span><span class="p">)</span>
+</pre></div>
+<div class="highlight">
+<pre><span></span><span class="k">def</span> <span class="nf">label</span><span class="p">(</span><span class="n">row</span><span class="p">:</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="sd">"""decide if the row is more likely one or zero"""</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">row</span><span class="o">.</span><span class="n">p_one</span> <span class="o">&gt;</span> <span class="n">row</span><span class="o">.</span><span class="n">p_zero</span> <span class="k">else</span> <span class="mi">0</span>
+</pre></div>
+<div class="highlight">
+<pre><span></span><span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">Parameters</span><span class="p">:</span> <span class="n">Namespace</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">"""predict the class for each row</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">     x: array of &lt;mean, standard deviation&gt; rows</span>
+<span class="sd">     Parameters: the model parameters</span>
+<span class="sd">    """</span>
+    <span class="n">p_zero_mean</span> <span class="o">=</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">mu</span><span class="p">,</span> <span class="n">Parameters</span><span class="o">.</span><span class="n">zero</span><span class="o">.</span><span class="n">mean_of_means</span><span class="p">,</span> <span class="n">Parameters</span><span class="o">.</span><span class="n">zero</span><span class="o">.</span><span class="n">variance_of_means</span><span class="p">)</span>
+    <span class="n">p_zero_variance</span> <span class="o">=</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">variance</span><span class="p">,</span> <span class="n">Parameters</span><span class="o">.</span><span class="n">zero</span><span class="o">.</span><span class="n">mean_of_deviations</span><span class="p">,</span> <span class="n">Parameters</span><span class="o">.</span><span class="n">zero</span><span class="o">.</span><span class="n">variance_of_deviations</span><span class="p">)</span>
+    <span class="n">p_zero</span> <span class="o">=</span> <span class="n">p_zero_mean</span> <span class="o">*</span> <span class="n">p_zero_variance</span>
+
+    <span class="n">p_one_mean</span> <span class="o">=</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">mu</span><span class="p">,</span> <span class="n">Parameters</span><span class="o">.</span><span class="n">one</span><span class="o">.</span><span class="n">mean_of_means</span><span class="p">,</span> <span class="n">Parameters</span><span class="o">.</span><span class="n">one</span><span class="o">.</span><span class="n">variance_of_means</span><span class="p">)</span>
+    <span class="n">p_one_variance</span> <span class="o">=</span> <span class="n">gaussian</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">variance</span><span class="p">,</span> <span class="n">Parameters</span><span class="o">.</span><span class="n">one</span><span class="o">.</span><span class="n">mean_of_deviations</span><span class="p">,</span> <span class="n">Parameters</span><span class="o">.</span><span class="n">one</span><span class="o">.</span><span class="n">variance_of_deviations</span><span class="p">)</span>
+    <span class="n">p_one</span> <span class="o">=</span> <span class="n">p_one_mean</span> <span class="o">*</span> <span class="n">p_one_variance</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">p_one</span><span class="o">=</span><span class="n">p_one</span><span class="p">,</span> <span class="n">p_zero</span><span class="o">=</span><span class="n">p_zero</span><span class="p">))</span>
+    <span class="n">predictions</span><span class="p">[</span><span class="s2">"label"</span><span class="p">]</span> <span class="o">=</span> <span class="n">predictions</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s2">"columns"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">predictions</span>
+</pre></div>
+</div>
+</div>
+<div class="outline-3" id="outline-container-org7c32ee1">
+<h3 id="org7c32ee1">Evaluate The Accuracy</h3>
+<div class="outline-text-3" id="text-org7c32ee1">
+<div class="highlight">
+<pre><span></span><span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="n">test_0</span><span class="p">:</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">test_1</span><span class="p">:</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Namespace</span><span class="p">:</span>
+    <span class="sd">"""Check the accuracy of our model</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">     test_0: array of means and variances for class 0</span>
+<span class="sd">     test_1: array of means and variances for class 1</span>
+<span class="sd">    """</span>
+    <span class="n">predict_zero</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span><span class="n">test_0</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+    <span class="n">predict_one</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span><span class="n">test_1</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+
+    <span class="n">correct</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">predict_zero</span><span class="p">[</span><span class="n">predict_zero</span><span class="o">.</span><span class="n">label</span><span class="o">==</span><span class="mi">0</span><span class="p">])</span>
+               <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">predict_one</span><span class="p">[</span><span class="n">predict_one</span><span class="o">.</span><span class="n">label</span><span class="o">==</span><span class="mi">1</span><span class="p">]))</span>
+
+    <span class="n">total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_0</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_1</span><span class="p">)</span>
+    <span class="n">zero_accuracy</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">predict_zero</span><span class="p">[</span><span class="n">predict_zero</span><span class="o">.</span><span class="n">label</span><span class="o">==</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">test_0</span><span class="p">)</span>
+    <span class="n">one_accuracy</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">predict_one</span><span class="p">[</span><span class="n">predict_one</span><span class="o">.</span><span class="n">label</span><span class="o">==</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">test_1</span><span class="p">)</span>
+    <span class="n">accuracy</span> <span class="o">=</span> <span class="n">correct</span><span class="o">/</span><span class="n">total</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Accuracy predicting zeros: </span><span class="si">{</span><span class="mi">100</span> <span class="o">*</span> <span class="n">zero_accuracy</span><span class="si">:</span><span class="s2">0.2f</span><span class="si">}</span><span class="s2"> %"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Accuracy predicting ones: </span><span class="si">{</span><span class="mi">100</span> <span class="o">*</span> <span class="n">one_accuracy</span><span class="si">:</span><span class="s2">0.2f</span><span class="si">}</span><span class="s2"> %"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Overall Accuracy: </span><span class="si">{</span><span class="mi">100</span> <span class="o">*</span> <span class="n">accuracy</span><span class="si">:</span><span class="s2">0.2f</span><span class="si">}</span><span class="s2"> %"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Namespace</span><span class="p">(</span><span class="n">zero</span> <span class="o">=</span> <span class="n">zero_accuracy</span><span class="p">,</span>
+                     <span class="n">one</span> <span class="o">=</span> <span class="n">one_accuracy</span><span class="p">,</span>
+                     <span class="n">overall</span><span class="o">=</span><span class="n">accuracy</span><span class="p">)</span>
+
+<span class="n">accuracy</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span><span class="n">ZERO_TEST_TWO</span><span class="p">,</span> <span class="n">ONE_TEST_TWO</span><span class="p">)</span>
+</pre></div>
+<pre class="example">
+Accuracy predicting zeros: 90.71 %
+Accuracy predicting ones: 93.48 %
+Overall Accuracy: 92.20 %
+</pre></div>
+</div>
+<div class="outline-3" id="outline-container-orgbfd89b6">
+<h3 id="orgbfd89b6">Reporting</h3>
+<div class="outline-text-3" id="text-orgbfd89b6">
+<div class="highlight">
+<pre><span></span><span class="k">def</span> <span class="nf">report_parameters</span><span class="p">(</span><span class="n">parameters</span><span class="p">:</span> <span class="n">Namespace</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"|Digit| Statistic | Feature| Outcome|"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"|-+-+-+-|"</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"|0|Mean| Mean Brightness| </span><span class="si">{</span><span class="n">parameters</span><span class="o">.</span><span class="n">zero</span><span class="o">.</span><span class="n">mean_of_means</span><span class="si">:</span><span class="s2">0.3f</span><span class="si">}</span><span class="s2">|"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"|0|Variance| Mean Brightness| </span><span class="si">{</span><span class="n">parameters</span><span class="o">.</span><span class="n">zero</span><span class="o">.</span><span class="n">variance_of_means</span><span class="si">:</span><span class="s2">0.3f</span><span class="si">}</span><span class="s2">|"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"|0|Mean| Brightness Standard Deviation| </span><span class="si">{</span><span class="n">parameters</span><span class="o">.</span><span class="n">zero</span><span class="o">.</span><span class="n">mean_of_deviations</span><span class="si">:</span><span class="s2">0.3f</span><span class="si">}</span><span class="s2">|"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"|0|Variance| Brightness Standard Deviation| </span><span class="si">{</span><span class="n">parameters</span><span class="o">.</span><span class="n">zero</span><span class="o">.</span><span class="n">variance_of_deviations</span><span class="si">:</span><span class="s2">0.3f</span><span class="si">}</span><span class="s2">|"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"|1|Mean| Mean Brightness| </span><span class="si">{</span><span class="n">parameters</span><span class="o">.</span><span class="n">one</span><span class="o">.</span><span class="n">mean_of_means</span><span class="si">:</span><span class="s2">0.3f</span><span class="si">}</span><span class="s2">|"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"|1|Variance| Mean Brightness| </span><span class="si">{</span><span class="n">parameters</span><span class="o">.</span><span class="n">one</span><span class="o">.</span><span class="n">variance_of_means</span><span class="si">:</span><span class="s2">0.3f</span><span class="si">}</span><span class="s2">|"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"|1|Mean| Brightness Standard Deviation| </span><span class="si">{</span><span class="n">parameters</span><span class="o">.</span><span class="n">one</span><span class="o">.</span><span class="n">mean_of_deviations</span><span class="si">:</span><span class="s2">0.3f</span><span class="si">}</span><span class="s2">|"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"|1|Variance| Brightness Standard Deviation| </span><span class="si">{</span><span class="n">parameters</span><span class="o">.</span><span class="n">one</span><span class="o">.</span><span class="n">variance_of_deviations</span><span class="si">:</span><span class="s2">0.3f</span><span class="si">}</span><span class="s2">|"</span><span class="p">)</span>
+
+<span class="n">report_parameters</span><span class="p">(</span><span class="n">Parameters</span><span class="p">)</span>
+</pre></div>
+<div class="highlight">
+<pre><span></span><span class="k">def</span> <span class="nf">report_accuracy</span><span class="p">(</span><span class="n">accuracy</span><span class="p">:</span> <span class="n">Namespace</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"|Digit| Accuracy|"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"|-+-|"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"|0| </span><span class="si">{</span><span class="mi">100</span> <span class="o">*</span> <span class="n">accuracy</span><span class="o">.</span><span class="n">zero</span><span class="si">:</span><span class="s2">0.3f</span><span class="si">}</span><span class="s2"> %|"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"|1| </span><span class="si">{</span><span class="mi">100</span> <span class="o">*</span> <span class="n">accuracy</span><span class="o">.</span><span class="n">one</span><span class="si">:</span><span class="s2">0.3f</span><span class="si">}</span><span class="s2"> %|"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"|Both| </span><span class="si">{</span><span class="mi">100</span> <span class="o">*</span> <span class="n">accuracy</span><span class="o">.</span><span class="n">overall</span><span class="si">:</span><span class="s2">0.3f</span><span class="si">}</span><span class="s2"> %|"</span><span class="p">)</span>
+    <span class="k">return</span>
+
+<span class="n">report_accuracy</span><span class="p">(</span><span class="n">accuracy</span><span class="p">)</span>
+</pre></div>
+<table border="2" cellpadding="6" cellspacing="0" frame="hsides" rules="groups">
+<colgroup>
+<col class="org-right">
+<col class="org-left"></colgroup>
+<thead>
+<tr>
+<th class="org-right" scope="col">Digit</th>
+<th class="org-left" scope="col">Accuracy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">0</td>
+<td class="org-left">90.714 %</td>
+</tr>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">93.480 %</td>
+</tr>
+<tr>
+<td class="org-right">Both</td>
+<td class="org-left">92.199 %</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="outline-3" id="outline-container-org30b3e76">
+<h3 id="org30b3e76">The Main</h3>
+<div class="outline-text-3" id="text-org30b3e76">
+<p>This is presumably the way that the code will be called. It won't work here because you need to change the paths, this is just to double-check it up on Coursera.</p>
+<div class="highlight">
+<pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">myID</span><span class="o">=</span><span class="s1">'9189'</span>
+    <span class="n">geneNewData</span><span class="o">.</span><span class="n">geneData</span><span class="p">(</span><span class="n">myID</span><span class="p">)</span>
+    <span class="n">Numpyfile0</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">loadmat</span><span class="p">(</span><span class="s1">'digit0_stu_train'</span><span class="o">+</span><span class="n">myID</span><span class="o">+</span><span class="s1">'.mat'</span><span class="p">)</span>
+    <span class="n">Numpyfile1</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">loadmat</span><span class="p">(</span><span class="s1">'digit1_stu_train'</span><span class="o">+</span><span class="n">myID</span><span class="o">+</span><span class="s1">'.mat'</span><span class="p">)</span>
+    <span class="n">Numpyfile2</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">loadmat</span><span class="p">(</span><span class="s1">'digit0_testset'</span><span class="o">+</span><span class="s1">'.mat'</span><span class="p">)</span>
+    <span class="n">Numpyfile3</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">loadmat</span><span class="p">(</span><span class="s1">'digit1_testset'</span><span class="o">+</span><span class="s1">'.mat'</span><span class="p">)</span>
+    <span class="n">train0</span> <span class="o">=</span> <span class="n">Numpyfile0</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'target_img'</span><span class="p">)</span>
+    <span class="n">train1</span> <span class="o">=</span> <span class="n">Numpyfile1</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'target_img'</span><span class="p">)</span>
+    <span class="n">test0</span> <span class="o">=</span> <span class="n">Numpyfile2</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'target_img'</span><span class="p">)</span>
+    <span class="n">test1</span> <span class="o">=</span> <span class="n">Numpyfile3</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'target_img'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">train0</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">train1</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">test0</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">test1</span><span class="p">)])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Your trainset and testset are generated successfully!'</span><span class="p">)</span>
+
+    <span class="c1"># flatten the images into single rows</span>
+    <span class="n">ZERO_TRAIN</span> <span class="o">=</span> <span class="n">flatten_image</span><span class="p">(</span><span class="n">train_0</span><span class="p">)</span>
+    <span class="n">ONE_TRAIN</span> <span class="o">=</span> <span class="n">flatten_image</span><span class="p">(</span><span class="n">train_1</span><span class="p">)</span>
+    <span class="n">ZERO_TEST</span> <span class="o">=</span> <span class="n">flatten_image</span><span class="p">(</span><span class="n">test_0</span><span class="p">)</span>
+    <span class="n">ONE_TEST</span> <span class="o">=</span> <span class="n">flatten_image</span><span class="p">(</span><span class="n">test_1</span><span class="p">)</span>
+
+    <span class="c1"># Get the feature columns</span>
+    <span class="n">ZERO_MEANS</span> <span class="o">=</span> <span class="n">get_mean</span><span class="p">(</span><span class="n">ZERO_TRAIN</span><span class="p">)</span>
+    <span class="n">ONE_MEANS</span> <span class="o">=</span> <span class="n">get_mean</span><span class="p">(</span><span class="n">ONE_TRAIN</span><span class="p">)</span>
+    <span class="n">ZERO_TEST_MEANS</span> <span class="o">=</span> <span class="n">get_mean</span><span class="p">(</span><span class="n">ZERO_TEST</span><span class="p">)</span>
+    <span class="n">ONE_TEST_MEANS</span> <span class="o">=</span> <span class="n">get_mean</span><span class="p">(</span><span class="n">ONE_TEST</span><span class="p">)</span>
+
+    <span class="n">ZERO_DEVIATIONS</span> <span class="o">=</span> <span class="n">get_std</span><span class="p">(</span><span class="n">ZERO_TRAIN</span><span class="p">)</span>
+    <span class="n">ONE_DEVIATIONS</span> <span class="o">=</span> <span class="n">get_std</span><span class="p">(</span><span class="n">ONE_TRAIN</span><span class="p">)</span>
+    <span class="n">ZERO_TEST_DEVIATIONS</span> <span class="o">=</span> <span class="n">get_std</span><span class="p">(</span><span class="n">ZERO_TEST</span><span class="p">)</span>
+    <span class="n">ONE_TEST_DEVIATIONS</span> <span class="o">=</span> <span class="n">get_std</span><span class="p">(</span><span class="n">ONE_TEST</span><span class="p">)</span>
+
+    <span class="c1"># put the data into data frames</span>
+    <span class="n">ZERO_TEST_TWO</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="n">mu</span><span class="o">=</span><span class="n">ZERO_TEST_MEANS</span><span class="p">,</span>
+        <span class="n">variance</span><span class="o">=</span><span class="n">ZERO_TEST_DEVIATIONS</span><span class="p">))</span>
+    <span class="n">ONE_TEST_TWO</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span>
+        <span class="n">mu</span><span class="o">=</span><span class="n">ONE_TEST_MEANS</span><span class="p">,</span>
+        <span class="n">variance</span><span class="o">=</span><span class="n">ONE_TEST_DEVIATIONS</span><span class="p">))</span>
+
+    <span class="c1"># calculate the parameters</span>
+    <span class="n">Parameters</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span>
+        <span class="n">zero</span> <span class="o">=</span> <span class="n">get_parameters</span><span class="p">(</span><span class="n">ZERO_MEANS</span><span class="p">,</span> <span class="n">ZERO_DEVIATIONS</span><span class="p">),</span>
+        <span class="n">one</span> <span class="o">=</span> <span class="n">get_parameters</span><span class="p">(</span><span class="n">ONE_MEANS</span><span class="p">,</span> <span class="n">ONE_DEVIATIONS</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="c1"># evaluate the accuracy</span>
+    <span class="n">accuracy</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span><span class="n">ZERO_TEST_TWO</span><span class="p">,</span> <span class="n">ONE_TEST_TWO</span><span class="p">)</span>
+    <span class="n">report_parameters</span><span class="p">(</span><span class="n">Parameters</span><span class="p">)</span>
+    <span class="n">report_accuracy</span><span class="p">(</span><span class="n">accuracy</span><span class="p">)</span>
+    <span class="k">return</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="outline-2" id="outline-container-orgd2e6e1a">
+<h2 id="orgd2e6e1a">End</h2>
+</div>
+</div>
+<aside class="postpromonav">
+<nav>
+<ul class="tags" itemprop="keywords">
+<li><a class="tag p-category" href="../../categories/naive-bayes/" rel="tag">naive-bayes</a></li>
+<li><a class="tag p-category" href="../../categories/project/" rel="tag">project</a></li>
+</ul>
+<ul class="pager hidden-print">
+<li class="previous"><a href="../loading-the-zeros-and-ones/" rel="prev" title="Loading the Zeros and Ones">Previous post</a></li>
+<li class="next"><a href="../k-means-clustering-1/" rel="next" title="K-Means Clustering 1">Next post</a></li>
+</ul>
+</nav>
+</aside>
+</article>
+<!--End of body content-->
+<footer id="footer">Contents © 2020 <a href="mailto:necromuralist@protonmail.com">Cloistered Monkey</a> - Powered by <a href="https://getnikola.com" rel="nofollow">Nikola</a></footer>
+</div>
+</div>
+<script src="../../assets/js/all-nocdn.js"></script>
+<script>
+
+    baguetteBox.run('div#content', {
+        ignoreClass: 'islink',
+        captions: function(element) {
+            return element.getElementsByTagName('img')[0].alt;
+    }});
+</script>
+</body>
+</html>
