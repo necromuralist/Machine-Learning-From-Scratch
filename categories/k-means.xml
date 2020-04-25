@@ -1,77 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ML From Scratch (Posts about k-means)</title><link>https://necromuralist.github.io/Machine-Learning-From-Scratch/</link><description></description><atom:link href="https://necromuralist.github.io/Machine-Learning-From-Scratch/categories/k-means.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:necromuralist@protonmail.com"&gt;Cloistered Monkey&lt;/a&gt; </copyright><lastBuildDate>Mon, 20 Apr 2020 00:07:41 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>K-Means Clustering 2</title><link>https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/</link><dc:creator>Cloistered Monkey</dc:creator><description>&lt;div id="table-of-contents"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ML From Scratch (Posts about k-means)</title><link>https://necromuralist.github.io/Machine-Learning-From-Scratch/</link><description></description><atom:link href="https://necromuralist.github.io/Machine-Learning-From-Scratch/categories/k-means.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2020 &lt;a href="mailto:necromuralist@protonmail.com"&gt;Cloistered Monkey&lt;/a&gt; </copyright><lastBuildDate>Sat, 25 Apr 2020 20:22:33 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>K-Means Clustering 2</title><link>https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/</link><dc:creator>Cloistered Monkey</dc:creator><description>&lt;div id="table-of-contents"&gt;
 &lt;h2&gt;Table of Contents&lt;/h2&gt;
 &lt;div id="text-table-of-contents"&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orgce29335"&gt;Beginning&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org81a7497"&gt;Beginning&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org1d1f6d4"&gt;Imports&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org1d64d11"&gt;Imports&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org37ed010"&gt;Python&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orgf84093b"&gt;PyPi&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orgdccd6b8"&gt;Coursera&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orgc48fbb8"&gt;Others&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org0d0122a"&gt;Python&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org5168d72"&gt;PyPi&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org0a2b0e1"&gt;Coursera&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org24328a3"&gt;Others&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org2ab3f86"&gt;Set Up&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orgb1c24d7"&gt;Set Up&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org02d535e"&gt;Tables&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orgd03eb41"&gt;Plotting&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orgb58aa3d"&gt;Tables&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org6fc751c"&gt;Plotting&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orgc948151"&gt;The Data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orgc322dca"&gt;The Data&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org813c96e"&gt;Middle&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orgfb6091a"&gt;Middle&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orga683819"&gt;The Data&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org5ca8d7c"&gt;Coursera's Splitting&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org6c7eb8c"&gt;Initial Points&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org7d8d9a6"&gt;The Data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orgbfd17e8"&gt;Coursera's Splitting&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org6decfdf"&gt;Initial Points&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org78abe30"&gt;First Points&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orga0165a4"&gt;The Initial Points&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org9fa6ac3"&gt;First Points&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orgc2179ec"&gt;The Initial Points&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org2eaf134"&gt;From the Previous Section&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orgcf7f675"&gt;From the Previous Section&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orgef8c080"&gt;Clusters&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orgf27b70a"&gt;Get Centroids&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org40c0067"&gt;Clusters&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org6c9ca28"&gt;Get Centroids&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orgcdb19d2"&gt;The Objective Function&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org9620f86"&gt;Putting Them All Together&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orgad7c48e"&gt;K From Two To Ten&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org155f1ca"&gt;The Objective Function&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orge3aed30"&gt;Putting Them All Together&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orgd199688"&gt;K From Two To Ten&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org274ae8c"&gt;End&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orge629954"&gt;End&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org9c84312"&gt;Submissions&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orgcb2296a"&gt;Submissions&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orgaf90fe1"&gt;Plotting the two runs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orgf9d281d"&gt;Plotting the two runs&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orgd97a9a0"&gt;The ID-Specific Data&lt;/a&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orgd828b87"&gt;The ID-Specific Data&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org4998c8d"&gt;First Check&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orgd636583"&gt;Second Check&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org5ee31ee"&gt;First Check&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#orgdc9b6b5"&gt;Second Check&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
+&lt;li&gt;&lt;a href="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/#org9ebc40b"&gt;Sklearn Double check&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgce29335" class="outline-2"&gt;
-&lt;h2 id="orgce29335"&gt;Beginning&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgce29335"&gt;
+&lt;div id="outline-container-org81a7497" class="outline-2"&gt;
+&lt;h2 id="org81a7497"&gt;Beginning&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org81a7497"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org1d1f6d4" class="outline-3"&gt;
-&lt;h3 id="org1d1f6d4"&gt;Imports&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org1d1f6d4"&gt;
+&lt;div id="outline-container-org1d64d11" class="outline-3"&gt;
+&lt;h3 id="org1d64d11"&gt;Imports&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org1d64d11"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org37ed010" class="outline-4"&gt;
-&lt;h4 id="org37ed010"&gt;Python&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org37ed010"&gt;
+&lt;div id="outline-container-org0d0122a" class="outline-4"&gt;
+&lt;h4 id="org0d0122a"&gt;Python&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org0d0122a"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;collections&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;defaultdict&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;namedtuple&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;functools&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;partial&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;pathlib&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Path&lt;/span&gt;
@@ -80,52 +81,54 @@
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgf84093b" class="outline-4"&gt;
-&lt;h4 id="orgf84093b"&gt;PyPi&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgf84093b"&gt;
+&lt;div id="outline-container-org5168d72" class="outline-4"&gt;
+&lt;h4 id="org5168d72"&gt;PyPi&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org5168d72"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;expects&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
     &lt;span class="n"&gt;be_true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
     &lt;span class="n"&gt;expect&lt;/span&gt;
 &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.cluster&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;KMeans&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;tabulate&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;tabulate&lt;/span&gt;
+
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;dotenv&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;hvplot.pandas&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pyplot&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;seaborn&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;tabulate&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;tabulate&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgdccd6b8" class="outline-4"&gt;
-&lt;h4 id="orgdccd6b8"&gt;Coursera&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgdccd6b8"&gt;
+&lt;div id="outline-container-org0a2b0e1" class="outline-4"&gt;
+&lt;h4 id="org0a2b0e1"&gt;Coursera&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org0a2b0e1"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;ml_from_scratch.coursera.Precode2&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;initial_S2&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgc48fbb8" class="outline-4"&gt;
-&lt;h4 id="orgc48fbb8"&gt;Others&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgc48fbb8"&gt;
+&lt;div id="outline-container-org24328a3" class="outline-4"&gt;
+&lt;h4 id="org24328a3"&gt;Others&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org24328a3"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;graeae&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;EmbedHoloviews&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org2ab3f86" class="outline-3"&gt;
-&lt;h3 id="org2ab3f86"&gt;Set Up&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org2ab3f86"&gt;
+&lt;div id="outline-container-orgb1c24d7" class="outline-3"&gt;
+&lt;h3 id="orgb1c24d7"&gt;Set Up&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgb1c24d7"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org02d535e" class="outline-4"&gt;
-&lt;h4 id="org02d535e"&gt;Tables&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org02d535e"&gt;
+&lt;div id="outline-container-orgb58aa3d" class="outline-4"&gt;
+&lt;h4 id="orgb58aa3d"&gt;Tables&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgb58aa3d"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;TABLE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;partial&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tabulate&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;tablefmt&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"orgtbl"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;showindex&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"keys"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgd03eb41" class="outline-4"&gt;
-&lt;h4 id="orgd03eb41"&gt;Plotting&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgd03eb41"&gt;
+&lt;div id="outline-container-org6fc751c" class="outline-4"&gt;
+&lt;h4 id="org6fc751c"&gt;Plotting&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org6fc751c"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt; &lt;span class="n"&gt;SLUG&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"k-means-clustering-2"&lt;/span&gt;
  &lt;span class="n"&gt;OUTPUT_PATH&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;"../files/notebooks/&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;SLUG&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -148,9 +151,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgc948151" class="outline-3"&gt;
-&lt;h3 id="orgc948151"&gt;The Data&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgc948151"&gt;
+&lt;div id="outline-container-orgc322dca" class="outline-3"&gt;
+&lt;h3 id="orgc322dca"&gt;The Data&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgc322dca"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;dotenv&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;load_dotenv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;override&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;DATA_PATH&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"KNN_DATA"&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;expanduser&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;numpy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;load&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;DATA_PATH&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -164,13 +167,13 @@
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org813c96e" class="outline-2"&gt;
-&lt;h2 id="org813c96e"&gt;Middle&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org813c96e"&gt;
+&lt;div id="outline-container-orgfb6091a" class="outline-2"&gt;
+&lt;h2 id="orgfb6091a"&gt;Middle&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgfb6091a"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orga683819" class="outline-3"&gt;
-&lt;h3 id="orga683819"&gt;The Data&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orga683819"&gt;
+&lt;div id="outline-container-org7d8d9a6" class="outline-3"&gt;
+&lt;h3 id="org7d8d9a6"&gt;The Data&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org7d8d9a6"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;figure&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;axe&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pyplot&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;subplots&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 
 &lt;span class="n"&gt;figure&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;suptitle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"X vs Y"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;weight&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"bold"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -184,9 +187,9 @@
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org5ca8d7c" class="outline-3"&gt;
-&lt;h3 id="org5ca8d7c"&gt;Coursera's Splitting&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org5ca8d7c"&gt;
+&lt;div id="outline-container-orgbfd17e8" class="outline-3"&gt;
+&lt;h3 id="orgbfd17e8"&gt;Coursera's Splitting&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgbfd17e8"&gt;
 &lt;p&gt;
 The &lt;code&gt;initial_S2&lt;/code&gt; gives you the k and initial centroid to use for submissions. Calling it also sets the random seed.
 &lt;/p&gt;
@@ -206,16 +209,16 @@ Strategy 2: k and initial points
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org6c7eb8c" class="outline-3"&gt;
-&lt;h3 id="org6c7eb8c"&gt;Initial Points&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org6c7eb8c"&gt;
+&lt;div id="outline-container-org6decfdf" class="outline-3"&gt;
+&lt;h3 id="org6decfdf"&gt;Initial Points&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org6decfdf"&gt;
 &lt;p&gt;
 The main difference between this section and the prior one is that instead of choosing all the initial points at random you pick one point at random and the for each of the remaining centroids you calculate the average distance between each point and all the previous centroids then you pick the point that is the furthest from the previous centroids (on average).
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org78abe30" class="outline-4"&gt;
-&lt;h4 id="org78abe30"&gt;First Points&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org78abe30"&gt;
+&lt;div id="outline-container-org9fa6ac3" class="outline-4"&gt;
+&lt;h4 id="org9fa6ac3"&gt;First Points&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org9fa6ac3"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;random_point&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;points&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;numpy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;numpy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="sd"&gt;"""get a random point from the data&lt;/span&gt;
 
@@ -239,9 +242,9 @@ The main difference between this section and the prior one is that instead of ch
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orga0165a4" class="outline-4"&gt;
-&lt;h4 id="orga0165a4"&gt;The Initial Points&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orga0165a4"&gt;
+&lt;div id="outline-container-orgc2179ec" class="outline-4"&gt;
+&lt;h4 id="orgc2179ec"&gt;The Initial Points&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgc2179ec"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;initial_centers&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;points&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;numpy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
 		    &lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;bool&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
 		    &lt;span class="n"&gt;first&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;numpy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;numpy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -292,16 +295,16 @@ The main difference between this section and the prior one is that instead of ch
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org2eaf134" class="outline-3"&gt;
-&lt;h3 id="org2eaf134"&gt;From the Previous Section&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org2eaf134"&gt;
+&lt;div id="outline-container-orgcf7f675" class="outline-3"&gt;
+&lt;h3 id="orgcf7f675"&gt;From the Previous Section&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgcf7f675"&gt;
 &lt;p&gt;
 The rest of the exercise is the same as the previous exercise.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgef8c080" class="outline-4"&gt;
-&lt;h4 id="orgef8c080"&gt;Clusters&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgef8c080"&gt;
+&lt;div id="outline-container-org40c0067" class="outline-4"&gt;
+&lt;h4 id="org40c0067"&gt;Clusters&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org40c0067"&gt;
 &lt;p&gt;
 This is just a namedtuple to hold the clusters and centroids.
 &lt;/p&gt;
@@ -309,9 +312,9 @@ This is just a namedtuple to hold the clusters and centroids.
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgf27b70a" class="outline-4"&gt;
-&lt;h4 id="orgf27b70a"&gt;Get Centroids&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgf27b70a"&gt;
+&lt;div id="outline-container-org6c9ca28" class="outline-4"&gt;
+&lt;h4 id="org6c9ca28"&gt;Get Centroids&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org6c9ca28"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;update_centroids&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;centroids&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;numpy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;points&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;numpy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Clusters&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
     &lt;span class="sd"&gt;"""Get updated centroids&lt;/span&gt;
 
@@ -338,9 +341,9 @@ This is just a namedtuple to hold the clusters and centroids.
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgcdb19d2" class="outline-3"&gt;
-&lt;h3 id="orgcdb19d2"&gt;The Objective Function&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgcdb19d2"&gt;
+&lt;div id="outline-container-org155f1ca" class="outline-3"&gt;
+&lt;h3 id="org155f1ca"&gt;The Objective Function&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org155f1ca"&gt;
 &lt;p&gt;
 The objective of training is to minimize the variation within a cluster. In this case we're measuring that as the sum of the squared distances from the points within a cluster to the mean of the cluster.
 &lt;/p&gt;
@@ -360,23 +363,23 @@ The objective of training is to minimize the variation within a cluster. In this
 &lt;span class="sd"&gt;    Returns:&lt;/span&gt;
 &lt;span class="sd"&gt;     the score for the cluster variation&lt;/span&gt;
 &lt;span class="sd"&gt;    """&lt;/span&gt;
-    &lt;span class="n"&gt;variation&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+    &lt;span class="n"&gt;residual_sum_of_squares&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
     &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;cluster&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;clusters&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
 	&lt;span class="n"&gt;center&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;numpy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cluster&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-	&lt;span class="n"&gt;variation&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+	&lt;span class="n"&gt;residual_sum_of_squares&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
 	    &lt;span class="n"&gt;numpy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
 		&lt;span class="n"&gt;numpy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;square&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
 		    &lt;span class="n"&gt;cluster&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;center&lt;/span&gt;
 		&lt;span class="p"&gt;)&lt;/span&gt;
 	    &lt;span class="p"&gt;)&lt;/span&gt;
 	&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;variation&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;residual_sum_of_squares&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org9620f86" class="outline-3"&gt;
-&lt;h3 id="org9620f86"&gt;Putting Them All Together&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org9620f86"&gt;
+&lt;div id="outline-container-orge3aed30" class="outline-3"&gt;
+&lt;h3 id="orge3aed30"&gt;Putting Them All Together&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orge3aed30"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;k_means&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;numpy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
 	    &lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;bool&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
 	    &lt;span class="n"&gt;centroids&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;numpy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;Clusters&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -404,9 +407,9 @@ The objective of training is to minimize the variation within a cluster. In this
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgad7c48e" class="outline-3"&gt;
-&lt;h3 id="orgad7c48e"&gt;K From Two To Ten&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgad7c48e"&gt;
+&lt;div id="outline-container-orgd199688" class="outline-3"&gt;
+&lt;h3 id="orgd199688"&gt;K From Two To Ten&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgd199688"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Outcomes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;namedtuple&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Outcomes"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;"losses"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;"points"&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -503,9 +506,9 @@ The objective of training is to minimize the variation within a cluster. In this
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/loss_vs_k.html" style="width:100%" height="800"&gt;
-  &lt;p&gt;Figure Missing&lt;/p&gt;
-&lt;/object&gt;
+: &lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/loss_vs_k.html" style="width:100%" height="800"&gt;
+:   &lt;p&gt;Figure Missing&lt;/p&gt;
+: &lt;/object&gt;
 
 &lt;p&gt;
 It looks like 6 clusters is about as much as you want to go.
@@ -538,9 +541,9 @@ It looks like 6 clusters is about as much as you want to go.
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/clusters_10.html" style="width:100%" height="800"&gt;
-  &lt;p&gt;Figure Missing&lt;/p&gt;
-&lt;/object&gt;
+: &lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/clusters_10.html" style="width:100%" height="800"&gt;
+:   &lt;p&gt;Figure Missing&lt;/p&gt;
+: &lt;/object&gt;
 
 &lt;p&gt;
 This does sort of look like the clusters did a little better than the random centroids did, but there's a cluster with only one point at the top right of the plot. It's probably overfitting.
@@ -549,17 +552,17 @@ This does sort of look like the clusters did a little better than the random cen
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org274ae8c" class="outline-2"&gt;
-&lt;h2 id="org274ae8c"&gt;End&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org274ae8c"&gt;
+&lt;div id="outline-container-orge629954" class="outline-2"&gt;
+&lt;h2 id="orge629954"&gt;End&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orge629954"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org9c84312" class="outline-3"&gt;
-&lt;h3 id="org9c84312"&gt;Submissions&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org9c84312"&gt;
+&lt;div id="outline-container-orgcb2296a" class="outline-3"&gt;
+&lt;h3 id="orgcb2296a"&gt;Submissions&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgcb2296a"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgaf90fe1" class="outline-4"&gt;
-&lt;h4 id="orgaf90fe1"&gt;Plotting the two runs&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgaf90fe1"&gt;
+&lt;div id="outline-container-orgf9d281d" class="outline-4"&gt;
+&lt;h4 id="orgf9d281d"&gt;Plotting the two runs&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgf9d281d"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;outcomes_2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;grid_search&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="n"&gt;figure&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;axe&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pyplot&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;subplots&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="n"&gt;figure&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;suptitle&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Strategy Two"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;weight&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"bold"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -577,6 +580,84 @@ This does sort of look like the clusters did a little better than the random cen
 &lt;/p&gt;
 &lt;/div&gt;
 
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;TABLE&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;outcomes_2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;losses&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;K&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;Loss&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;Run&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;2&lt;/td&gt;
+&lt;td class="org-right"&gt;2833.41&lt;/td&gt;
+&lt;td class="org-left"&gt;Second&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;3&lt;/td&gt;
+&lt;td class="org-right"&gt;2526.61&lt;/td&gt;
+&lt;td class="org-left"&gt;Second&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;4&lt;/td&gt;
+&lt;td class="org-right"&gt;2099.22&lt;/td&gt;
+&lt;td class="org-left"&gt;Second&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;5&lt;/td&gt;
+&lt;td class="org-right"&gt;2133.39&lt;/td&gt;
+&lt;td class="org-left"&gt;Second&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;6&lt;/td&gt;
+&lt;td class="org-right"&gt;2044.09&lt;/td&gt;
+&lt;td class="org-left"&gt;Second&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;7&lt;/td&gt;
+&lt;td class="org-right"&gt;1953.75&lt;/td&gt;
+&lt;td class="org-left"&gt;Second&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;8&lt;/td&gt;
+&lt;td class="org-right"&gt;1899.93&lt;/td&gt;
+&lt;td class="org-left"&gt;Second&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;9&lt;/td&gt;
+&lt;td class="org-right"&gt;1899.1&lt;/td&gt;
+&lt;td class="org-left"&gt;Second&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-right"&gt;10&lt;/td&gt;
+&lt;td class="org-right"&gt;1876.91&lt;/td&gt;
+&lt;td class="org-left"&gt;Second&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
 &lt;p&gt;
 It kind of looks like either k=4 or k=6 is the actual optimum (based on the assumption that the biggest drop indicates the right level).
 &lt;/p&gt;
@@ -587,9 +668,9 @@ It kind of looks like either k=4 or k=6 is the actual optimum (based on the assu
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/clusters_2.html" style="width:100%" height="800"&gt;
-  &lt;p&gt;Figure Missing&lt;/p&gt;
-&lt;/object&gt;
+: &lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/clusters_2.html" style="width:100%" height="800"&gt;
+:   &lt;p&gt;Figure Missing&lt;/p&gt;
+: &lt;/object&gt;
 
 
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plot_clusters&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;outcomes_2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -598,9 +679,9 @@ It kind of looks like either k=4 or k=6 is the actual optimum (based on the assu
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/clusters_3.html" style="width:100%" height="800"&gt;
-  &lt;p&gt;Figure Missing&lt;/p&gt;
-&lt;/object&gt;
+: &lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/clusters_3.html" style="width:100%" height="800"&gt;
+:   &lt;p&gt;Figure Missing&lt;/p&gt;
+: &lt;/object&gt;
 
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plot_clusters&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;outcomes_2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -608,9 +689,9 @@ It kind of looks like either k=4 or k=6 is the actual optimum (based on the assu
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/clusters_4.html" style="width:100%" height="800"&gt;
-  &lt;p&gt;Figure Missing&lt;/p&gt;
-&lt;/object&gt;
+: &lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/clusters_4.html" style="width:100%" height="800"&gt;
+:   &lt;p&gt;Figure Missing&lt;/p&gt;
+: &lt;/object&gt;
 
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plot_clusters&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;outcomes_2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -618,9 +699,9 @@ It kind of looks like either k=4 or k=6 is the actual optimum (based on the assu
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/clusters_5.html" style="width:100%" height="800"&gt;
-  &lt;p&gt;Figure Missing&lt;/p&gt;
-&lt;/object&gt;
+: &lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/clusters_5.html" style="width:100%" height="800"&gt;
+:   &lt;p&gt;Figure Missing&lt;/p&gt;
+: &lt;/object&gt;
 
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plot_clusters&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;outcomes_2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -628,9 +709,9 @@ It kind of looks like either k=4 or k=6 is the actual optimum (based on the assu
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/clusters_6.html" style="width:100%" height="800"&gt;
-  &lt;p&gt;Figure Missing&lt;/p&gt;
-&lt;/object&gt;
+: &lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/clusters_6.html" style="width:100%" height="800"&gt;
+:   &lt;p&gt;Figure Missing&lt;/p&gt;
+: &lt;/object&gt;
 
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plot_clusters&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;outcomes_2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -638,9 +719,9 @@ It kind of looks like either k=4 or k=6 is the actual optimum (based on the assu
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/clusters_7.html" style="width:100%" height="800"&gt;
-  &lt;p&gt;Figure Missing&lt;/p&gt;
-&lt;/object&gt;
+: &lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/clusters_7.html" style="width:100%" height="800"&gt;
+:   &lt;p&gt;Figure Missing&lt;/p&gt;
+: &lt;/object&gt;
 
 
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plot_clusters&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;outcomes_2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -649,9 +730,9 @@ It kind of looks like either k=4 or k=6 is the actual optimum (based on the assu
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/clusters_8.html" style="width:100%" height="800"&gt;
-  &lt;p&gt;Figure Missing&lt;/p&gt;
-&lt;/object&gt;
+: &lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/clusters_8.html" style="width:100%" height="800"&gt;
+:   &lt;p&gt;Figure Missing&lt;/p&gt;
+: &lt;/object&gt;
 
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plot_clusters&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;outcomes_2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;9&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -659,9 +740,9 @@ It kind of looks like either k=4 or k=6 is the actual optimum (based on the assu
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/clusters_9.html" style="width:100%" height="800"&gt;
-  &lt;p&gt;Figure Missing&lt;/p&gt;
-&lt;/object&gt;
+: &lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/clusters_9.html" style="width:100%" height="800"&gt;
+:   &lt;p&gt;Figure Missing&lt;/p&gt;
+: &lt;/object&gt;
 
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plot_clusters&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;outcomes_2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -669,9 +750,9 @@ It kind of looks like either k=4 or k=6 is the actual optimum (based on the assu
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;embedded&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/clusters_10.html" style="width:100%" height="800"&gt;
-  &lt;p&gt;Figure Missing&lt;/p&gt;
-&lt;/object&gt;
+: &lt;object type="text/html" data="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/clusters_10.html" style="width:100%" height="800"&gt;
+:   &lt;p&gt;Figure Missing&lt;/p&gt;
+: &lt;/object&gt;
 
 &lt;p&gt;
 Since the points don't have any meaning (at least not to me) it's hard to say what the best clustering effects are. One of the problems with this dataset (with regards to k-means) is that the data that looks contiguous isn't necessary clustered in circles, which is what the k-means requires to work best. I think that 9 clusters has the "cleanest" clustering, at least visually.
@@ -680,9 +761,9 @@ Since the points don't have any meaning (at least not to me) it's hard to say wh
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgd97a9a0" class="outline-3"&gt;
-&lt;h3 id="orgd97a9a0"&gt;The ID-Specific Data&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgd97a9a0"&gt;
+&lt;div id="outline-container-orgd828b87" class="outline-3"&gt;
+&lt;h3 id="orgd828b87"&gt;The ID-Specific Data&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgd828b87"&gt;
 &lt;p&gt;
 For the numeric submission we need to run k-means over the two points that their pre-defined functions produced.
 &lt;/p&gt;
@@ -707,9 +788,9 @@ For the numeric submission we need to run k-means over the two points that their
 		      &lt;span class="n"&gt;loss&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;score&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org4998c8d" class="outline-4"&gt;
-&lt;h4 id="org4998c8d"&gt;First Check&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-org4998c8d"&gt;
+&lt;div id="outline-container-org5ee31ee" class="outline-4"&gt;
+&lt;h4 id="org5ee31ee"&gt;First Check&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-org5ee31ee"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;centroids_1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;initial_centers&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;k1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;points&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;first&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;i_point1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;outcome_3&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;check_centroids&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;centroids&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;centroids_1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;K: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;k1&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -720,25 +801,25 @@ For the numeric submission we need to run k-means over the two points that their
 &lt;pre class="example"&gt;
 First Centroid: [3.81135136 5.98125361]
 k_means starting centroids: [[3.81135136 5.98125361]
- [4.59083727 7.53490523]
- [4.9511002  8.08344216]
- [1.9311184  6.93692984]]
+ [2.37650624 8.15241778]
+ [3.2881521  0.71796855]
+ [3.2115245  1.1089788 ]]
 
 K: 4
 Final Centroids:
-[[2.45162074 6.08990448]
- [7.79475201 8.45021454]
- [5.46810558 2.23600141]
- [5.44895368 6.72531296]]
+[[2.8337661  6.9189569 ]
+ [6.57957643 7.57333595]
+ [7.41419243 2.32169114]
+ [3.36373274 2.59646706]]
 
-Objective Function: 2356.702968522488
+Objective Function: 2212.357518997504
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgd636583" class="outline-4"&gt;
-&lt;h4 id="orgd636583"&gt;Second Check&lt;/h4&gt;
-&lt;div class="outline-text-4" id="text-orgd636583"&gt;
+&lt;div id="outline-container-orgdc9b6b5" class="outline-4"&gt;
+&lt;h4 id="orgdc9b6b5"&gt;Second Check&lt;/h4&gt;
+&lt;div class="outline-text-4" id="text-orgdc9b6b5"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;centroids_2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;initial_centers&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;k2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;points&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;first&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;i_point2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;outcome_4&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;check_centroids&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;centroids&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;centroids_2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;K: &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;k2&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -748,25 +829,75 @@ Objective Function: 2356.702968522488
 
 &lt;pre class="example"&gt;
 First Centroid: [2.16641743 2.99414637]
-k_means starting centroids: [[2.16641743 2.99414637]
- [9.26998864 9.62492869]
- [2.37650624 8.15241778]
- [3.2881521  0.71796855]
- [3.2115245  1.1089788 ]
- [4.66005931 7.06059555]]
+k_means starting centroids: [[ 2.16641743  2.99414637]
+ [ 9.26998864  9.62492869]
+ [ 2.37650624  8.15241778]
+ [ 3.85212146 -1.08715226]
+ [ 3.2115245   1.1089788 ]
+ [ 4.66005931  7.06059555]]
 
 K: 6
 Final Centroids:
 [[2.56333815 6.9782248 ]
  [7.75648325 8.55668928]
- [7.41419243 2.32169114]
- [3.49556658 3.56611232]
- [5.46427736 6.83771354]
- [3.14506148 0.90770655]]
+ [7.55616782 2.23516796]
+ [5.0422374  3.90210574]
+ [2.68198633 2.09461587]
+ [5.37943226 7.00298984]]
 
-Objective Function: 1963.908359892354
+Objective Function: 1930.6429919263946
 &lt;/pre&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org9ebc40b" class="outline-3"&gt;
+&lt;h3 id="org9ebc40b"&gt;Sklearn Double check&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org9ebc40b"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;kmeans_1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;KMeans&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n_clusters&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;k1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;init&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;centroids_1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;kmeans_1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cluster_centers_&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;clusters_sk_1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;defaultdict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;predictions&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;kmeans_1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;predict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;point&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;clusters_sk_1&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;predictions&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;point&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;clusters_sk_1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;numpy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;clusters_sk_1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;()))&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;objective&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;clusters_sk_1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre class="example"&gt;
+[[6.57957643 7.57333595]
+ [2.8337661  6.9189569 ]
+ [7.41419243 2.32169114]
+ [3.36373274 2.59646706]]
+2212.357518997504
+/home/athena/.virtualenvs/asu-cse-575/lib/python3.7/site-packages/ipykernel_launcher.py:1: RuntimeWarning: Explicit initial center position passed: performing only one init in k-means instead of n_init=10
+  """Entry point for launching an IPython kernel.
+&lt;/pre&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;kmeans&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;KMeans&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n_clusters&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;k2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;init&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;centroids_2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;kmeans&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cluster_centers_&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;clusters_sk&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;defaultdict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;predictions&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;kmeans&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;predict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;point&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;clusters_sk&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;predictions&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;point&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;clusters_sk&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;numpy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;clusters_sk&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="p"&gt;()))&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;objective&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;clusters_sk&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre class="example"&gt;
+[[2.68198633 2.09461587]
+ [7.75648325 8.55668928]
+ [2.56333815 6.9782248 ]
+ [7.55616782 2.23516796]
+ [5.0422374  3.90210574]
+ [5.37943226 7.00298984]]
+1930.6429919263946
+/home/athena/.virtualenvs/asu-cse-575/lib/python3.7/site-packages/ipykernel_launcher.py:1: RuntimeWarning: Explicit initial center position passed: performing only one init in k-means instead of n_init=10
+  """Entry point for launching an IPython kernel.
+&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;</description><category>clustering</category><category>k-means</category><category>project</category><category>unsupervised</category><guid>https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/</guid><pubDate>Mon, 13 Apr 2020 06:25:10 GMT</pubDate></item></channel></rss>

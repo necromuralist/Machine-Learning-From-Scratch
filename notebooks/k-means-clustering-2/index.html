@@ -2,7 +2,7 @@
 <html lang="en" prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
 <head>
 <meta charset="utf-8">
-<meta content="A variation of initial center-of-mass selection for K-Means." name="description">
+<meta content="A variation of initial center-of-mass selection for K-Means (K-Mean++)." name="description">
 <meta content="width=device-width, initial-scale=1" name="viewport">
 <title>K-Means Clustering 2 | ML From Scratch</title>
 <link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
@@ -22,7 +22,7 @@
 <meta content="ML From Scratch" property="og:site_name">
 <meta content="K-Means Clustering 2" property="og:title">
 <meta content="https://necromuralist.github.io/Machine-Learning-From-Scratch/notebooks/k-means-clustering-2/" property="og:url">
-<meta content="A variation of initial center-of-mass selection for K-Means." property="og:description">
+<meta content="A variation of initial center-of-mass selection for K-Means (K-Mean++)." property="og:description">
 <meta content="article" property="og:type">
 <meta content="2020-04-12T23:25:10-07:00" property="article:published_time">
 <meta content="clustering" property="article:tag">
@@ -70,73 +70,74 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgce29335">Beginning</a>
+<li><a href="#org81a7497">Beginning</a>
 <ul>
-<li><a href="#org1d1f6d4">Imports</a>
+<li><a href="#org1d64d11">Imports</a>
 <ul>
-<li><a href="#org37ed010">Python</a></li>
-<li><a href="#orgf84093b">PyPi</a></li>
-<li><a href="#orgdccd6b8">Coursera</a></li>
-<li><a href="#orgc48fbb8">Others</a></li>
+<li><a href="#org0d0122a">Python</a></li>
+<li><a href="#org5168d72">PyPi</a></li>
+<li><a href="#org0a2b0e1">Coursera</a></li>
+<li><a href="#org24328a3">Others</a></li>
 </ul>
 </li>
-<li><a href="#org2ab3f86">Set Up</a>
+<li><a href="#orgb1c24d7">Set Up</a>
 <ul>
-<li><a href="#org02d535e">Tables</a></li>
-<li><a href="#orgd03eb41">Plotting</a></li>
+<li><a href="#orgb58aa3d">Tables</a></li>
+<li><a href="#org6fc751c">Plotting</a></li>
 </ul>
 </li>
-<li><a href="#orgc948151">The Data</a></li>
+<li><a href="#orgc322dca">The Data</a></li>
 </ul>
 </li>
-<li><a href="#org813c96e">Middle</a>
+<li><a href="#orgfb6091a">Middle</a>
 <ul>
-<li><a href="#orga683819">The Data</a></li>
-<li><a href="#org5ca8d7c">Coursera's Splitting</a></li>
-<li><a href="#org6c7eb8c">Initial Points</a>
+<li><a href="#org7d8d9a6">The Data</a></li>
+<li><a href="#orgbfd17e8">Coursera's Splitting</a></li>
+<li><a href="#org6decfdf">Initial Points</a>
 <ul>
-<li><a href="#org78abe30">First Points</a></li>
-<li><a href="#orga0165a4">The Initial Points</a></li>
+<li><a href="#org9fa6ac3">First Points</a></li>
+<li><a href="#orgc2179ec">The Initial Points</a></li>
 </ul>
 </li>
-<li><a href="#org2eaf134">From the Previous Section</a>
+<li><a href="#orgcf7f675">From the Previous Section</a>
 <ul>
-<li><a href="#orgef8c080">Clusters</a></li>
-<li><a href="#orgf27b70a">Get Centroids</a></li>
+<li><a href="#org40c0067">Clusters</a></li>
+<li><a href="#org6c9ca28">Get Centroids</a></li>
 </ul>
 </li>
-<li><a href="#orgcdb19d2">The Objective Function</a></li>
-<li><a href="#org9620f86">Putting Them All Together</a></li>
-<li><a href="#orgad7c48e">K From Two To Ten</a></li>
+<li><a href="#org155f1ca">The Objective Function</a></li>
+<li><a href="#orge3aed30">Putting Them All Together</a></li>
+<li><a href="#orgd199688">K From Two To Ten</a></li>
 </ul>
 </li>
-<li><a href="#org274ae8c">End</a>
+<li><a href="#orge629954">End</a>
 <ul>
-<li><a href="#org9c84312">Submissions</a>
+<li><a href="#orgcb2296a">Submissions</a>
 <ul>
-<li><a href="#orgaf90fe1">Plotting the two runs</a></li>
+<li><a href="#orgf9d281d">Plotting the two runs</a></li>
 </ul>
 </li>
-<li><a href="#orgd97a9a0">The ID-Specific Data</a>
+<li><a href="#orgd828b87">The ID-Specific Data</a>
 <ul>
-<li><a href="#org4998c8d">First Check</a></li>
-<li><a href="#orgd636583">Second Check</a></li>
+<li><a href="#org5ee31ee">First Check</a></li>
+<li><a href="#orgdc9b6b5">Second Check</a></li>
 </ul>
 </li>
+<li><a href="#org9ebc40b">Sklearn Double check</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div class="outline-2" id="outline-container-orgce29335">
-<h2 id="orgce29335">Beginning</h2>
-<div class="outline-text-2" id="text-orgce29335"></div>
-<div class="outline-3" id="outline-container-org1d1f6d4">
-<h3 id="org1d1f6d4">Imports</h3>
-<div class="outline-text-3" id="text-org1d1f6d4"></div>
-<div class="outline-4" id="outline-container-org37ed010">
-<h4 id="org37ed010">Python</h4>
-<div class="outline-text-4" id="text-org37ed010">
+<div class="outline-2" id="outline-container-org81a7497">
+<h2 id="org81a7497">Beginning</h2>
+<div class="outline-text-2" id="text-org81a7497"></div>
+<div class="outline-3" id="outline-container-org1d64d11">
+<h3 id="org1d64d11">Imports</h3>
+<div class="outline-text-3" id="text-org1d64d11"></div>
+<div class="outline-4" id="outline-container-org0d0122a">
+<h4 id="org0d0122a">Python</h4>
+<div class="outline-text-4" id="text-org0d0122a">
 <div class="highlight">
 <pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span><span class="p">,</span> <span class="n">namedtuple</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
@@ -146,55 +147,57 @@
 </pre></div>
 </div>
 </div>
-<div class="outline-4" id="outline-container-orgf84093b">
-<h4 id="orgf84093b">PyPi</h4>
-<div class="outline-text-4" id="text-orgf84093b">
+<div class="outline-4" id="outline-container-org5168d72">
+<h4 id="org5168d72">PyPi</h4>
+<div class="outline-text-4" id="text-org5168d72">
 <div class="highlight">
 <pre><span></span><span class="kn">from</span> <span class="nn">expects</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">be_true</span><span class="p">,</span>
     <span class="n">expect</span>
 <span class="p">)</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+<span class="kn">from</span> <span class="nn">tabulate</span> <span class="kn">import</span> <span class="n">tabulate</span>
+
 <span class="kn">import</span> <span class="nn">dotenv</span>
 <span class="kn">import</span> <span class="nn">hvplot.pandas</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">pyplot</span>
 <span class="kn">import</span> <span class="nn">numpy</span>
 <span class="kn">import</span> <span class="nn">pandas</span>
 <span class="kn">import</span> <span class="nn">seaborn</span>
-<span class="kn">from</span> <span class="nn">tabulate</span> <span class="kn">import</span> <span class="n">tabulate</span>
 </pre></div>
 </div>
 </div>
-<div class="outline-4" id="outline-container-orgdccd6b8">
-<h4 id="orgdccd6b8">Coursera</h4>
-<div class="outline-text-4" id="text-orgdccd6b8">
+<div class="outline-4" id="outline-container-org0a2b0e1">
+<h4 id="org0a2b0e1">Coursera</h4>
+<div class="outline-text-4" id="text-org0a2b0e1">
 <div class="highlight">
 <pre><span></span><span class="kn">from</span> <span class="nn">ml_from_scratch.coursera.Precode2</span> <span class="kn">import</span> <span class="n">initial_S2</span>
 </pre></div>
 </div>
 </div>
-<div class="outline-4" id="outline-container-orgc48fbb8">
-<h4 id="orgc48fbb8">Others</h4>
-<div class="outline-text-4" id="text-orgc48fbb8">
+<div class="outline-4" id="outline-container-org24328a3">
+<h4 id="org24328a3">Others</h4>
+<div class="outline-text-4" id="text-org24328a3">
 <div class="highlight">
 <pre><span></span><span class="kn">from</span> <span class="nn">graeae</span> <span class="kn">import</span> <span class="n">EmbedHoloviews</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="outline-3" id="outline-container-org2ab3f86">
-<h3 id="org2ab3f86">Set Up</h3>
-<div class="outline-text-3" id="text-org2ab3f86"></div>
-<div class="outline-4" id="outline-container-org02d535e">
-<h4 id="org02d535e">Tables</h4>
-<div class="outline-text-4" id="text-org02d535e">
+<div class="outline-3" id="outline-container-orgb1c24d7">
+<h3 id="orgb1c24d7">Set Up</h3>
+<div class="outline-text-3" id="text-orgb1c24d7"></div>
+<div class="outline-4" id="outline-container-orgb58aa3d">
+<h4 id="orgb58aa3d">Tables</h4>
+<div class="outline-text-4" id="text-orgb58aa3d">
 <div class="highlight">
 <pre><span></span><span class="n">TABLE</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">tabulate</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="s2">"orgtbl"</span><span class="p">,</span> <span class="n">showindex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="s2">"keys"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="outline-4" id="outline-container-orgd03eb41">
-<h4 id="orgd03eb41">Plotting</h4>
-<div class="outline-text-4" id="text-orgd03eb41">
+<div class="outline-4" id="outline-container-org6fc751c">
+<h4 id="org6fc751c">Plotting</h4>
+<div class="outline-text-4" id="text-org6fc751c">
 <div class="highlight">
 <pre><span></span> <span class="n">SLUG</span> <span class="o">=</span> <span class="s2">"k-means-clustering-2"</span>
  <span class="n">OUTPUT_PATH</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="sa">f</span><span class="s2">"../files/notebooks/</span><span class="si">{</span><span class="n">SLUG</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
@@ -218,9 +221,9 @@
 </div>
 </div>
 </div>
-<div class="outline-3" id="outline-container-orgc948151">
-<h3 id="orgc948151">The Data</h3>
-<div class="outline-text-3" id="text-orgc948151">
+<div class="outline-3" id="outline-container-orgc322dca">
+<h3 id="orgc322dca">The Data</h3>
+<div class="outline-text-3" id="text-orgc322dca">
 <div class="highlight">
 <pre><span></span><span class="n">dotenv</span><span class="o">.</span><span class="n">load_dotenv</span><span class="p">(</span><span class="n">override</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">DATA_PATH</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"KNN_DATA"</span><span class="p">])</span><span class="o">.</span><span class="n">expanduser</span><span class="p">()</span>
@@ -233,12 +236,12 @@
 </pre></div>
 </div>
 </div>
-<div class="outline-2" id="outline-container-org813c96e">
-<h2 id="org813c96e">Middle</h2>
-<div class="outline-text-2" id="text-org813c96e"></div>
-<div class="outline-3" id="outline-container-orga683819">
-<h3 id="orga683819">The Data</h3>
-<div class="outline-text-3" id="text-orga683819">
+<div class="outline-2" id="outline-container-orgfb6091a">
+<h2 id="orgfb6091a">Middle</h2>
+<div class="outline-text-2" id="text-orgfb6091a"></div>
+<div class="outline-3" id="outline-container-org7d8d9a6">
+<h3 id="org7d8d9a6">The Data</h3>
+<div class="outline-text-3" id="text-org7d8d9a6">
 <div class="highlight">
 <pre><span></span><span class="n">figure</span><span class="p">,</span> <span class="n">axe</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 
@@ -250,9 +253,9 @@
 </div>
 </div>
 </div>
-<div class="outline-3" id="outline-container-org5ca8d7c">
-<h3 id="org5ca8d7c">Coursera's Splitting</h3>
-<div class="outline-text-3" id="text-org5ca8d7c">
+<div class="outline-3" id="outline-container-orgbfd17e8">
+<h3 id="orgbfd17e8">Coursera's Splitting</h3>
+<div class="outline-text-3" id="text-orgbfd17e8">
 <p>The <code>initial_S2</code> gives you the k and initial centroid to use for submissions. Calling it also sets the random seed.</p>
 <div class="highlight">
 <pre><span></span><span class="n">STUDENT_ID</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">"STUDENT_ID"</span><span class="p">]</span>
@@ -267,14 +270,14 @@ Strategy 2: k and initial points
 6: [2.16641743 2.99414637]
 </pre></div>
 </div>
-<div class="outline-3" id="outline-container-org6c7eb8c">
-<h3 id="org6c7eb8c">Initial Points</h3>
-<div class="outline-text-3" id="text-org6c7eb8c">
+<div class="outline-3" id="outline-container-org6decfdf">
+<h3 id="org6decfdf">Initial Points</h3>
+<div class="outline-text-3" id="text-org6decfdf">
 <p>The main difference between this section and the prior one is that instead of choosing all the initial points at random you pick one point at random and the for each of the remaining centroids you calculate the average distance between each point and all the previous centroids then you pick the point that is the furthest from the previous centroids (on average).</p>
 </div>
-<div class="outline-4" id="outline-container-org78abe30">
-<h4 id="org78abe30">First Points</h4>
-<div class="outline-text-4" id="text-org78abe30">
+<div class="outline-4" id="outline-container-org9fa6ac3">
+<h4 id="org9fa6ac3">First Points</h4>
+<div class="outline-text-4" id="text-org9fa6ac3">
 <div class="highlight">
 <pre><span></span><span class="k">def</span> <span class="nf">random_point</span><span class="p">(</span><span class="n">points</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">:</span>
     <span class="sd">"""get a random point from the data</span>
@@ -296,9 +299,9 @@ Strategy 2: k and initial points
 [6.46270852 5.83507122]
 </pre></div>
 </div>
-<div class="outline-4" id="outline-container-orga0165a4">
-<h4 id="orga0165a4">The Initial Points</h4>
-<div class="outline-text-4" id="text-orga0165a4">
+<div class="outline-4" id="outline-container-orgc2179ec">
+<h4 id="orgc2179ec">The Initial Points</h4>
+<div class="outline-text-4" id="text-orgc2179ec">
 <div class="highlight">
 <pre><span></span><span class="k">def</span> <span class="nf">initial_centers</span><span class="p">(</span><span class="n">points</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
                     <span class="n">debug</span><span class="p">:</span> <span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -350,23 +353,23 @@ Strategy 2: k and initial points
 </div>
 </div>
 </div>
-<div class="outline-3" id="outline-container-org2eaf134">
-<h3 id="org2eaf134">From the Previous Section</h3>
-<div class="outline-text-3" id="text-org2eaf134">
+<div class="outline-3" id="outline-container-orgcf7f675">
+<h3 id="orgcf7f675">From the Previous Section</h3>
+<div class="outline-text-3" id="text-orgcf7f675">
 <p>The rest of the exercise is the same as the previous exercise.</p>
 </div>
-<div class="outline-4" id="outline-container-orgef8c080">
-<h4 id="orgef8c080">Clusters</h4>
-<div class="outline-text-4" id="text-orgef8c080">
+<div class="outline-4" id="outline-container-org40c0067">
+<h4 id="org40c0067">Clusters</h4>
+<div class="outline-text-4" id="text-org40c0067">
 <p>This is just a namedtuple to hold the clusters and centroids.</p>
 <div class="highlight">
 <pre><span></span><span class="n">Clusters</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">"Clusters"</span><span class="p">,</span> <span class="p">[</span><span class="s2">"clusters"</span><span class="p">,</span> <span class="s2">"centroids"</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
-<div class="outline-4" id="outline-container-orgf27b70a">
-<h4 id="orgf27b70a">Get Centroids</h4>
-<div class="outline-text-4" id="text-orgf27b70a">
+<div class="outline-4" id="outline-container-org6c9ca28">
+<h4 id="org6c9ca28">Get Centroids</h4>
+<div class="outline-text-4" id="text-org6c9ca28">
 <div class="highlight">
 <pre><span></span><span class="k">def</span> <span class="nf">update_centroids</span><span class="p">(</span><span class="n">centroids</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">points</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Clusters</span><span class="p">:</span>
     <span class="sd">"""Get updated centroids</span>
@@ -394,9 +397,9 @@ Strategy 2: k and initial points
 </div>
 </div>
 </div>
-<div class="outline-3" id="outline-container-orgcdb19d2">
-<h3 id="orgcdb19d2">The Objective Function</h3>
-<div class="outline-text-3" id="text-orgcdb19d2">
+<div class="outline-3" id="outline-container-org155f1ca">
+<h3 id="org155f1ca">The Objective Function</h3>
+<div class="outline-text-3" id="text-org155f1ca">
 <p>The objective of training is to minimize the variation within a cluster. In this case we're measuring that as the sum of the squared distances from the points within a cluster to the mean of the cluster.</p>
 <p>\[ \sum_{i=1}^K \sum_{x \in D_i} \lVert x - \mu_i \rVert^2 \]</p>
 <div class="highlight">
@@ -409,23 +412,23 @@ Strategy 2: k and initial points
 <span class="sd">    Returns:</span>
 <span class="sd">     the score for the cluster variation</span>
 <span class="sd">    """</span>
-    <span class="n">variation</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">residual_sum_of_squares</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="n">clusters</span><span class="p">:</span>
         <span class="n">center</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">cluster</span><span class="p">)</span>
-        <span class="n">variation</span> <span class="o">+=</span> <span class="p">(</span>
+        <span class="n">residual_sum_of_squares</span> <span class="o">+=</span> <span class="p">(</span>
             <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span>
                 <span class="n">numpy</span><span class="o">.</span><span class="n">square</span><span class="p">(</span>
                     <span class="n">cluster</span> <span class="o">-</span> <span class="n">center</span>
                 <span class="p">)</span>
             <span class="p">)</span>
         <span class="p">)</span>
-    <span class="k">return</span> <span class="n">variation</span>
+    <span class="k">return</span> <span class="n">residual_sum_of_squares</span>
 </pre></div>
 </div>
 </div>
-<div class="outline-3" id="outline-container-org9620f86">
-<h3 id="org9620f86">Putting Them All Together</h3>
-<div class="outline-text-3" id="text-org9620f86">
+<div class="outline-3" id="outline-container-orge3aed30">
+<h3 id="orge3aed30">Putting Them All Together</h3>
+<div class="outline-text-3" id="text-orge3aed30">
 <div class="highlight">
 <pre><span></span><span class="k">def</span> <span class="nf">k_means</span><span class="p">(</span><span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">,</span>
             <span class="n">debug</span><span class="p">:</span> <span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -453,9 +456,9 @@ Strategy 2: k and initial points
 </pre></div>
 </div>
 </div>
-<div class="outline-3" id="outline-container-orgad7c48e">
-<h3 id="orgad7c48e">K From Two To Ten</h3>
-<div class="outline-text-3" id="text-orgad7c48e">
+<div class="outline-3" id="outline-container-orgd199688">
+<h3 id="orgd199688">K From Two To Ten</h3>
+<div class="outline-text-3" id="text-orgd199688">
 <div class="highlight">
 <pre><span></span><span class="n">Outcomes</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">"Outcomes"</span><span class="p">,</span> <span class="p">[</span><span class="s2">"losses"</span><span class="p">,</span> <span class="s2">"points"</span><span class="p">])</span>
 </pre></div>
@@ -538,9 +541,9 @@ Strategy 2: k and initial points
 <div class="highlight">
 <pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">embedded</span><span class="p">)</span>
 </pre></div>
-<object data="loss_vs_k.html" height="800" style="width:100%" type="text/html">
+: <object data="loss_vs_k.html" height="800" style="width:100%" type="text/html">:
 <p>Figure Missing</p>
-</object>
+:</object>
 <p>It looks like 6 clusters is about as much as you want to go.</p>
 <div class="highlight">
 <pre><span></span><span class="n">data_frame</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"x"</span><span class="p">,</span> <span class="s2">"y"</span><span class="p">])</span>
@@ -569,22 +572,22 @@ Strategy 2: k and initial points
 <div class="highlight">
 <pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">embedded</span><span class="p">)</span>
 </pre></div>
-<object data="clusters_10.html" height="800" style="width:100%" type="text/html">
+: <object data="clusters_10.html" height="800" style="width:100%" type="text/html">:
 <p>Figure Missing</p>
-</object>
+:</object>
 <p>This does sort of look like the clusters did a little better than the random centroids did, but there's a cluster with only one point at the top right of the plot. It's probably overfitting.</p>
 </div>
 </div>
 </div>
-<div class="outline-2" id="outline-container-org274ae8c">
-<h2 id="org274ae8c">End</h2>
-<div class="outline-text-2" id="text-org274ae8c"></div>
-<div class="outline-3" id="outline-container-org9c84312">
-<h3 id="org9c84312">Submissions</h3>
-<div class="outline-text-3" id="text-org9c84312"></div>
-<div class="outline-4" id="outline-container-orgaf90fe1">
-<h4 id="orgaf90fe1">Plotting the two runs</h4>
-<div class="outline-text-4" id="text-orgaf90fe1">
+<div class="outline-2" id="outline-container-orge629954">
+<h2 id="orge629954">End</h2>
+<div class="outline-text-2" id="text-orge629954"></div>
+<div class="outline-3" id="outline-container-orgcb2296a">
+<h3 id="orgcb2296a">Submissions</h3>
+<div class="outline-text-3" id="text-orgcb2296a"></div>
+<div class="outline-4" id="outline-container-orgf9d281d">
+<h4 id="orgf9d281d">Plotting the two runs</h4>
+<div class="outline-text-4" id="text-orgf9d281d">
 <div class="highlight">
 <pre><span></span><span class="n">outcomes_2</span> <span class="o">=</span> <span class="n">grid_search</span><span class="p">()</span>
 <span class="n">figure</span><span class="p">,</span> <span class="n">axe</span> <span class="o">=</span> <span class="n">pyplot</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
@@ -599,6 +602,69 @@ Strategy 2: k and initial points
 <div class="figure">
 <p><img alt="strategy_2_run_one.png" src="strategy_2_run_one.png"></p>
 </div>
+<div class="highlight">
+<pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">TABLE</span><span class="p">(</span><span class="n">outcomes_2</span><span class="o">.</span><span class="n">losses</span><span class="p">))</span>
+</pre></div>
+<table border="2" cellpadding="6" cellspacing="0" frame="hsides" rules="groups">
+<colgroup>
+<col class="org-right">
+<col class="org-right">
+<col class="org-left"></colgroup>
+<thead>
+<tr>
+<th class="org-right" scope="col">K</th>
+<th class="org-right" scope="col">Loss</th>
+<th class="org-left" scope="col">Run</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">2</td>
+<td class="org-right">2833.41</td>
+<td class="org-left">Second</td>
+</tr>
+<tr>
+<td class="org-right">3</td>
+<td class="org-right">2526.61</td>
+<td class="org-left">Second</td>
+</tr>
+<tr>
+<td class="org-right">4</td>
+<td class="org-right">2099.22</td>
+<td class="org-left">Second</td>
+</tr>
+<tr>
+<td class="org-right">5</td>
+<td class="org-right">2133.39</td>
+<td class="org-left">Second</td>
+</tr>
+<tr>
+<td class="org-right">6</td>
+<td class="org-right">2044.09</td>
+<td class="org-left">Second</td>
+</tr>
+<tr>
+<td class="org-right">7</td>
+<td class="org-right">1953.75</td>
+<td class="org-left">Second</td>
+</tr>
+<tr>
+<td class="org-right">8</td>
+<td class="org-right">1899.93</td>
+<td class="org-left">Second</td>
+</tr>
+<tr>
+<td class="org-right">9</td>
+<td class="org-right">1899.1</td>
+<td class="org-left">Second</td>
+</tr>
+<tr>
+<td class="org-right">10</td>
+<td class="org-right">1876.91</td>
+<td class="org-left">Second</td>
+</tr>
+</tbody>
+</table>
 <p>It kind of looks like either k=4 or k=6 is the actual optimum (based on the assumption that the biggest drop indicates the right level).</p>
 <div class="highlight">
 <pre><span></span><span class="n">embedded</span> <span class="o">=</span> <span class="n">plot_clusters</span><span class="p">(</span><span class="n">outcomes_2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
@@ -606,88 +672,88 @@ Strategy 2: k and initial points
 <div class="highlight">
 <pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">embedded</span><span class="p">)</span>
 </pre></div>
-<object data="clusters_2.html" height="800" style="width:100%" type="text/html">
+: <object data="clusters_2.html" height="800" style="width:100%" type="text/html">:
 <p>Figure Missing</p>
-</object>
+:</object>
 <div class="highlight">
 <pre><span></span><span class="n">embedded</span> <span class="o">=</span> <span class="n">plot_clusters</span><span class="p">(</span><span class="n">outcomes_2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 </pre></div>
 <div class="highlight">
 <pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">embedded</span><span class="p">)</span>
 </pre></div>
-<object data="clusters_3.html" height="800" style="width:100%" type="text/html">
+: <object data="clusters_3.html" height="800" style="width:100%" type="text/html">:
 <p>Figure Missing</p>
-</object>
+:</object>
 <div class="highlight">
 <pre><span></span><span class="n">embedded</span> <span class="o">=</span> <span class="n">plot_clusters</span><span class="p">(</span><span class="n">outcomes_2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 </pre></div>
 <div class="highlight">
 <pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">embedded</span><span class="p">)</span>
 </pre></div>
-<object data="clusters_4.html" height="800" style="width:100%" type="text/html">
+: <object data="clusters_4.html" height="800" style="width:100%" type="text/html">:
 <p>Figure Missing</p>
-</object>
+:</object>
 <div class="highlight">
 <pre><span></span><span class="n">embedded</span> <span class="o">=</span> <span class="n">plot_clusters</span><span class="p">(</span><span class="n">outcomes_2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 </pre></div>
 <div class="highlight">
 <pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">embedded</span><span class="p">)</span>
 </pre></div>
-<object data="clusters_5.html" height="800" style="width:100%" type="text/html">
+: <object data="clusters_5.html" height="800" style="width:100%" type="text/html">:
 <p>Figure Missing</p>
-</object>
+:</object>
 <div class="highlight">
 <pre><span></span><span class="n">embedded</span> <span class="o">=</span> <span class="n">plot_clusters</span><span class="p">(</span><span class="n">outcomes_2</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 </pre></div>
 <div class="highlight">
 <pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">embedded</span><span class="p">)</span>
 </pre></div>
-<object data="clusters_6.html" height="800" style="width:100%" type="text/html">
+: <object data="clusters_6.html" height="800" style="width:100%" type="text/html">:
 <p>Figure Missing</p>
-</object>
+:</object>
 <div class="highlight">
 <pre><span></span><span class="n">embedded</span> <span class="o">=</span> <span class="n">plot_clusters</span><span class="p">(</span><span class="n">outcomes_2</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
 </pre></div>
 <div class="highlight">
 <pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">embedded</span><span class="p">)</span>
 </pre></div>
-<object data="clusters_7.html" height="800" style="width:100%" type="text/html">
+: <object data="clusters_7.html" height="800" style="width:100%" type="text/html">:
 <p>Figure Missing</p>
-</object>
+:</object>
 <div class="highlight">
 <pre><span></span><span class="n">embedded</span> <span class="o">=</span> <span class="n">plot_clusters</span><span class="p">(</span><span class="n">outcomes_2</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
 </pre></div>
 <div class="highlight">
 <pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">embedded</span><span class="p">)</span>
 </pre></div>
-<object data="clusters_8.html" height="800" style="width:100%" type="text/html">
+: <object data="clusters_8.html" height="800" style="width:100%" type="text/html">:
 <p>Figure Missing</p>
-</object>
+:</object>
 <div class="highlight">
 <pre><span></span><span class="n">embedded</span> <span class="o">=</span> <span class="n">plot_clusters</span><span class="p">(</span><span class="n">outcomes_2</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
 </pre></div>
 <div class="highlight">
 <pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">embedded</span><span class="p">)</span>
 </pre></div>
-<object data="clusters_9.html" height="800" style="width:100%" type="text/html">
+: <object data="clusters_9.html" height="800" style="width:100%" type="text/html">:
 <p>Figure Missing</p>
-</object>
+:</object>
 <div class="highlight">
 <pre><span></span><span class="n">embedded</span> <span class="o">=</span> <span class="n">plot_clusters</span><span class="p">(</span><span class="n">outcomes_2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 </pre></div>
 <div class="highlight">
 <pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">embedded</span><span class="p">)</span>
 </pre></div>
-<object data="clusters_10.html" height="800" style="width:100%" type="text/html">
+: <object data="clusters_10.html" height="800" style="width:100%" type="text/html">:
 <p>Figure Missing</p>
-</object>
+:</object>
 <p>Since the points don't have any meaning (at least not to me) it's hard to say what the best clustering effects are. One of the problems with this dataset (with regards to k-means) is that the data that looks contiguous isn't necessary clustered in circles, which is what the k-means requires to work best. I think that 9 clusters has the "cleanest" clustering, at least visually.</p>
 </div>
 </div>
 </div>
-<div class="outline-3" id="outline-container-orgd97a9a0">
-<h3 id="orgd97a9a0">The ID-Specific Data</h3>
-<div class="outline-text-3" id="text-orgd97a9a0">
+<div class="outline-3" id="outline-container-orgd828b87">
+<h3 id="orgd828b87">The ID-Specific Data</h3>
+<div class="outline-text-3" id="text-orgd828b87">
 <p>For the numeric submission we need to run k-means over the two points that their pre-defined functions produced.</p>
 <div class="highlight">
 <pre><span></span><span class="n">Submission</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">"Submission"</span><span class="p">,</span> <span class="p">[</span><span class="s2">"clusters"</span><span class="p">,</span> <span class="s2">"centroids"</span><span class="p">,</span> <span class="s2">"loss"</span><span class="p">])</span>
@@ -710,9 +776,9 @@ Strategy 2: k and initial points
                       <span class="n">loss</span><span class="o">=</span><span class="n">score</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="outline-4" id="outline-container-org4998c8d">
-<h4 id="org4998c8d">First Check</h4>
-<div class="outline-text-4" id="text-org4998c8d">
+<div class="outline-4" id="outline-container-org5ee31ee">
+<h4 id="org5ee31ee">First Check</h4>
+<div class="outline-text-4" id="text-org5ee31ee">
 <div class="highlight">
 <pre><span></span><span class="n">centroids_1</span> <span class="o">=</span> <span class="n">initial_centers</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">k1</span><span class="p">,</span> <span class="n">points</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">first</span><span class="o">=</span><span class="n">i_point1</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">outcome_3</span> <span class="o">=</span> <span class="n">check_centroids</span><span class="p">(</span><span class="n">centroids</span><span class="o">=</span><span class="n">centroids_1</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -723,23 +789,23 @@ Strategy 2: k and initial points
 <pre class="example">
 First Centroid: [3.81135136 5.98125361]
 k_means starting centroids: [[3.81135136 5.98125361]
- [4.59083727 7.53490523]
- [4.9511002  8.08344216]
- [1.9311184  6.93692984]]
+ [2.37650624 8.15241778]
+ [3.2881521  0.71796855]
+ [3.2115245  1.1089788 ]]
 
 K: 4
 Final Centroids:
-[[2.45162074 6.08990448]
- [7.79475201 8.45021454]
- [5.46810558 2.23600141]
- [5.44895368 6.72531296]]
+[[2.8337661  6.9189569 ]
+ [6.57957643 7.57333595]
+ [7.41419243 2.32169114]
+ [3.36373274 2.59646706]]
 
-Objective Function: 2356.702968522488
+Objective Function: 2212.357518997504
 </pre></div>
 </div>
-<div class="outline-4" id="outline-container-orgd636583">
-<h4 id="orgd636583">Second Check</h4>
-<div class="outline-text-4" id="text-orgd636583">
+<div class="outline-4" id="outline-container-orgdc9b6b5">
+<h4 id="orgdc9b6b5">Second Check</h4>
+<div class="outline-text-4" id="text-orgdc9b6b5">
 <div class="highlight">
 <pre><span></span><span class="n">centroids_2</span> <span class="o">=</span> <span class="n">initial_centers</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">k2</span><span class="p">,</span> <span class="n">points</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">first</span><span class="o">=</span><span class="n">i_point2</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">outcome_4</span> <span class="o">=</span> <span class="n">check_centroids</span><span class="p">(</span><span class="n">centroids</span><span class="o">=</span><span class="n">centroids_2</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -749,25 +815,71 @@ Objective Function: 2356.702968522488
 </pre></div>
 <pre class="example">
 First Centroid: [2.16641743 2.99414637]
-k_means starting centroids: [[2.16641743 2.99414637]
- [9.26998864 9.62492869]
- [2.37650624 8.15241778]
- [3.2881521  0.71796855]
- [3.2115245  1.1089788 ]
- [4.66005931 7.06059555]]
+k_means starting centroids: [[ 2.16641743  2.99414637]
+ [ 9.26998864  9.62492869]
+ [ 2.37650624  8.15241778]
+ [ 3.85212146 -1.08715226]
+ [ 3.2115245   1.1089788 ]
+ [ 4.66005931  7.06059555]]
 
 K: 6
 Final Centroids:
 [[2.56333815 6.9782248 ]
  [7.75648325 8.55668928]
- [7.41419243 2.32169114]
- [3.49556658 3.56611232]
- [5.46427736 6.83771354]
- [3.14506148 0.90770655]]
+ [7.55616782 2.23516796]
+ [5.0422374  3.90210574]
+ [2.68198633 2.09461587]
+ [5.37943226 7.00298984]]
 
-Objective Function: 1963.908359892354
+Objective Function: 1930.6429919263946
 </pre></div>
 </div>
+</div>
+<div class="outline-3" id="outline-container-org9ebc40b">
+<h3 id="org9ebc40b">Sklearn Double check</h3>
+<div class="outline-text-3" id="text-org9ebc40b">
+<div class="highlight">
+<pre><span></span><span class="n">kmeans_1</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">k1</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="n">centroids_1</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">kmeans_1</span><span class="o">.</span><span class="n">cluster_centers_</span><span class="p">)</span>
+
+<span class="n">clusters_sk_1</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">kmeans_1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">point</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">clusters_sk_1</span><span class="p">[</span><span class="n">predictions</span><span class="p">[</span><span class="n">index</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+<span class="n">clusters_sk_1</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">clusters_sk_1</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">objective</span><span class="p">(</span><span class="n">clusters_sk_1</span><span class="p">))</span>
+</pre></div>
+<pre class="example">
+[[6.57957643 7.57333595]
+ [2.8337661  6.9189569 ]
+ [7.41419243 2.32169114]
+ [3.36373274 2.59646706]]
+2212.357518997504
+/home/athena/.virtualenvs/asu-cse-575/lib/python3.7/site-packages/ipykernel_launcher.py:1: RuntimeWarning: Explicit initial center position passed: performing only one init in k-means instead of n_init=10
+  """Entry point for launching an IPython kernel.
+</pre>
+<div class="highlight">
+<pre><span></span><span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">k2</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="n">centroids_2</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">kmeans</span><span class="o">.</span><span class="n">cluster_centers_</span><span class="p">)</span>
+
+<span class="n">clusters_sk</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">point</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">clusters_sk</span><span class="p">[</span><span class="n">predictions</span><span class="p">[</span><span class="n">index</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
+<span class="n">clusters_sk</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">clusters_sk</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">objective</span><span class="p">(</span><span class="n">clusters_sk</span><span class="p">))</span>
+</pre></div>
+<pre class="example">
+[[2.68198633 2.09461587]
+ [7.75648325 8.55668928]
+ [2.56333815 6.9782248 ]
+ [7.55616782 2.23516796]
+ [5.0422374  3.90210574]
+ [5.37943226 7.00298984]]
+1930.6429919263946
+/home/athena/.virtualenvs/asu-cse-575/lib/python3.7/site-packages/ipykernel_launcher.py:1: RuntimeWarning: Explicit initial center position passed: performing only one init in k-means instead of n_init=10
+  """Entry point for launching an IPython kernel.
+</pre></div>
 </div>
 </div>
 </div>
