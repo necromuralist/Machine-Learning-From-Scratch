@@ -5,7 +5,7 @@
 .. tags: project,k-means,clustering,unsupervised
 .. category: Project
 .. link: 
-.. description: A variation of initial center-of-mass selection for K-Means.
+.. description: A variation of initial center-of-mass selection for K-Means (K-Mean++).
 .. type: text
 .. status: 
 .. updated: 
@@ -13,7 +13,7 @@
 #+END_COMMENT
 #+OPTIONS: ^:{}
 #+TOC: headlines 5
-#+PROPERTY: header-args :session /home/athena/.local/share/jupyter/runtime/kernel-244e0a70-d810-42d0-9971-550964b634c6.json
+#+PROPERTY: header-args :session /home/athena/.local/share/jupyter/runtime/kernel-39bc9310-8a8d-40e2-9b28-bcae970d51b0.json
 #+BEGIN_SRC python :results none :exports none
 %load_ext autoreload
 %autoreload 2
@@ -21,7 +21,7 @@
 * Beginning
 ** Imports
 *** Python
-#+begin_src python :results none
+#+begin_src python :results none :noweb-ref python-imports
 from collections import defaultdict, namedtuple
 from functools import partial
 from pathlib import Path
@@ -29,18 +29,20 @@ import os
 import random
 #+end_src
 *** PyPi
-#+begin_src python :results none
+#+begin_src python :results none :noweb-ref pypi-imports
 from expects import (
     be_true,
     expect
 )
+from sklearn.cluster import KMeans
+from tabulate import tabulate
+
 import dotenv
 import hvplot.pandas
 import matplotlib.pyplot as pyplot
 import numpy
 import pandas
 import seaborn
-from tabulate import tabulate
 #+end_src
 *** Coursera
 #+begin_src python :results none
@@ -238,17 +240,17 @@ def objective(clusters: numpy.array) -> float:
     Returns:
      the score for the cluster variation
     """
-    variation = 0
+    residual_sum_of_squares = 0
     for cluster in clusters:
         center = numpy.mean(cluster)
-        variation += (
+        residual_sum_of_squares += (
             numpy.sum(
                 numpy.square(
                     cluster - center
                 )
             )
         )
-    return variation
+    return residual_sum_of_squares
 #+end_src
 ** Putting Them All Together
 
@@ -333,9 +335,9 @@ print(embedded)
 
 #+RESULTS:
 #+begin_export html
- <object type="text/html" data="loss_vs_k.html" style="width:100%" height=800>
-   <p>Figure Missing</p>
- </object>
+: <object type="text/html" data="loss_vs_k.html" style="width:100%" height=800>
+:   <p>Figure Missing</p>
+: </object>
 #+end_export
 
 It looks like 6 clusters is about as much as you want to go.
@@ -373,9 +375,9 @@ print(embedded)
 
 #+RESULTS:
 #+begin_export html
- <object type="text/html" data="clusters_10.html" style="width:100%" height=800>
-   <p>Figure Missing</p>
- </object>
+: <object type="text/html" data="clusters_10.html" style="width:100%" height=800>
+:   <p>Figure Missing</p>
+: </object>
 #+end_export
 
 This does sort of look like the clusters did a little better than the random centroids did, but there's a cluster with only one point at the top right of the plot. It's probably overfitting.
@@ -397,6 +399,24 @@ axe.set_ylabel("Objective Function")
     
 [[file:strategy_2_run_one.png]]
 
+#+begin_src python :results output :exports both
+print(TABLE(outcomes_2.losses))
+#+end_src
+
+#+RESULTS:
+|   K |    Loss | Run    |
+|-----+---------+--------|
+|   2 | 2833.41 | Second |
+|   3 | 2526.61 | Second |
+|   4 | 2099.22 | Second |
+|   5 | 2133.39 | Second |
+|   6 | 2044.09 | Second |
+|   7 | 1953.75 | Second |
+|   8 | 1899.93 | Second |
+|   9 | 1899.1  | Second |
+|  10 | 1876.91 | Second |
+
+
 It kind of looks like either k=4 or k=6 is the actual optimum (based on the assumption that the biggest drop indicates the right level).
 
 #+begin_src python :results none
@@ -409,9 +429,9 @@ print(embedded)
 
 #+RESULTS:
 #+begin_export html
-<object type="text/html" data="clusters_2.html" style="width:100%" height=800>
-  <p>Figure Missing</p>
-</object>
+: <object type="text/html" data="clusters_2.html" style="width:100%" height=800>
+:   <p>Figure Missing</p>
+: </object>
 #+end_export
 
 
@@ -425,9 +445,9 @@ print(embedded)
 
 #+RESULTS:
 #+begin_export html
-<object type="text/html" data="clusters_3.html" style="width:100%" height=800>
-  <p>Figure Missing</p>
-</object>
+: <object type="text/html" data="clusters_3.html" style="width:100%" height=800>
+:   <p>Figure Missing</p>
+: </object>
 #+end_export
 
 #+begin_src python :results none
@@ -440,9 +460,9 @@ print(embedded)
 
 #+RESULTS:
 #+begin_export html
- <object type="text/html" data="clusters_4.html" style="width:100%" height=800>
-   <p>Figure Missing</p>
- </object>
+: <object type="text/html" data="clusters_4.html" style="width:100%" height=800>
+:   <p>Figure Missing</p>
+: </object>
 #+end_export
 
 #+begin_src python :results none
@@ -455,9 +475,9 @@ print(embedded)
 
 #+RESULTS:
 #+begin_export html
- <object type="text/html" data="clusters_5.html" style="width:100%" height=800>
-   <p>Figure Missing</p>
- </object>
+: <object type="text/html" data="clusters_5.html" style="width:100%" height=800>
+:   <p>Figure Missing</p>
+: </object>
 #+end_export
 
 #+begin_src python :results none
@@ -470,9 +490,9 @@ print(embedded)
 
 #+RESULTS:
 #+begin_export html
- <object type="text/html" data="clusters_6.html" style="width:100%" height=800>
-   <p>Figure Missing</p>
- </object>
+: <object type="text/html" data="clusters_6.html" style="width:100%" height=800>
+:   <p>Figure Missing</p>
+: </object>
 #+end_export
 
 #+begin_src python :results none
@@ -485,9 +505,9 @@ print(embedded)
 
 #+RESULTS:
 #+begin_export html
- <object type="text/html" data="clusters_7.html" style="width:100%" height=800>
-   <p>Figure Missing</p>
- </object>
+: <object type="text/html" data="clusters_7.html" style="width:100%" height=800>
+:   <p>Figure Missing</p>
+: </object>
 #+end_export
 
 
@@ -501,9 +521,9 @@ print(embedded)
 
 #+RESULTS:
 #+begin_export html
- <object type="text/html" data="clusters_8.html" style="width:100%" height=800>
-   <p>Figure Missing</p>
- </object>
+: <object type="text/html" data="clusters_8.html" style="width:100%" height=800>
+:   <p>Figure Missing</p>
+: </object>
 #+end_export
 
 #+begin_src python :results none
@@ -516,9 +536,9 @@ print(embedded)
 
 #+RESULTS:
 #+begin_export html
-<object type="text/html" data="clusters_9.html" style="width:100%" height=800>
-  <p>Figure Missing</p>
-</object>
+: <object type="text/html" data="clusters_9.html" style="width:100%" height=800>
+:   <p>Figure Missing</p>
+: </object>
 #+end_export
 
 #+begin_src python :results none
@@ -531,9 +551,9 @@ print(embedded)
 
 #+RESULTS:
 #+begin_export html
-<object type="text/html" data="clusters_10.html" style="width:100%" height=800>
-  <p>Figure Missing</p>
-</object>
+: <object type="text/html" data="clusters_10.html" style="width:100%" height=800>
+:   <p>Figure Missing</p>
+: </object>
 #+end_export
 
 Since the points don't have any meaning (at least not to me) it's hard to say what the best clustering effects are. One of the problems with this dataset (with regards to k-means) is that the data that looks contiguous isn't necessary clustered in circles, which is what the k-means requires to work best. I think that 9 clusters has the "cleanest" clustering, at least visually.
@@ -576,18 +596,18 @@ print(f"\nObjective Function: {outcome_3.loss}")
 #+begin_example
 First Centroid: [3.81135136 5.98125361]
 k_means starting centroids: [[3.81135136 5.98125361]
- [4.59083727 7.53490523]
- [4.9511002  8.08344216]
- [1.9311184  6.93692984]]
+ [2.37650624 8.15241778]
+ [3.2881521  0.71796855]
+ [3.2115245  1.1089788 ]]
 
 K: 4
 Final Centroids:
-[[2.45162074 6.08990448]
- [7.79475201 8.45021454]
- [5.46810558 2.23600141]
- [5.44895368 6.72531296]]
+[[2.8337661  6.9189569 ]
+ [6.57957643 7.57333595]
+ [7.41419243 2.32169114]
+ [3.36373274 2.59646706]]
 
-Objective Function: 2356.702968522488
+Objective Function: 2212.357518997504
 #+end_example
 
 *** Second Check
@@ -602,22 +622,66 @@ print(f"\nObjective Function: {outcome_4.loss}")
 #+RESULTS:
 #+begin_example
 First Centroid: [2.16641743 2.99414637]
-k_means starting centroids: [[2.16641743 2.99414637]
- [9.26998864 9.62492869]
- [2.37650624 8.15241778]
- [3.2881521  0.71796855]
- [3.2115245  1.1089788 ]
- [4.66005931 7.06059555]]
+k_means starting centroids: [[ 2.16641743  2.99414637]
+ [ 9.26998864  9.62492869]
+ [ 2.37650624  8.15241778]
+ [ 3.85212146 -1.08715226]
+ [ 3.2115245   1.1089788 ]
+ [ 4.66005931  7.06059555]]
 
 K: 6
 Final Centroids:
 [[2.56333815 6.9782248 ]
  [7.75648325 8.55668928]
- [7.41419243 2.32169114]
- [3.49556658 3.56611232]
- [5.46427736 6.83771354]
- [3.14506148 0.90770655]]
+ [7.55616782 2.23516796]
+ [5.0422374  3.90210574]
+ [2.68198633 2.09461587]
+ [5.37943226 7.00298984]]
 
-Objective Function: 1963.908359892354
+Objective Function: 1930.6429919263946
 #+end_example
 
+** Sklearn Double check
+#+begin_src python :results output :exports both
+kmeans_1 = KMeans(n_clusters=k1, init=centroids_1).fit(data)
+print(kmeans_1.cluster_centers_)
+
+clusters_sk_1 = defaultdict(list)
+predictions = kmeans_1.predict(data)
+for index, point in enumerate(data):
+    clusters_sk_1[predictions[index]].append(point)
+clusters_sk_1 = numpy.array(list(clusters_sk_1.values()))
+print(objective(clusters_sk_1))
+#+end_src
+
+#+RESULTS:
+: [[6.57957643 7.57333595]
+:  [2.8337661  6.9189569 ]
+:  [7.41419243 2.32169114]
+:  [3.36373274 2.59646706]]
+: 2212.357518997504
+: /home/athena/.virtualenvs/asu-cse-575/lib/python3.7/site-packages/ipykernel_launcher.py:1: RuntimeWarning: Explicit initial center position passed: performing only one init in k-means instead of n_init=10
+:   """Entry point for launching an IPython kernel.
+
+#+begin_src python :results output :exports both
+kmeans = KMeans(n_clusters=k2, init=centroids_2).fit(data)
+print(kmeans.cluster_centers_)
+
+clusters_sk = defaultdict(list)
+predictions = kmeans.predict(data)
+for index, point in enumerate(data):
+    clusters_sk[predictions[index]].append(point)
+clusters_sk = numpy.array(list(clusters_sk.values()))
+print(objective(clusters_sk))
+#+end_src
+
+#+RESULTS:
+: [[2.68198633 2.09461587]
+:  [7.75648325 8.55668928]
+:  [2.56333815 6.9782248 ]
+:  [7.55616782 2.23516796]
+:  [5.0422374  3.90210574]
+:  [5.37943226 7.00298984]]
+: 1930.6429919263946
+: /home/athena/.virtualenvs/asu-cse-575/lib/python3.7/site-packages/ipykernel_launcher.py:1: RuntimeWarning: Explicit initial center position passed: performing only one init in k-means instead of n_init=10
+:   """Entry point for launching an IPython kernel.

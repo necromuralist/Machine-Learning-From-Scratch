@@ -13,7 +13,7 @@
 #+END_COMMENT
 #+OPTIONS: ^:{}
 #+TOC: headlines 5
-#+PROPERTY: header-args :session /home/athena/.local/share/jupyter/runtime/kernel-9dcdfa11-8961-45a4-be1c-73970e278b88.json
+#+PROPERTY: header-args :session /home/athena/.local/share/jupyter/runtime/kernel-6a08a8c0-8d01-452b-ab49-ef7f220116ce.json
 #+BEGIN_SRC python :results none :exports none
 %load_ext autoreload
 %autoreload 2
@@ -34,6 +34,8 @@ from expects import (
     be_true,
     expect
 )
+from sklearn.cluster import KMeans
+from tabulate import tabulate
 import dotenv
 import hvplot.pandas
 import matplotlib.pyplot as pyplot
@@ -49,7 +51,12 @@ from ml_from_scratch.coursera.Precode import initial_S1
 #+begin_src python :results none
 from graeae import EmbedHoloviews
 #+end_src
-** Plotting
+** Set Up
+*** Tables
+#+begin_src python :results none
+TABLE = partial(tabulate, tablefmt="orgtbl", showindex=False, headers="keys")
+#+end_src
+*** Plotting
 #+begin_src python :results none
 SLUG = "k-means-clustering-1"
 OUTPUT_PATH = Path(f"../files/notebooks/{SLUG}")
@@ -291,7 +298,7 @@ def random_points(k: int, data: numpy.array) -> numpy.array:
     Returns:
      k randomly selected points from the data
     """
-    return data[np.random.permutation(len(data))[:k], :]
+    return data[numpy.random.permutation(len(data))[:k], :]
 #+end_src
 ** Putting Them All Together
 
@@ -362,6 +369,23 @@ plot = outcomes.losses.hvplot.bar(x="K", y="Loss").opts(
 embedded = Embed(plot=plot, file_name="loss_vs_k")()
 #+end_src
 
+#+begin_src python :results output :exports both
+print(TABLE(outcomes.losses))
+#+end_src
+
+#+RESULTS:
+|   K |    Loss | Run   |
+|-----+---------+-------|
+|   2 | 2833.41 | First |
+|   3 | 2583.06 | First |
+|   4 | 2191.43 | First |
+|   5 | 2026.99 | First |
+|   6 | 2046.6  | First |
+|   7 | 1896.79 | First |
+|   8 | 1891.98 | First |
+|   9 | 1889.84 | First |
+|  10 | 1873.27 | First |
+
 #+begin_src python :results output html :exports both
 print(embedded)
 #+end_src
@@ -406,9 +430,9 @@ print(embedded)
 
 #+RESULTS:
 #+begin_export html
-<object type="text/html" data="clusters_10.html" style="width:100%" height=800>
-  <p>Figure Missing</p>
-</object>
+: <object type="text/html" data="clusters_10.html" style="width:100%" height=800>
+:   <p>Figure Missing</p>
+: </object>
 #+end_export
 
 * End
@@ -429,6 +453,23 @@ axe.set_ylabel("Objective Function")
     
 [[file:strategy_1_run_one.png]]
 
+#+begin_src python :results output :exports both
+print(TABLE(outcomes_2.losses))
+#+end_src
+
+#+RESULTS:
+|   K |    Loss | Run    |
+|-----+---------+--------|
+|   2 | 2833.41 | Second |
+|   3 | 2583.62 | Second |
+|   4 | 2334.16 | Second |
+|   5 | 2060.86 | Second |
+|   6 | 2016.25 | Second |
+|   7 | 2050.64 | Second |
+|   8 | 1931.19 | Second |
+|   9 | 1939.68 | Second |
+|  10 | 1839.39 | Second |
+
 It kind of looks like either k=4 or k=5 is the actual optimum (based on the assumption that the biggest drop indicates the right level).
 
 #+begin_src python :results none
@@ -441,9 +482,9 @@ print(embedded)
 
 #+RESULTS:
 #+begin_export html
-<object type="text/html" data="clusters_4.html" style="width:100%" height=800>
-  <p>Figure Missing</p>
-</object>
+: <object type="text/html" data="clusters_4.html" style="width:100%" height=800>
+:   <p>Figure Missing</p>
+: </object>
 #+end_export
 
 #+begin_src python :results none
@@ -456,9 +497,9 @@ print(embedded)
 
 #+RESULTS:
 #+begin_export html
-<object type="text/html" data="clusters_5.html" style="width:100%" height=800>
-  <p>Figure Missing</p>
-</object>
+: <object type="text/html" data="clusters_5.html" style="width:100%" height=800>
+:   <p>Figure Missing</p>
+: </object>
 #+end_export
 
 #+begin_src python :results none
@@ -471,9 +512,9 @@ print(embedded)
 
 #+RESULTS:
 #+begin_export html
-<object type="text/html" data="clusters_6.html" style="width:100%" height=800>
-  <p>Figure Missing</p>
-</object>
+: <object type="text/html" data="clusters_6.html" style="width:100%" height=800>
+:   <p>Figure Missing</p>
+: </object>
 #+end_export
 
 #+begin_src python :results none
@@ -486,9 +527,9 @@ print(embedded)
 
 #+RESULTS:
 #+begin_export html
-<object type="text/html" data="clusters_7.html" style="width:100%" height=800>
-  <p>Figure Missing</p>
-</object>
+: <object type="text/html" data="clusters_7.html" style="width:100%" height=800>
+:   <p>Figure Missing</p>
+: </object>
 #+end_export
 
 
@@ -566,3 +607,45 @@ print(f"\nObjective Function: {outcome_4.loss}")
 : 
 : Objective Function: 2069.2452603873444
 
+** Sklearn Double check
+#+begin_src python :results output :exports both
+kmeans_1 = KMeans(n_clusters=k1, init=i_point1).fit(data)
+print(kmeans_1.cluster_centers_)
+
+clusters_sk_1 = defaultdict(list)
+predictions = kmeans_1.predict(data)
+for index, point in enumerate(data):
+    clusters_sk_1[predictions[index]].append(point)
+clusters_sk_1 = numpy.array(list(clusters_sk_1.values()))
+print(objective(clusters_sk_1))
+#+end_src
+
+#+RESULTS:
+: [[5.47740039 2.25498103]
+:  [6.49724962 7.52297293]
+:  [2.56146449 6.08861338]]
+: 2526.605733937463
+: /home/athena/.virtualenvs/asu-cse-575/lib/python3.7/site-packages/ipykernel_launcher.py:1: RuntimeWarning: Explicit initial center position passed: performing only one init in k-means instead of n_init=10
+:   """Entry point for launching an IPython kernel.
+
+#+begin_src python :results output :exports both
+kmeans = KMeans(n_clusters=k2, init=i_point2).fit(data)
+print(kmeans.cluster_centers_)
+
+clusters_sk = defaultdict(list)
+predictions = kmeans.predict(data)
+for index, point in enumerate(data):
+    clusters_sk[predictions[index]].append(point)
+clusters_sk = numpy.array(list(clusters_sk.values()))
+print(objective(clusters_sk))
+#+end_src
+
+#+RESULTS:
+: /home/athena/.virtualenvs/asu-cse-575/lib/python3.7/site-packages/ipykernel_launcher.py:1: RuntimeWarning: Explicit initial center position passed: performing only one init in k-means instead of n_init=10
+:   """Entry point for launching an IPython kernel.
+: [[7.49365367 8.52417952]
+:  [3.22202355 7.15937996]
+:  [7.55616782 2.23516796]
+:  [2.68198633 2.09461587]
+:  [5.37514379 4.53101654]]
+: 2069.2452603873444
